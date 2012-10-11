@@ -75,7 +75,7 @@ end
 
 # version tasks
 RakeVersion::Tasks.new do |v|
-  v.copy 'lib/tableling.js', 'lib/tableling-bootstrap.js', 'package.json', 'README.md'
+  v.copy 'lib/tableling.js', 'lib/tableling-bootstrap.js', 'package.json', 'README.md', 'docs/demo/index.html'
   v.copy '.docco-central.json', :all => true
 end
 

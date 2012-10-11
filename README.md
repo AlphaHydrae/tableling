@@ -1,4 +1,4 @@
-# tableling
+# Tableling
 
 Table plugin based on Backbone Marionette.
 

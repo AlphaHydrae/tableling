@@ -21,7 +21,7 @@ task :build => [ :spec, :check, :minify ]
 
 desc 'Validate javascript.'
 task :check => [ :validate_presence_of_deps ] do |t|
-  result = system %/#{script_path 'jshint'} #{Dir.glob("#{SRC}/**/*").join(' ')}/
+  result = system %/#{script_path 'jshint'} #{Dir.glob("#{SRC}/**/*").reject{ |f| f.match /\.min\./ }.join(' ')}/
   fail 'Javascript has errors.' unless result
 end
 
@@ -50,12 +50,10 @@ task :pages do |t|
     Dir.mkdir repo
     raise 'ERROR: could not clone repo' unless system "git clone -b develop #{remote} #{repo}"
 
-    raise 'ERROR: could not install packages' unless system "cd #{repo} && npm install"
-
     docs = File.join tmp, 'docs'
     Dir.mkdir docs
-    bin = File.join repo, 'bin', 'docco-central'
-    raise 'ERROR: could not generate docs' unless system "cd #{repo} && #{bin} --output #{docs} lib/*.js lib/**/*.js"
+    bin = 'docco-central'
+    raise 'ERROR: could not generate docs' unless system "cd #{repo} && #{bin} --output #{docs}"
 
     raise 'ERROR: could not checkout gh-pages' unless system "cd #{repo} && git checkout -b gh-pages origin/gh-pages"
     raise 'ERROR: could not clean gh-pages' unless system "cd #{repo} && rm -fr *"

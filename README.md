@@ -2,6 +2,8 @@
 
 Table plugin based on Backbone Marionette.
 
+Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
+
 **v0.0.3: No test suite written yet. Consider this very alpha.**
 
 ## Requirements
@@ -32,7 +34,7 @@ The [tableling-rails](https://github.com/AlphaHydrae/tableling-rails) gem provid
 
 ## Documentation
 
-You can view the [annotated source code](http://alphahydrae.github.com/tableling/).
+You can view the [annotated source code](http://alphahydrae.github.com/tableling/annotated/).
 
 ## Meta
 

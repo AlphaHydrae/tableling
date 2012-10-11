@@ -50,6 +50,10 @@ task :pages do |t|
     Dir.mkdir repo
     raise 'ERROR: could not clone repo' unless system "git clone -b develop #{remote} #{repo}"
 
+    demo = File.join tmp, 'demo'
+    Dir.mkdir demo
+    raise 'ERROR: could not copy demo' unless system "cd #{repo}/docs/demo && cp -R * #{demo}"
+
     docs = File.join tmp, 'docs'
     Dir.mkdir docs
     bin = 'docco-central'
@@ -57,7 +61,9 @@ task :pages do |t|
 
     raise 'ERROR: could not checkout gh-pages' unless system "cd #{repo} && git checkout -b gh-pages origin/gh-pages"
     raise 'ERROR: could not clean gh-pages' unless system "cd #{repo} && rm -fr *"
-    raise 'ERROR: could not copy docs' unless system "cd #{tmp} && cp -R #{docs}/* #{repo}"
+    raise 'ERROR: could not create directories' unless system "cd #{repo} && mkdir annotated && mkdir demo"
+    raise 'ERROR: could not copy docs' unless system "cd #{tmp} && cp -R #{docs}/* #{repo}/annotated"
+    raise 'ERROR: could not copy demo' unless system "cd #{tmp} && cp -R #{demo}/* #{repo}/demo"
     raise 'ERROR: could not stage changes' unless system "cd #{repo} && git add -A"
     raise 'ERROR: could not stage changes' unless system "cd #{repo} && git ls-files --deleted -z | xargs -0 git rm"
 

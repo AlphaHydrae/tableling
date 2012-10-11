@@ -1,0 +1,9 @@
+source $HOME/.screenrc
+
+screen -t vim 0 $EDITOR -c GG
+screen -t zsh 1
+screen -t doc 2
+stuff "docco-central lib/**/*.js"
+screen -t md 3
+stuff "markdown-preview README.md"
+select vim

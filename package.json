@@ -1,0 +1,29 @@
+{
+  "name": "tableling",
+  "description": "Table plugin based on Backbone Marionette",
+  "private": true,
+  "keywords": [
+    "table", "backbone", "marionette"
+  ],
+  "version": "0.0.3",
+  "homepage": "https://github.com/AlphaHydrae/tableling",
+  "author": "Simon Oulevay a.k.a. Alpha Hydrae (hydrae.alpha@gmail.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlphaHydrae/tableling"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "devDependencies": {
+    "jshint": "~0.8.0",
+    "uglify-js": "~1.2.5",
+    "jasmine-node": "~1.0.26"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/AlphaHydrae/tableling/master/LICENSE.txt"
+    }
+  ]
+}

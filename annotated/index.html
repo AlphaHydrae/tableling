@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tableling v0.0.4 Annotated Source</title>
+    <title>Tableling v0.0.5 Annotated Source</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" media="all" href="central.css" />
     <script type="text/javascript" src="jquery-1.8.0-min.js"></script>
@@ -15,20 +15,20 @@
           <tr>
             <td class="docs">
               
-                <h1>v0.0.4 source index</h1>
+                <h1>v0.0.5 source index</h1>
               
               
 <p>Annotated source generated with <a href="https://github.com/AlphaHydrae/docco-central">docco-central</a>.</p>
 
-<p>You can start off with <a href="lib/tableling.html">tableling.js</a> to get an idea of how it works. <a href="lib/tableling-bootstrap.html">tableling-bootstrap.js</a> provides views styled with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+<p>You can start off with <a href="src/tableling.core.html">tableling.core.js</a> to get an idea of how it works. <a href="src/tableling.bootstrap.html">tableling.bootstrap.js</a> provides views styled with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
               
               <div id="index">
                 <input type="text" class="search" placeholder="Search..." />
                 <ul>
                 
-                  <li><a href="lib&#x2F;tableling-bootstrap.html">lib&#x2F;tableling-bootstrap.js</a></li>
+                  <li><a href="src&#x2F;tableling.bootstrap.html">src&#x2F;tableling.bootstrap.js</a></li>
                 
-                  <li><a href="lib&#x2F;tableling.html">lib&#x2F;tableling.js</a></li>
+                  <li><a href="src&#x2F;tableling.core.html">src&#x2F;tableling.core.js</a></li>
                 
                 </ul>
                 <p class="empty" style="display:none;">No match found.</p>
@@ -41,48 +41,55 @@
 
 <p>Check out the <a href="http://alphahydrae.github.com/tableling/demo/">demo</a>!</p>
 
-<p><strong>v0.0.4: No test suite written yet. Consider this very alpha.</strong></p>
+<p><strong>v0.0.5: No test suite written yet. Consider this very alpha.</strong></p>
 
 <h2 id="requirements">Requirements</h2>
 
-<p>Tableling currently works with the following versions of these libraries:</p>
+<p>Tableling currently works with the following libraries:</p>
 
 <ul>
-<li><a href="http://underscorejs.org">Underscore</a> v1.3.3</li>
+<li><a href="http://jquery.com">jQuery</a> v1.8.2</li>
+<li><a href="http://underscorejs.org">Underscore</a> v1.4.2</li>
 <li><a href="http://backbonejs.org">Backbone</a> v0.9.2</li>
-<li><a href="http://marionettejs.com">Backbone.Marionette</a> v0.10.2</li>
+<li><a href="https://github.com/marionettejs/backbone.eventbinder">Backbone.EventBinder</a> v0.0.0</li>
+<li><a href="https://github.com/marionettejs/backbone.wreqr">Backbone.Wreqr</a> v0.0.0</li>
+<li><a href="http://marionettejs.com">Backbone.Marionette</a> v1.0.0-beta1</li>
 </ul>
 
-<p>No other versions have been tested. It may or may not work using different versions.</p>
+<p>It may or may not work using different versions.</p>
 
 <h2 id="installation">Installation</h2>
 
-<h3 id="coreplugin">Core Plugin</h3>
+<p>You can find the raw source code in <code>src</code>. Development and production builds are in <code>lib</code>.</p>
+
+<h3 id="standardbuild">Standard Build</h3>
 
 <ul>
 <li>Development: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.js">tableling.js</a></li>
 <li>Production: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.min.js">tableling.min.js</a></li>
 </ul>
 
-<h3 id="bootstrapviews">Bootstrap Views</h3>
+<h3 id="backbonebuild">Backbone Build</h3>
+
+<p>Includes Backbone, Backbone.EventBinder, Backbone.Wreqr and Backbone.Marionette.</p>
 
 <ul>
-<li>Development: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling-bootstrap.js">tableling-bootstrap.js</a></li>
-<li>Production: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling-bootstrap.min.js">tableling-bootstrap.min.js</a></li>
+<li>Development: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.backbone.js">tableling.backbone.js</a></li>
+<li>Production: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.backbone.min.js">tableling.backbone.min.js</a></li>
 </ul>
 
 <h3 id="rubyonrails">Ruby on Rails</h3>
 
-<p>The <a href="https://github.com/AlphaHydrae/tableling-rails">tableling-rails</a> gem provides the latest tableling release as well as backend code to easily build responses in the expected format.</p>
+<p>The <a href="https://github.com/AlphaHydrae/tableling-rails">tableling-rails</a> gem provides the latest tableling release as well as active record extensions to easily generate table data in the expected format.</p>
 
 <h2 id="documentation">Documentation</h2>
 
-<p>You can view the <a href="http://alphahydrae.github.com/tableling/annotated/">annotated source code</a>.</p>
+<p>For now, there is only the <a href="http://alphahydrae.github.com/tableling/annotated/">annotated source code</a>.</p>
 
 <h2 id="meta">Meta</h2>
 
 <ul>
-<li><strong>Author:</strong> Simon Oulevay a.k.a. Alpha Hydrae</li>
+<li><strong>Author:</strong> Simon Oulevay (Alpha Hydrae)</li>
 <li><strong>License:</strong> MIT (see <a href="https://raw.github.com/AlphaHydrae/tableling/master/LICENSE.txt">LICENSE.txt</a>)</li>
 </ul>
             </th>

@@ -1,28 +1,21 @@
-<!DOCTYPE html>  <html> <head>   <title>tableling.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <div id="jump_to">
+<!DOCTYPE html>  <html> <head>   <title>tableling.core.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <div id="jump_to">
   Jump To &hellip;
   <div id="jump_wrapper">
     <div id="jump_page">
       
         <a class="source" href="..&#x2F;index.html">index.html</a>
       
-        <a class="source" href="..&#x2F;lib&#x2F;tableling-bootstrap.html">lib&#x2F;tableling-bootstrap.js</a>
+        <a class="source" href="..&#x2F;src&#x2F;tableling.bootstrap.html">src&#x2F;tableling.bootstrap.js</a>
       
-        <a class="source" href="..&#x2F;lib&#x2F;tableling.html">lib&#x2F;tableling.js</a>
+        <a class="source" href="..&#x2F;src&#x2F;tableling.core.html">src&#x2F;tableling.core.js</a>
       
     </div>
   </div>
 </div>
-<table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               tableling.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/*!</span>
-<span class="cm"> * Tableling v0.0.4</span>
-<span class="cm"> * Copyright (c) 2012 Simon Oulevay (Alpha Hydrae)</span>
-<span class="cm"> * Distributed under MIT license</span>
-<span class="cm"> * https://github.com/AlphaHydrae/tableling</span>
-<span class="cm"> */</span>
-
-<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">module</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h2>Tableling</h2>
+<table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               tableling.core.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h2>Tableling</h2>
 
 <p>A tableling table is a Marionette layout which fetches data
-from a Backbone collection. It is controlled with an EventAggregator.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">Tableling</span> <span class="o">=</span> <span class="nx">Tableling</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+from a Backbone collection. It is controlled with an EventAggregator.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
   <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;tableling&#39;</span><span class="p">,</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Default table options can be overriden by subclasses.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">tableling</span> <span class="o">:</span> <span class="p">{</span>
     <span class="nx">page</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -60,7 +53,7 @@ The first argument is the request data.</p>             </td>             <td cl
     <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;tableling:refreshing&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>You can provide a <code>tableling.request</code> option to add properties to the
 fetch request.</p>
 
-<pre><code>var MyTable = Tableling.extend({
+<pre><code>var MyTable = Tableling.Table.extend({
   tableling : {
     type : 'POST' // fetch data with POST
   }
@@ -124,12 +117,12 @@ expects the following response format:</p>
 <span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-21">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-21">&#182;</a>               </div>               <h2>Tableling.Modular</h2>
 
 <p>Tableling subclass which splits functionality into <em>modules</em>
-and handles rendering.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>             </td>           </tr>                               <tr id="section-22">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-22">&#182;</a>               </div>               <p>The list of module names must be specified by subclasses.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[],</span></pre></div>             </td>           </tr>                               <tr id="section-23">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-23">&#182;</a>               </div>               <p>Modules are set up after rendering, before refreshing.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+and handles rendering.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>             </td>           </tr>                               <tr id="section-22">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-22">&#182;</a>               </div>               <p>The list of module names must be specified by subclasses.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[],</span></pre></div>             </td>           </tr>                               <tr id="section-23">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-23">&#182;</a>               </div>               <p>Modules are set up after rendering, before refreshing.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span> <span class="o">=</span> <span class="p">{};</span>
     <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">modules</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">setupModule</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
-    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setup</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setup</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
   <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-24">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-24">&#182;</a>               </div>               <h3>Modules</h3>
 
 <p>Each module is identified by a name, for example <code>pageSize</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">setupModule</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-25">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-25">&#182;</a>               </div>               <p>The layout must have a region named after the module, e.g. <code>pageSizeRegion</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;Region&#39;</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-26">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-26">&#182;</a>               </div>               <p>It must have a view class, e.g. <code>pageSizeView</code>, which will be shown into
@@ -214,9 +207,7 @@ var PageSizeView =
 
 <p>When the value of the input field changes, the event aggregator will
 receive a <code>tableling:update</code> event with the <code>pageSize</code> property set
-to that value.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="p">});</span>
+to that value.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-42">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-42">&#182;</a>               </div>               <h2>Implementations</h2>
 
-<span class="p">})(</span><span class="k">this</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-42">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-42">&#182;</a>               </div>               <h2>Implementations</h2>
-
-<p><a href="tableling-bootstrap.html">tableling-bootstrap</a> provides views styled
+<p><a href="tableling.bootstrap.html">tableling.bootstrap</a> provides views styled
 with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> classes.</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

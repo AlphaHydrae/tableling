@@ -17,9 +17,8 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   initialize : function(options) {
     options = options || {};
 
-    // Table options can also be overriden for each instance by passing
-    // a `tableling` object in the options.
-    this.tableling = _.extend(_.clone(this.tableling), options.tableling || {});
+    // Table options can also be overriden for each instance at construction.
+    this.tableling = _.extend(_.clone(this.tableling), this.filterConfig(options));
 
     // We use an event aggregator to manage the layout and its components.
     // You can use your own by passing a `vent` option.

@@ -1,15 +1,7 @@
-/*!
- * Tableling v0.0.4 - Bootstrap
- * Copyright (c) 2012 Simon Oulevay (Alpha Hydrae)
- * Distributed under MIT license
- * https://github.com/AlphaHydrae/tableling
- */
 
-(function(module) {
+Tableling.Bootstrap = {};
 
-var Tableling = module.Tableling;
-
-Tableling.Bootstrap = Tableling.Modular.extend({
+Tableling.Bootstrap.Table = Tableling.Modular.extend({
 
   className: 'tableling',
   modules : [ 'table', 'pageSize', 'quickSearch', 'info', 'pagination' ],
@@ -106,7 +98,7 @@ _.extend(Tableling.Bootstrap, {
   })
 });
 
-_.extend(Tableling.Bootstrap.prototype, {
+_.extend(Tableling.Bootstrap.Table.prototype, {
   pageSizeView : Tableling.Bootstrap.PageSizeView
 });
 
@@ -117,7 +109,7 @@ _.extend(Tableling.Bootstrap, {
   })
 });
 
-_.extend(Tableling.Bootstrap.prototype, {
+_.extend(Tableling.Bootstrap.Table.prototype, {
   quickSearchView : Tableling.Bootstrap.QuickSearchView
 });
 
@@ -151,7 +143,7 @@ _.extend(Tableling.Bootstrap, {
   })
 });
 
-_.extend(Tableling.Bootstrap.prototype, {
+_.extend(Tableling.Bootstrap.Table.prototype, {
   infoView : Tableling.Bootstrap.InfoView
 });
 
@@ -223,8 +215,6 @@ _.extend(Tableling.Bootstrap, {
   })
 });
 
-_.extend(Tableling.Bootstrap.prototype, {
+_.extend(Tableling.Bootstrap.Table.prototype, {
   paginationView : Tableling.Bootstrap.PaginationView
 });
-
-})(this);

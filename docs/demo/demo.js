@@ -135,7 +135,7 @@ var BooksTableView = Tableling.Bootstrap.TableView.extend({
   }
 });
 
-var BooksTable = Tableling.Bootstrap.extend({
+var BooksTable = Tableling.Bootstrap.Table.extend({
 
   tableView : BooksTableView,
   tableViewOptions : {

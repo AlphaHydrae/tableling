@@ -42,6 +42,6 @@ end
 
 # version tasks
 RakeVersion::Tasks.new do |v|
-  v.copy 'src/tableling.js', 'package.json', 'README.md', 'docs/demo/index.html'
+  v.copy 'src/tableling.js', 'package.json', 'README.md', 'docs/demo/index.html', 'spec/javascripts/version.spec.js'
   v.copy '.docco-central.json', :all => true
 end

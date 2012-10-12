@@ -1,5 +1,5 @@
 {
-  "files": [ "lib/tableling.js", "lib/tableling-bootstrap.js" ],
+  "files": [ "src/tableling.*.js" ],
   "title": "v0.0.4 source index",
   "windowTitle": "Tableling v0.0.4 Annotated Source"
 }

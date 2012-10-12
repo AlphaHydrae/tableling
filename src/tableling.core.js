@@ -307,5 +307,5 @@ _.extend(Tableling.Modular, {
 // Implementations
 // ---------------
 //
-// <a href="tableling-bootstrap.html">tableling-bootstrap</a> provides views styled
+// <a href="tableling.bootstrap.html">tableling.bootstrap</a> provides views styled
 // with [Twitter Bootstrap](http://twitter.github.com/bootstrap/) classes.

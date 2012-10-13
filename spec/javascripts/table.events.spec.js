@@ -26,17 +26,30 @@ describe('table events', function() {
       return table = new Table({ vent : vent });
     };
 
+    var order;
+    vent.on('tableling:setup', function() { order.push('tableling:setup'); });
+    vent.on('tableling:update', function() { order.push('tableling:update'); });
+
+    beforeEach(function() {
+      order = [];
+    });
+
     it('should call #setup', function() {
       spyOn(Table.prototype, 'setup');
       makeTable().render();
       expect(table.setup).toHaveBeenCalled();
     });
 
-    it('should trigger tableling:update', function() {
-      var spy = jasmine.createSpy();
-      vent.on('tableling:update', spy);
+    it('should trigger tableling:setup and tableling:update in that order', function() {
       makeTable().render();
-      expect(spy).toHaveBeenCalledWith();
+      expect(order).toEqual([ 'tableling:setup', 'tableling:update' ]);
+    });
+
+    it('should trigger tableling:setup with its configuration', function() {
+      var args;
+      vent.on('tableling:setup', function() { args = Array.prototype.slice.call(arguments); });
+      makeTable().render();
+      expect(args).toEqual([ Tableling.Table.prototype.tableling ]);
     });
   });
 });

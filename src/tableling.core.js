@@ -33,6 +33,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Called once rendering is complete. By default, it updates the table.
   setup : function() {
+    this.vent.trigger('tableling:setup', this.filterConfig(this.tableling, true));
     this.vent.trigger('tableling:update');
   },
 

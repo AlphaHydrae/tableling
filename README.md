@@ -4,7 +4,12 @@ Table plugin based on Backbone Marionette.
 
 Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
-**v0.0.7: No test suite written yet. Consider this very alpha.**
+**v0.0.7: Test suite not yet complete. Consider this very alpha.**
+
+Tableling is tested with <a href="http://pivotal.github.com/jasmine/">Jasmine</a> and <a href="http://travis-ci.org/#!/AlphaHydrae/tableling">Travis CI</a>.
+
+* master [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=master)](http://travis-ci.org/AlphaHydrae/tableling)
+* develop [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop)](http://travis-ci.org/AlphaHydrae/tableling)
 
 ## Requirements
 

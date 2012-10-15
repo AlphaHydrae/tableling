@@ -76,14 +76,10 @@ var Books = Tableling.Collection.extend({
 
     var data = books;
     var req = options.data;
-    var i = (req.page - 1) * req.pageSize;
-    data = data.slice(i, i + req.pageSize);
-    if (Tableling.debug) {
-      console.log('debug: i = ' + i);
-      console.log('debug: i + pageSize = ' + (i + req.pageSize));
-      console.log('debug: pageSize = ' + req.pageSize);
-      console.log('debug: sliced data length = ' + data.length);
-    }
+    var page = parseInt(req.page);
+    var pageSize = parseInt(req.pageSize);
+    var i = (page - 1) * pageSize;
+    data = data.slice(i, i + pageSize);
 
     if (req.quickSearch) {
       var term = req.quickSearch.toLowerCase();

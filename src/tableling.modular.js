@@ -70,81 +70,81 @@ Tableling.Modular = Tableling.Table.extend({
 //       }
 //     });
 
-// ### Utilities
-_.extend(Tableling.Modular, {
+// Tableling.Module
+// ----------------
+//
+// A module is an item view that is automatically bound to the table's
+// event aggregator.
+Tableling.Module = Backbone.Marionette.ItemView.extend({
 
-  // **createModule** creates an item view that is automatically bound
-  // to the layout's event aggregator.
-  createModule : function(options) {
-    return Backbone.Marionette.ItemView.extend(_.extend({
+  initialize : function(options) {
+    this.vent = options.vent;
 
-      initialize : function(options) {
-        this.vent = options.vent;
-
-        // The `refresh` method of the view is called once the view is rendered
-        // and every time the table is refreshed.
-        this.vent.on('table:refreshed', this.refresh, this);
-        this.on('render', this.refresh, this);
-      },
-
-      // Call `update` to trigger an update of the table.
-      update : function() {
-        this.vent.trigger('table:update', this.config());
-      },
-
-      // Implementations should override this to stay up to date with
-      // the table state. Note that the data parameter will be undefined
-      // on the first refresh when the view is rendered.
-      refresh : function(data) {
-      },
-
-      // New table configuration to be sent on updates. For example,
-      // a page size view might update the `pageSize` property.
-      config : function() {
-        return {};
-      }
-    }, options));
+    // The `refresh` method of the view is called once the view is rendered
+    // and every time the table is refreshed.
+    this.vent.on('table:refreshed', this.refresh, this);
+    this.on('render', this.refresh, this);
   },
 
-  // **createFieldModule** creates a basic module with a single form field.
-  // It comes with sensible defaults and only requires a `template` parameter.
-  createFieldModule : function(name, options) {
+  // Call `update` to trigger an update of the table.
+  update : function() {
+    this.vent.trigger('table:update', this.config());
+  },
 
-    var definition = {
-      
-      // The name attribute of the form field is expected to be the name of
-      // the module, e.g. `pageSize`.
-      ui : {
-        field : '[name="' + name + '"]'
-      },
+  // Implementations should override this to stay up to date with
+  // the table state. Note that the data parameter will be undefined
+  // on the first refresh when the view is rendered.
+  refresh : function(data) {
+  },
 
-      events : {},
-
-      // The table property updated is the one with the same name as the module.
-      config : function() {
-        var config = {};
-        config[name] = this.ui.field.val();
-        return config;
-      }
-    };
-
-    // The `change` even triggers an update.
-    definition.events['change [name="' + name + '"]'] = 'update';
-
-    return Tableling.Modular.createModule(_.extend(definition, options));
+  // New table configuration to be sent on updates. For example,
+  // a page size view might update the `pageSize` property.
+  config : function() {
+    return {};
   }
-
-  // This is how a `PageSizeView` module might be implemented:
-  //
-  //     var html = '<input type="text" name="pageSize" />';
-  //
-  //     var PageSizeView =
-  //       Tableling.Modular.createFieldModule('pageSize', {
-  //
-  //         template : _.template(html)
-  //     });
-  //
-  // When the value of the input field changes, the event aggregator will
-  // receive a `tableling:update` event with the `pageSize` property set
-  // to that value.
 });
+
+// Tableling.FieldModule
+// ---------------------
+//
+// A basic module with a single form field. It comes with sensible
+// defaults and only requires a `name` and a `template` parameter.
+Tableling.FieldModule = Tableling.Module.extend({
+
+  initialize : function(options) {
+
+    Tableling.Module.prototype.initialize.call(this, options);
+
+    if (!this.ui) {
+      this.ui = {};
+    }
+    // The name attribute of the form field is the same as the
+    // module's, e.g. `pageSize`.
+    this.ui.field = '[name="' + this.name + '"]';
+
+    if (!this.events) {
+      this.events = {};
+    }
+    this.events['change [name="' + this.name + '"]'] = 'update';
+  },
+
+  // The table property updated is the one with the same name as the module.
+  config : function() {
+    var config = {};
+    config[this.name] = this.ui.field.val();
+    return config;
+  }
+});
+
+// This is how a `PageSizeView` module might be implemented:
+//
+//     var html = '<input type="text" name="pageSize" />';
+//
+//     var PageSizeView = Tableling.FieldModule.extend({
+//         name : 'pageSize'
+//         template : _.template(html)
+//     });
+//
+// When the value of the input field changes, the event aggregator will
+// receive a `tableling:update` event with the `pageSize` property set
+// to that value.

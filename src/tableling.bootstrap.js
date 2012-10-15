@@ -92,8 +92,9 @@ _.extend(Tableling.Bootstrap, {
 
 _.extend(Tableling.Bootstrap, {
 
-  PageSizeView : Tableling.Modular.createFieldModule('pageSize', {
+  PageSizeView : Tableling.FieldModule.extend({
     // TODO: update current page intelligently
+    name : 'pageSize',
     template : _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> entries per page')
   })
 });
@@ -104,7 +105,8 @@ _.extend(Tableling.Bootstrap.Table.prototype, {
 
 _.extend(Tableling.Bootstrap, {
 
-  QuickSearchView : Tableling.Modular.createFieldModule('quickSearch', {
+  QuickSearchView : Tableling.FieldModule.extend({
+    name : 'quickSearch',
     template : _.template('<input type="text" name="quickSearch" placeholder="Quick search..." />')
   })
 });
@@ -115,7 +117,7 @@ _.extend(Tableling.Bootstrap.Table.prototype, {
 
 _.extend(Tableling.Bootstrap, {
 
-  InfoView : Tableling.Modular.createModule({
+  InfoView : Tableling.Module.extend({
 
     template : _.template('Showing <span class="first">0</span> to <span class="last">0</span> of <span class="total">0</span> entries'),
 
@@ -149,7 +151,7 @@ _.extend(Tableling.Bootstrap.Table.prototype, {
 
 _.extend(Tableling.Bootstrap, {
 
-  PaginationView : Tableling.Modular.createModule({
+  PaginationView : Tableling.Module.extend({
     
     template : _.template('<div class="pagination"><ul><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul></div>'),
 

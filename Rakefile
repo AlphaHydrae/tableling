@@ -4,9 +4,26 @@ require 'rake-version'
 require 'tmpdir'
 
 ROOT = File.expand_path File.dirname(__FILE__)
-SRC = File.join ROOT, 'lib'
+LIB = File.join ROOT, 'lib'
+ANNOTATED = File.join ROOT, 'docs', 'annotated'
+DEMO = File.join ROOT, 'docs', 'demo'
 
-desc 'Update GitHub pages (from develop).'
+desc 'Update lib, annotated source and demo'
+task :update do |t|
+
+  # build lib
+  raise 'ERROR: could not update lib' unless system "grunt"
+
+  # generate annotated source
+  raise 'ERROR: could not generate annotated source' unless system "docco-central --output #{ANNOTATED} src/tableling.*.js"
+
+  # update demo
+  world_source = File.join LIB, 'bundles', 'tableling.world.min.js'
+  world_target = File.join DEMO, 'tableling.world.min.js'
+  raise 'ERROR: could not update demo' unless system "cp #{world_source} #{world_target}"
+end
+
+desc 'Update GitHub pages (from develop)'
 task :pages do |t|
 
   remote = 'git@github.com:AlphaHydrae/tableling.git'

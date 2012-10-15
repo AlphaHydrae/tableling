@@ -4,7 +4,7 @@ Table plugin based on Backbone Marionette.
 
 Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
-**v0.0.6: No test suite written yet. Consider this very alpha.**
+**v0.0.7: No test suite written yet. Consider this very alpha.**
 
 ## Requirements
 

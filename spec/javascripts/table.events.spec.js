@@ -27,8 +27,8 @@ describe('table events', function() {
     };
 
     var order;
-    vent.on('tableling:setup', function() { order.push('tableling:setup'); });
-    vent.on('tableling:update', function() { order.push('tableling:update'); });
+    vent.on('table:setup', function() { order.push('table:setup'); });
+    vent.on('table:update', function() { order.push('table:update'); });
 
     beforeEach(function() {
       order = [];
@@ -40,14 +40,14 @@ describe('table events', function() {
       expect(table.setup).toHaveBeenCalled();
     });
 
-    it('should trigger tableling:setup and tableling:update in that order', function() {
+    it('should trigger table:setup and table:update in that order', function() {
       makeTable().render();
-      expect(order).toEqual([ 'tableling:setup', 'tableling:update' ]);
+      expect(order).toEqual([ 'table:setup', 'table:update' ]);
     });
 
-    it('should trigger tableling:setup with its configuration', function() {
+    it('should trigger table:setup with its configuration', function() {
       var args;
-      vent.on('tableling:setup', function() { args = Array.prototype.slice.call(arguments); });
+      vent.on('table:setup', function() { args = Array.prototype.slice.call(arguments); });
       makeTable().render();
       expect(args).toEqual([ Tableling.Table.prototype.tableling ]);
     });

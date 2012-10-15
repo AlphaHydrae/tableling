@@ -24,17 +24,17 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     // You can use your own by passing a `vent` option.
     this.vent = options.vent || new Backbone.Marionette.EventAggregator();
 
-    // Components should trigger the `tableling:update` event to update
+    // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.
-    this.vent.on('tableling:update', this.update, this);
+    this.vent.on('table:update', this.update, this);
 
     this.on('render', this.setup, this);
   },
 
   // Called once rendering is complete. By default, it updates the table.
   setup : function() {
-    this.vent.trigger('tableling:setup', this.filterConfig(this.tableling, true));
-    this.vent.trigger('tableling:update');
+    this.vent.trigger('table:setup', this.filterConfig(this.tableling, true));
+    this.vent.trigger('table:update');
   },
 
   // Subclasses must return the Backbone.Collection used to fetch data.
@@ -65,10 +65,10 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   refresh : function() {
 
-    // `tableling:refreshing` is triggered every time new data is being fetched.
+    // `table:refreshing` is triggered every time new data is being fetched.
     // The first argument is the request data.
     var data = this.requestData();
-    this.ventTrigger('tableling:refreshing', data);
+    this.ventTrigger('table:refreshing', data);
 
     // You can provide a `tableling.request` option to add properties to the
     // fetch request.

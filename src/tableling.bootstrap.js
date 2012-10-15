@@ -49,7 +49,7 @@ _.extend(Tableling.Bootstrap, {
           existing.direction = existing.direction == 'asc' ? 'desc' : 'asc';
           el.removeClass('sorting sorting-asc sorting-desc');
           el.addClass('sorting-' + existing.direction);
-          return this.vent.trigger('tableling:update', this.config());
+          return this.vent.trigger('table:update', this.config());
         }
       }
 
@@ -65,7 +65,7 @@ _.extend(Tableling.Bootstrap, {
 
       el.removeClass('sorting sorting-asc sorting-desc').addClass('sorting-asc');
 
-      this.vent.trigger('tableling:update', this.config());
+      this.vent.trigger('table:update', this.config());
     },
 
     config : function() {
@@ -210,7 +210,7 @@ _.extend(Tableling.Bootstrap, {
     },
 
     goToPage : function(n) {
-      this.vent.trigger('tableling:update', { page : n });
+      this.vent.trigger('table:update', { page : n });
     }
   })
 });

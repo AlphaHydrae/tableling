@@ -150,8 +150,6 @@ $(function() {
   new Backbone.Marionette.Region({
     el: '#books'
   }).show(new BooksTable({
-    tableling: {
-      pageSize: 5
-    }
+    pageSize: 5
   }));
 });

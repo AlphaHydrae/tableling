@@ -60,7 +60,7 @@
           <span class="nx">existing</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="nx">existing</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="s1">&#39;asc&#39;</span> <span class="o">?</span> <span class="s1">&#39;desc&#39;</span> <span class="o">:</span> <span class="s1">&#39;asc&#39;</span><span class="p">;</span>
           <span class="nx">el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;sorting sorting-asc sorting-desc&#39;</span><span class="p">);</span>
           <span class="nx">el</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;sorting-&#39;</span> <span class="o">+</span> <span class="nx">existing</span><span class="p">.</span><span class="nx">direction</span><span class="p">);</span>
-          <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;tableling:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
+          <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
         <span class="p">}</span>
       <span class="p">}</span>
 
@@ -76,7 +76,7 @@
 
       <span class="nx">el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;sorting sorting-asc sorting-desc&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;sorting-asc&#39;</span><span class="p">);</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;tableling:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
     <span class="p">},</span>
 
     <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -219,7 +219,7 @@
     <span class="p">},</span>
 
     <span class="nx">goToPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;tableling:update&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">page</span> <span class="o">:</span> <span class="nx">n</span> <span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">page</span> <span class="o">:</span> <span class="nx">n</span> <span class="p">});</span>
     <span class="p">}</span>
   <span class="p">})</span>
 <span class="p">});</span>

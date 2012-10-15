@@ -77,16 +77,16 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   },
 
   // ### Request
-  // You can provide `requestOptions` to add properties to the
+  // You can provide `fetchOptions` to add properties to the
   // fetch request.
   //
   //     var MyTable = Tableling.Table.extend({
-  //       requestOptions : {
+  //       fetchOptions : {
   //         type : 'POST' // fetch data with POST
   //       }
   //     });
   requestData : function() {
-    return _.extend(_.clone(this.requestOptions || {}), this.filterConfig(this.tableling));
+    return _.extend(_.clone(this.fetchOptions || {}), this.filterConfig(this.tableling));
   },
 
   // ### Response

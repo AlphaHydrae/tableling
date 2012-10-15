@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     hashr (0.0.22)
+    paint (0.8.5)
     rake (0.9.2.2)
     rake-version (0.3.0)
       rake (~> 0.9.2)
@@ -12,5 +13,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  paint
   rake-version
   travis-lint

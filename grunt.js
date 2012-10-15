@@ -120,6 +120,7 @@ module.exports = function(grunt) {
         'vendor/backbone.marionette.js',
         'src/tableling.js',
         'src/tableling.core.js',
+        'src/tableling.modular.js',
         'src/tableling.bootstrap.js'
       ],
       helpers : 'spec/javascripts/helpers/*.js',

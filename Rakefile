@@ -2,6 +2,7 @@
 require 'rake'
 require 'rake-version'
 require 'tmpdir'
+require 'paint'
 
 ROOT = File.expand_path File.dirname(__FILE__)
 LIB = File.join ROOT, 'lib'
@@ -12,19 +13,25 @@ namespace :update do
 
   desc 'Update lib'
   task :lib do |t|
+    puts
+    puts Paint["Building javascript libs in #{LIB}...", :magenta, :bold]
     raise 'ERROR: could not update lib' unless system "grunt"
   end
 
   desc 'Update annotated source'
   task :annotated do |t|
+    puts
+    puts Paint["Generating annotated source in #{ANNOTATED}...", :magenta, :bold]
     raise 'ERROR: could not generate annotated source' unless system "docco-central --output #{ANNOTATED} src/tableling.*.js"
   end
 
   desc 'Update demo'
   task :demo do |t|
+    puts Paint["\nCopying tableling.world.min.js to #{DEMO}...", :magenta, :bold]
     world_source = File.join LIB, 'bundles', 'tableling.world.min.js'
     world_target = File.join DEMO, 'tableling.world.min.js'
     raise 'ERROR: could not update demo' unless system "cp #{world_source} #{world_target}"
+    puts Paint['Done.', :green, :bold]
   end
 end
 

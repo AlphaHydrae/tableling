@@ -70,18 +70,23 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     var data = this.requestData();
     this.ventTrigger('table:refreshing', data);
 
-    // You can provide a `tableling.request` option to add properties to the
-    // fetch request.
-    //
-    //     var MyTable = Tableling.Table.extend({
-    //       tableling : {
-    //         type : 'POST' // fetch data with POST
-    //       }
-    //     });
     this.getCollection().fetch(_.extend(this.tableling.request || {}, {
       data: data,
       success: _.bind(this.processResponse, this)
     }));
+  },
+
+  // ### Request
+  // You can provide `requestOptions` to add properties to the
+  // fetch request.
+  //
+  //     var MyTable = Tableling.Table.extend({
+  //       requestOptions : {
+  //         type : 'POST' // fetch data with POST
+  //       }
+  //     });
+  requestData : function() {
+    return _.extend(_.clone(this.requestOptions || {}), this.filterConfig(this.tableling));
   },
 
   // ### Response
@@ -98,14 +103,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     //
     // * `total` - the total number of items
     // * `length` - the number of items in the current page
-    this.ventTrigger('tableling:refreshed', this.filterConfig(this.tableling, true));
-  },
-
-  // ### Request
-  // Builds the request data. Subclasses may override this if they need to
-  // send additional data.
-  requestData : function() {
-    return this.filterConfig(this.tableling);
+    this.ventTrigger('table:refreshed', this.filterConfig(this.tableling, true));
   },
 
   // ### Utilities
@@ -238,13 +236,13 @@ _.extend(Tableling.Modular, {
 
         // The `refresh` method of the view is called once the view is rendered
         // and every time the table is refreshed.
-        this.vent.on('tableling:refreshed', this.refresh, this);
+        this.vent.on('table:refreshed', this.refresh, this);
         this.on('render', this.refresh, this);
       },
 
       // Call `update` to trigger an update of the table.
       update : function() {
-        this.vent.trigger('tableling:update', this.config());
+        this.vent.trigger('table:update', this.config());
       },
 
       // Implementations should override this to stay up to date with

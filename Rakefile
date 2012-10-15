@@ -8,20 +8,28 @@ LIB = File.join ROOT, 'lib'
 ANNOTATED = File.join ROOT, 'docs', 'annotated'
 DEMO = File.join ROOT, 'docs', 'demo'
 
-desc 'Update lib, annotated source and demo'
-task :update do |t|
+namespace :update do
 
-  # build lib
-  raise 'ERROR: could not update lib' unless system "grunt"
+  desc 'Update lib'
+  task :lib do |t|
+    raise 'ERROR: could not update lib' unless system "grunt"
+  end
 
-  # generate annotated source
-  raise 'ERROR: could not generate annotated source' unless system "docco-central --output #{ANNOTATED} src/tableling.*.js"
+  desc 'Update annotated source'
+  task :annotated do |t|
+    raise 'ERROR: could not generate annotated source' unless system "docco-central --output #{ANNOTATED} src/tableling.*.js"
+  end
 
-  # update demo
-  world_source = File.join LIB, 'bundles', 'tableling.world.min.js'
-  world_target = File.join DEMO, 'tableling.world.min.js'
-  raise 'ERROR: could not update demo' unless system "cp #{world_source} #{world_target}"
+  desc 'Update demo'
+  task :demo do |t|
+    world_source = File.join LIB, 'bundles', 'tableling.world.min.js'
+    world_target = File.join DEMO, 'tableling.world.min.js'
+    raise 'ERROR: could not update demo' unless system "cp #{world_source} #{world_target}"
+  end
 end
+
+desc 'Update lib, annotated source and demo'
+task :update => [ 'update:lib', 'update:annotated', 'update:demo' ]
 
 desc 'Update GitHub pages (from develop)'
 task :pages do |t|

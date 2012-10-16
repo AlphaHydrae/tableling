@@ -6,3 +6,14 @@ body {
   width: 100%;
   clear: both;
 }
+
+table thead .sorting,
+table thead .sorting-asc,
+table thead .sorting-desc {
+    cursor: pointer;
+    *cursor: hand;
+}
+ 
+table thead .sorting { background: url('images/sort_both.png') no-repeat center right; }
+table thead .sorting-asc { background: url('images/sort_asc.png') no-repeat center right; }
+table thead .sorting-desc { background: url('images/sort_desc.png') no-repeat center right; }

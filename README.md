@@ -1,15 +1,27 @@
 # Tableling
 
-Table plugin based on Backbone Marionette.
-
-Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
+Table plugin based on Backbone Marionette. Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
 **v0.0.8: Test suite not yet complete. Consider this very alpha.**
 
-Tableling is tested with <a href="http://pivotal.github.com/jasmine/">Jasmine</a> and <a href="http://travis-ci.org/#!/AlphaHydrae/tableling">Travis CI</a>.
+[![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop)](http://travis-ci.org/AlphaHydrae/tableling)
 
-* master [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=master)](http://travis-ci.org/AlphaHydrae/tableling)
-* develop [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop)](http://travis-ci.org/AlphaHydrae/tableling)
+## About
+
+Tableling leverages [Backbone](http://backbonejs.org) and [Backbone Marionette](https://github.com/marionettejs/backbone.marionette) components to provide an extensible table that can be easily integrated into existing Marionette applications.
+
+### Features
+
+* Fetches table data from a `Backbone.Collection`
+* Event-based management with a Marionette `EventAggregator`
+* Provides view implementations using Marionette components (`Layout`, `CompositeView` and `ItemView`)
+* Provides optional view markup with [Twitter Bootstrap](http://twitter.github.com/bootstrap/) classes
+* Otherwise leaves the styling to you
+* Modular structure allowing you to redefine each component separately:
+  * Page size select box
+  * Quick search field
+  * Info notice (number of records)
+  * Page switcher
 
 ## Requirements
 
@@ -46,7 +58,9 @@ The [tableling-rails](https://github.com/AlphaHydrae/tableling-rails) gem provid
 
 ## Documentation
 
-For now, there is only the [annotated source code](http://alphahydrae.github.com/tableling/annotated/).
+The [wiki](https://github.com/AlphaHydrae/tableling/wiki) provides the main documentation.
+
+You can also read the [annotated source code](http://alphahydrae.github.com/tableling/annotated/).
 
 ## Meta
 

@@ -15,17 +15,13 @@ $(function() {
 
       var current = $(this);
       var contents = current.text();
-      if (contents.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+      if (contents.indexOf(q) >= 0) {
         current.css('display', 'block');
       } else {
         current.css('display', 'none');
       }
     });
 
-    if (currentLine && !currentLine.is(':visible')) {
-      currentLine.removeClass('active');
-      currentLine = null;
-    }
     empty.css('display', index.find('ul li:visible').length ? 'none' : 'block');
   });
 
@@ -33,29 +29,23 @@ $(function() {
 
     if (e.keyCode == 40) {
       if (!currentLine) {
-        currentLine = index.find('ul li:visible').first().addClass('active');
+        currentLine = index.find('ul li:first:visible').addClass('active');
       } else {
         var nextLine = currentLine.next('li:visible');
         if (nextLine.length) {
           currentLine.removeClass('active');
           currentLine = nextLine.addClass('active');
-        } else {
-          currentLine.removeClass('active');
-          currentLine = index.find('ul li:visible').first().addClass('active');
         }
       }
       return false;
     } else if (e.keyCode == 38) {
       if (!currentLine) {
-        currentLine = index.find('ul li:visible').last().addClass('active');
+        currentLine = index.find('ul li:last:visible').addClass('active');
       } else {
         var previousLine = currentLine.prev('li:visible');
         if (previousLine.length) {
           currentLine.removeClass('active');
           currentLine = previousLine.addClass('active');
-        } else {
-          currentLine.removeClass('active');
-          currentLine = index.find('ul li:visible').last().addClass('active');
         }
       }
       return false;
@@ -64,6 +54,7 @@ $(function() {
       currentLine = null;
       return false;
     } else if (e.keyCode == 13 && currentLine) {
+      console.log('enter!');
       window.location = currentLine.find('a').attr('href');
       return false;
     }

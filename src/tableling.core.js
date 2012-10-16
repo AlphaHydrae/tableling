@@ -66,35 +66,35 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   refresh : function() {
 
+    // You can provide `fetchOptions` to add properties to the
+    // fetch request.
+    //
+    //     var MyTable = Tableling.Table.extend({
+    //       fetchOptions : {
+    //         type : 'POST' // fetch data with POST
+    //       }
+    //     });
+    //
+    //     // You can also override for each instance.
+    //     new MyTable({
+    //       fetchOptions : {
+    //         type : 'GET'
+    //       }
+    //     });
+    var options = _.clone(this.fetchOptions);
+    options.data = this.requestData();
+    options.success = _.bind(this.processResponse, this);
+
     // `table:refreshing` is triggered every time new data is being fetched.
     // The first argument is the request data.
-    var data = this.requestData();
-    this.ventTrigger('table:refreshing', data);
+    this.ventTrigger('table:refreshing', options.data);
 
-    this.getCollection().fetch(_.extend(this.tableling.request || {}, {
-      data: data,
-      success: _.bind(this.processResponse, this)
-    }));
+    this.getCollection().fetch(options);
   },
 
   // ### Request
-  // You can provide `fetchOptions` to add properties to the
-  // fetch request.
-  //
-  //     var MyTable = Tableling.Table.extend({
-  //       fetchOptions : {
-  //         type : 'POST' // fetch data with POST
-  //       }
-  //     });
-  //
-  //     // You can also override for each instance.
-  //     new MyTable({
-  //       fetchOptions : {
-  //         type : 'GET'
-  //       }
-  //     });
   requestData : function() {
-    return _.extend(_.clone(this.fetchOptions), this.filterConfig(this.tableling));
+    return this.filterConfig(this.tableling);
   },
 
   // ### Response

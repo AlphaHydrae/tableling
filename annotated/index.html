@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>docco-central</title>
+    <title>Tableling v0.0.8 Annotated Source</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" media="all" href="central.css" />
     <script type="text/javascript" src="jquery-1.8.0-min.js"></script>
@@ -13,30 +13,57 @@
       <table cellpadding="0" cellspacing="0">
         <tbody>
           <tr>
-            <th class="docs">
-              <h1>Index</h1>
+            <td class="docs">
+              
+                <h1>v0.0.8 source index</h1>
+              
+              
+<p>Annotated source generated with <a href="https://github.com/AlphaHydrae/docco-central">docco-central</a>.</p>
+
+<p>You can start off with <a href="src/tableling.core.html">tableling.core.js</a> to get an idea of the basics.</p>
+
+<p><a href="src/tableling.modular.html">tableling.modular.js</a> provides utilities to create table modules such as a page size select box. <a href="src/tableling.bootstrap.html">tableling.bootstrap.js</a> provides views styled with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+              
               <div id="index">
                 <input type="text" class="search" placeholder="Search..." />
                 <ul>
                 
+                  <li><a href="src&#x2F;tableling.bootstrap.html">src&#x2F;tableling.bootstrap.js</a></li>
+                
+                  <li><a href="src&#x2F;tableling.core.html">src&#x2F;tableling.core.js</a></li>
+                
+                  <li><a href="src&#x2F;tableling.modular.html">src&#x2F;tableling.modular.js</a></li>
+                
                 </ul>
                 <p class="empty" style="display:none;">No match found.</p>
               </div>
-            </th>
+            </td>
             <td class="readme">
 <h1 id="tableling">Tableling</h1>
 
-<p>Table plugin based on Backbone Marionette.</p>
-
-<p>Check out the <a href="http://alphahydrae.github.com/tableling/demo/">demo</a>!</p>
+<p>Table plugin based on Backbone Marionette. Check out the <a href="http://alphahydrae.github.com/tableling/demo/">demo</a>!</p>
 
 <p><strong>v0.0.8: Test suite not yet complete. Consider this very alpha.</strong></p>
 
-<p>Tableling is tested with <a href="http://pivotal.github.com/jasmine/">Jasmine</a> and <a href="http://travis-ci.org/#!/AlphaHydrae/tableling">Travis CI</a>.</p>
+<p><a href="http://travis-ci.org/AlphaHydrae/tableling"><img src="https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop" alt="Build Status" title="" /></a></p>
+
+<h2 id="about">About</h2>
+
+<p>Tableling leverages <a href="http://backbonejs.org">Backbone</a> and <a href="https://github.com/marionettejs/backbone.marionette">Backbone Marionette</a> components to provide an extensible table that can be easily integrated into existing Marionette applications.</p>
+
+<h3 id="features">Features</h3>
 
 <ul>
-<li>master <a href="http://travis-ci.org/AlphaHydrae/tableling"><img src="https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=master" alt="Build Status" title="" /></a></li>
-<li>develop <a href="http://travis-ci.org/AlphaHydrae/tableling"><img src="https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop" alt="Build Status" title="" /></a></li>
+<li>Fetches table data from a <code>Backbone.Collection</code></li>
+<li>Event-based management with a Marionette <code>EventAggregator</code></li>
+<li>Provides view implementations using Marionette components (<code>Layout</code>, <code>CompositeView</code> and <code>ItemView</code>)</li>
+<li>Provides optional view markup with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> classes</li>
+<li>Otherwise leaves the styling to you</li>
+<li>Modular structure allowing you to redefine each component separately:
+<ul><li>Page size select box</li>
+<li>Quick search field</li>
+<li>Info notice (number of records)</li>
+<li>Page switcher</li></ul></li>
 </ul>
 
 <h2 id="requirements">Requirements</h2>
@@ -80,7 +107,9 @@
 
 <h2 id="documentation">Documentation</h2>
 
-<p>For now, there is only the <a href="http://alphahydrae.github.com/tableling/annotated/">annotated source code</a>.</p>
+<p>The <a href="https://github.com/AlphaHydrae/tableling/wiki">wiki</a> provides the main documentation.</p>
+
+<p>You can also read the <a href="http://alphahydrae.github.com/tableling/annotated/">annotated source code</a>.</p>
 
 <h2 id="meta">Meta</h2>
 

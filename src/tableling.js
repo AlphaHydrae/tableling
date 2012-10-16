@@ -6,6 +6,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
 
   //= tableling.core.js
   //= tableling.modular.js
+  //= tableling.plain.js
   //= tableling.bootstrap.js
 
   return Tableling;

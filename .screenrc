@@ -1,9 +1,13 @@
 source $HOME/.screenrc
 
-screen -t vim 0 $EDITOR -c GG
+screen -t vim 0 vim -c GG
 screen -t zsh 1
 screen -t doc 2
 stuff "docco-central lib/**/*.js"
 screen -t md 3
 stuff "markdown-preview README.md"
+screen -t wiki 4
+stuff "cd wiki && vim -c GG\012"
+screen -t zsh 5
+stuff "cd wiki\012"
 select vim

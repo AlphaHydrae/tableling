@@ -9,6 +9,13 @@ SRC = File.join ROOT, 'src'
 LIB = File.join ROOT, 'lib'
 ANNOTATED = File.join ROOT, 'docs', 'annotated'
 
+task :default => :spec
+
+desc 'Run jasmine specs'
+task :spec do |t|
+  system "grunt jasmine"
+end
+
 namespace :build do
 
   desc 'Build javascript'

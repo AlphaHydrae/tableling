@@ -130,6 +130,7 @@ module.exports = function(grunt) {
         'src/tableling.js',
         'src/tableling.core.js',
         'src/tableling.modular.js',
+        'src/tableling.plain.js',
         'src/tableling.bootstrap.js'
       ],
       helpers : 'spec/javascripts/helpers/*.js',

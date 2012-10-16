@@ -76,10 +76,6 @@ var Books = Tableling.Collection.extend({
 
     var data = books;
     var req = options.data;
-    var page = parseInt(req.page);
-    var pageSize = parseInt(req.pageSize);
-    var i = (page - 1) * pageSize;
-    data = data.slice(i, i + pageSize);
 
     if (req.quickSearch) {
       var term = req.quickSearch.toLowerCase();
@@ -87,6 +83,32 @@ var Books = Tableling.Collection.extend({
         return item.title.toLowerCase().indexOf(term) >= 0;
       });
     }
+
+    if (req.sort) {
+      data = data.sort(function(a, b) {
+
+        for (var i = 0; i < req.sort.length; i++) {
+
+          var parts = req.sort[i].split(' ');
+          var attr = parts[0]
+          var direction = parts[1];
+
+          a = a[attr].toString().toLowerCase();
+          b = b[attr].toString().toLowerCase();
+
+          var comp = a.localeCompare(b);
+          if (comp != 0) {
+            return comp * (direction == 'asc' ? 1 : -1);
+          }
+        }
+        return 0;
+      });
+    }
+
+    var page = parseInt(req.page);
+    var pageSize = parseInt(req.pageSize);
+    var i = (page - 1) * pageSize;
+    data = data.slice(i, i + pageSize);
 
     var json = {
       total: books.length,
@@ -127,7 +149,7 @@ var BookRow = Backbone.Marionette.ItemView.extend({
 var BooksTableView = Tableling.Bootstrap.TableView.extend({
   tagName: 'table',
   className: 'table table-striped table-hover',
-  template: _.template('<thead><tr><th>Title</th><th>Author</th><th>Year</th></tr><tbody />'),
+  template: _.template('<thead><tr><th class="sorting">Title</th><th class="sorting">Author</th><th class="sorting">Year</th></tr><tbody />'),
   itemView: BookRow,
   emptyView: NoBookRow,
   itemViewContainer: 'tbody',

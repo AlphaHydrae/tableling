@@ -23,6 +23,8 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     // You can use your own by passing a `vent` option.
     this.vent = options.vent || new Backbone.Marionette.EventAggregator();
 
+    this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), options.fetchOptions || {});
+
     // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.
     this.vent.on('table:update', this.update, this);
@@ -84,8 +86,15 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   //         type : 'POST' // fetch data with POST
   //       }
   //     });
+  //
+  //     // You can also override for each instance.
+  //     new MyTable({
+  //       fetchOptions : {
+  //         type : 'GET'
+  //       }
+  //     });
   requestData : function() {
-    return _.extend(_.clone(this.fetchOptions || {}), this.filterConfig(this.tableling));
+    return _.extend(_.clone(this.fetchOptions), this.filterConfig(this.tableling));
   },
 
   // ### Response

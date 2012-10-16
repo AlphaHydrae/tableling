@@ -1,6 +1,6 @@
 {
   "name": "tableling",
-  "description": "Table plugin based on Backbone Marionette",
+  "description": "Table plugin based on Backbone.Marionette",
   "keywords": [
     "table", "backbone", "marionette"
   ],

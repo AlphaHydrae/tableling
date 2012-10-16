@@ -1,6 +1,6 @@
 # Tableling
 
-Table plugin based on Backbone Marionette. Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
+Table plugin based on Backbone.Marionette. Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
 **v0.0.8: Test suite not yet complete. Consider this very alpha.**
 
@@ -8,7 +8,7 @@ Table plugin based on Backbone Marionette. Check out the [demo](http://alphahydr
 
 ## About
 
-Tableling leverages [Backbone](http://backbonejs.org) and [Backbone Marionette](https://github.com/marionettejs/backbone.marionette) components to provide an extensible table that can be easily integrated into existing Marionette applications.
+Tableling leverages [Backbone](http://backbonejs.org) and [Backbone.Marionette](https://github.com/marionettejs/backbone.marionette) components to provide an extensible table that can be easily integrated into existing Marionette applications.
 
 ### Features
 

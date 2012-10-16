@@ -2,6 +2,7 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-rigger');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-jasmine-runner');
 
   // Project configuration.
@@ -52,6 +53,13 @@ module.exports = function(grunt) {
       files: ['src/tableling.*.js']
     },
 
+    rig: {
+      build: {
+        src: ['<banner:meta.banner>', 'src/tableling.js'],
+        dest: 'lib/tableling.js'
+      }
+    },
+
     concat: {
       backbone : {
         src : [
@@ -78,13 +86,6 @@ module.exports = function(grunt) {
       }
     },
 
-    rig: {
-      build: {
-        src: ['<banner:meta.banner>', 'src/tableling.js'],
-        dest: 'lib/tableling.js'
-      }
-    },
-
     min: {
       standard: {
         src: [
@@ -106,6 +107,14 @@ module.exports = function(grunt) {
           '<config:concat.backbone.dest>'
         ],
         dest: 'lib/bundles/tableling.backbone.min.js'
+      }
+    },
+
+    copy : {
+      demo: {
+        files: {
+          'docs/demo/': 'lib/bundles/tableling.world.min.js'
+        }
       }
     },
 
@@ -142,6 +151,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint rig concat min');
+  grunt.registerTask('default', 'lint rig concat min copy');
 
 };

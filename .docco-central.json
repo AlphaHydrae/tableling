@@ -1,4 +1,5 @@
 {
+  "output": "docs/annotated",
   "files": [ "src/tableling.*.js" ],
   "title": "v0.0.8 source index",
   "windowTitle": "Tableling v0.0.8 Annotated Source"

@@ -29,7 +29,7 @@ namespace :build do
   task :annotated do |t|
     puts
     puts Paint["Generating annotated source...", :magenta, :bold]
-    raise 'ERROR: could not generate annotated source' unless system "docco-central --output #{ANNOTATED} src/tableling.*.js"
+    raise 'ERROR: could not generate annotated source' unless system "docco-central"
   end
 end
 

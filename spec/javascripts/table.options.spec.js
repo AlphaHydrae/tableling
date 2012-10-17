@@ -13,10 +13,6 @@ describe('table options', function() {
       expect(table.tableling.page).toBe(1);
     });
 
-    it('should have a page size of 15', function() {
-      expect(table.tableling.pageSize).toBe(15);
-    });
-
     it('should copy the default options', function() {
       expect(table.tableling).not.toBe(Tableling.Table.prototype.tableling);
       expect(table.tableling).toEqual(Tableling.Table.prototype.tableling);

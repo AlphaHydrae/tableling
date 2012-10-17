@@ -9,8 +9,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Default table options can be overriden by subclasses.
   tableling : {
-    page : 1,
-    pageSize : 15
+    page : 1
   },
 
   initialize : function(options) {
@@ -34,8 +33,8 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Called once rendering is complete. By default, it updates the table.
   setup : function() {
-    this.vent.trigger('table:setup', this.filterConfig(this.tableling, true));
-    this.vent.trigger('table:update');
+    this.ventTrigger('table:setup', this.filterConfig(this.tableling, true));
+    this.ventTrigger('table:update');
   },
 
   // Subclasses must return the Backbone.Collection used to fetch data.
@@ -130,11 +129,11 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   ventTrigger : function() {
 
     var args = Array.prototype.slice.call(arguments);
-    this.vent.trigger.apply(this.vent, args);
-
     if (Tableling.debug) {
-      console.log(args.shift() + ' - ' + JSON.stringify(args));
+      console.log(_.first(args) + ' - ' + JSON.stringify(args.slice(1)));
     }
+
+    this.vent.trigger.apply(this.vent, args);
   }
 });
 

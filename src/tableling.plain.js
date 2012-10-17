@@ -89,7 +89,26 @@ Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Tableling.FieldModule.extend({
   // TODO: update current page intelligently
   name : 'pageSize',
-  template : _.template('<select name="pageSize"><option>5</option><option>10</option><option>15</option></select> entries per page')
+  template : _.template('<select name="pageSize" /> entries per page'),
+  sizes : [ 10, 15, 20, 25, 50 ],
+
+  ui : {
+    field : 'select'
+  },
+
+  initialize : function(options) {
+    Tableling.FieldModule.prototype.initialize.call(this, options);
+    this.sizes = _.clone(options.sizes || this.sizes);
+  },
+
+  onRender : function() {
+    this.ui.field.empty();
+    _.each(this.sizes, _.bind(this.addSize, this));
+  },
+
+  addSize : function(size) {
+    $('<option />').text(size).appendTo(this.ui.field);
+  }
 });
 
 Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchView = Tableling.FieldModule.extend({

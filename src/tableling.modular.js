@@ -80,10 +80,13 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
   initialize : function(options) {
     this.vent = options.vent;
 
-    // The `refresh` method of the view is called once the view is rendered
-    // and every time the table is refreshed.
+    // The `setup` method of the view is called when the table
+    // is first set up.
+    this.vent.on('table:setup', this.setup, this);
+
+    // The `refresh` method of the view is called every time the table
+    // is refreshed.
     this.vent.on('table:refreshed', this.refresh, this);
-    this.on('render', this.refresh, this);
   },
 
   // Call `update` to trigger an update of the table.
@@ -91,10 +94,13 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
     this.vent.trigger('table:update', this.config());
   },
 
+  // Implementations should override this to set initial values.
+  setup : function(config) {
+  },
+
   // Implementations should override this to stay up to date with
-  // the table state. Note that the data parameter will be undefined
-  // on the first refresh when the view is rendered.
-  refresh : function(data) {
+  // the table state.
+  refresh : function(config) {
   },
 
   // New table configuration to be sent on updates. For example,
@@ -111,6 +117,8 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
 // defaults and only requires a `name` and a `template` parameter.
 Tableling.FieldModule = Tableling.Module.extend({
 
+  // TODO: check name
+
   initialize : function(options) {
 
     Tableling.Module.prototype.initialize.call(this, options);
@@ -126,6 +134,11 @@ Tableling.FieldModule = Tableling.Module.extend({
       this.events = {};
     }
     this.events['change [name="' + this.name + '"]'] = 'update';
+  },
+
+  setup : function(config) {
+    this.ui.field.val(config[this.name]);
+    this.vent.trigger('table:update', this.config(), { refresh : false });
   },
 
   // The table property updated is the one with the same name as the module.

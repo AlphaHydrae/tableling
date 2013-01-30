@@ -29,7 +29,8 @@ namespace :build do
   task :annotated do |t|
     puts
     puts Paint["Generating annotated source...", :magenta, :bold]
-    raise 'ERROR: could not generate annotated source' unless system "docco-central"
+    raise 'ERROR: could not generate annotated source' unless system "docker -o docs/annotated -I --exclude docs,lib,node_modules,vendor,wiki"
+    raise 'ERROR: could not copy index page' unless system "cp res/index.html docs/annotated/"
   end
 end
 
@@ -54,7 +55,8 @@ task :pages do |t|
     docs = File.join tmp, 'docs'
     Dir.mkdir docs
     bin = 'docco-central'
-    raise 'ERROR: could not generate docs' unless system "cd #{repo} && #{bin} --output #{docs}"
+    raise 'ERROR: could not generate annotated source' unless system "cd #{repo} && docker -o #{docs} -I --exclude docs,lib,node_modules,vendor,wiki"
+    raise 'ERROR: could not copy index page' unless system "cp res/index.html #{docs}"
 
     raise 'ERROR: could not checkout gh-pages' unless system "cd #{repo} && git checkout -b gh-pages origin/gh-pages"
     raise 'ERROR: could not clean gh-pages' unless system "cd #{repo} && rm -fr *"
@@ -73,5 +75,4 @@ end
 # version tasks
 RakeVersion::Tasks.new do |v|
   v.copy 'src/tableling.js', 'package.json', 'README.md', 'docs/demo/index.html', 'spec/javascripts/version.spec.js'
-  v.copy '.docco-central.json', :all => true
 end

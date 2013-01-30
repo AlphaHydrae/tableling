@@ -170,9 +170,6 @@ var BooksTable = Tableling.Bootstrap.Table.extend({
   },
   pageSizeViewOptions : {
     sizes : [ 5, 10, 15 ]
-  },
-  config : {
-    sort : [ 'Title asc' ]
   }
 });
 

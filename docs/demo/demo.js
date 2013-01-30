@@ -80,7 +80,7 @@ var Books = Tableling.Collection.extend({
     if (req.quickSearch) {
       var term = req.quickSearch.toLowerCase();
       data = _.filter(data, function(item) {
-        return item.title.toLowerCase().indexOf(term) >= 0;
+        return item.title.toLowerCase().indexOf(term) >= 0 || item.author.toLowerCase().indexOf(term) >= 0 || item.year.toString().toLowerCase().indexOf(term) >= 0;
       });
     }
 

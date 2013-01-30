@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       version: '<%= pkg.version %>',
       banner_main:
               ' * Tableling v<%= meta.version %>\n' +
-              ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+              ' * Copyright (c) 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
               ' * Distributed under MIT license\n' +
               ' * <%= pkg.homepage %>\n',
       banner_header: '/*!\n',

@@ -49,7 +49,7 @@ describe('table events', function() {
       var args;
       vent.on('table:setup', function() { args = Array.prototype.slice.call(arguments); });
       makeTable().render();
-      expect(args).toEqual([ Tableling.Table.prototype.tableling ]);
+      expect(args).toEqual([ Tableling.Table.prototype.config ]);
     });
   });
 });

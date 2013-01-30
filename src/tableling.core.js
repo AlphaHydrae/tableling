@@ -8,7 +8,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   className: 'tableling',
 
   // Default table options can be overriden by subclasses.
-  tableling : {
+  config : {
     page : 1
   },
 
@@ -16,13 +16,13 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     options = options || {};
 
     // Table options can also be overriden for each instance at construction.
-    this.tableling = _.extend(_.clone(this.tableling), this.filterConfig(options));
+    this.config = _.extend(_.clone(this.config || {}), _.result(options, 'config') || {});
 
     // We use an event aggregator to manage the layout and its components.
     // You can use your own by passing a `vent` option.
     this.vent = options.vent || new Backbone.Marionette.EventAggregator();
 
-    this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), options.fetchOptions || {});
+    this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), _.result(options, 'fetchOptions') || {});
 
     // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.
@@ -33,7 +33,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Called once rendering is complete. By default, it updates the table.
   setup : function() {
-    this.ventTrigger('table:setup', this.filterConfig(this.tableling, true));
+    this.ventTrigger('table:setup', this.config);
     this.ventTrigger('table:update');
   },
 
@@ -45,7 +45,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   // ### Refreshing the table
   update : function(config, options) {
 
-    _.each(this.filterConfig(config || {}), _.bind(this.updateValue, this));
+    _.each(config || {}, _.bind(this.updateValue, this));
 
     // Set the `refresh` option to false to update the table configuration
     // without refreshing.
@@ -56,10 +56,10 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   updateValue : function(value, key) {
     if (value && value.toString().length) {
-      this.tableling[key] = value;
+      this.config[key] = value;
     } else {
       // Blank values are deleted to avoid sending them in ajax requests.
-      delete this.tableling[key];
+      delete this.config[key];
     }
   },
 
@@ -93,35 +93,24 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // ### Request
   requestData : function() {
-    return this.filterConfig(this.tableling);
+    return this.config;
   },
 
   // ### Response
   processResponse : function(collection, response) {
 
-    this.tableling.length = collection.length;
+    this.config.length = collection.length;
 
     // Tableling expects the response from a fetch to have a `total` property
     // which is the total number of items (not just in the current page).
-    this.tableling.total = response.total;
+    this.config.total = response.total;
 
     // `tableling:refreshed` is triggered after every refresh. The first argument
     // is the current table configuration with the following additional meta data:
     //
     // * `total` - the total number of items
     // * `length` - the number of items in the current page
-    this.ventTrigger('table:refreshed', this.filterConfig(this.tableling, true));
-  },
-
-  // ### Utilities
-  // Whitelists the given configuration to contain only table configuration properties.
-  // Pass `true` as the second argument to include meta data (i.e. total & length).
-  filterConfig : function(config, all) {
-    if (all) {
-      return _.pick(config, 'page', 'pageSize', 'quickSearch', 'sort', 'length', 'total');
-    } else {
-      return _.pick(config, 'page', 'pageSize', 'quickSearch', 'sort');
-    }
+    this.ventTrigger('table:refreshed', this.config);
   },
 
   // Triggers an event in the event aggregator. If `Tableling.debug` is set, it also

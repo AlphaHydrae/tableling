@@ -68,6 +68,8 @@ var Book = Backbone.Model.extend({});
 
 var Books = Tableling.Collection.extend({
 
+  model : Book,
+
   sync : function(method, model, options, error) {
 
     if (method != 'read') {
@@ -80,7 +82,7 @@ var Books = Tableling.Collection.extend({
     if (req.quickSearch) {
       var term = req.quickSearch.toLowerCase();
       data = _.filter(data, function(item) {
-        return item.title.toLowerCase().indexOf(term) >= 0;
+        return item.title.toLowerCase().indexOf(term) >= 0 || item.author.toLowerCase().indexOf(term) >= 0 || item.year.toString().toLowerCase().indexOf(term) >= 0;
       });
     }
 
@@ -90,7 +92,7 @@ var Books = Tableling.Collection.extend({
         for (var i = 0; i < req.sort.length; i++) {
 
           var parts = req.sort[i].split(' ');
-          var attr = parts[0]
+          var attr = parts[0].toLowerCase();
           var direction = parts[1];
 
           a = a[attr].toString().toLowerCase();
@@ -105,8 +107,8 @@ var Books = Tableling.Collection.extend({
       });
     }
 
-    var page = parseInt(req.page);
-    var pageSize = parseInt(req.pageSize);
+    var page = parseInt(req.page || 1);
+    var pageSize = parseInt(req.pageSize || 5);
     var i = (page - 1) * pageSize;
     data = data.slice(i, i + pageSize);
 
@@ -117,7 +119,8 @@ var Books = Tableling.Collection.extend({
 
     var response = $.Deferred();
     response.resolve(json);
-    options.success(json);
+    options.success(model, json, options);
+    model.trigger('sync', model, json, options);
     return response;
   }
 });
@@ -163,9 +166,7 @@ var BooksTable = Tableling.Bootstrap.Table.extend({
 
   tableView : BooksTableView,
   tableViewOptions : {
-    collection: new Books({
-      model: Book
-    })
+    collection: new Books()
   },
   pageSizeViewOptions : {
     sizes : [ 5, 10, 15 ]

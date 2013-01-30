@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rakefile</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = '', thisFile = 'Rakefile', defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>Rakefile</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;rake&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;rake-version&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;tmpdir&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;paint&#39;</span>
+
+<span class="no">ROOT</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
+<span class="no">SRC</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="no">ROOT</span><span class="p">,</span> <span class="s1">&#39;src&#39;</span>
+<span class="no">LIB</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="no">ROOT</span><span class="p">,</span> <span class="s1">&#39;lib&#39;</span>
+<span class="no">ANNOTATED</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="no">ROOT</span><span class="p">,</span> <span class="s1">&#39;docs&#39;</span><span class="p">,</span> <span class="s1">&#39;annotated&#39;</span>
+
+<span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="ss">:spec</span>
+
+<span class="n">desc</span> <span class="s1">&#39;Run jasmine specs&#39;</span>
+<span class="n">task</span> <span class="ss">:spec</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="nb">system</span> <span class="s2">&quot;grunt jasmine&quot;</span>
+<span class="k">end</span>
+
+<span class="n">namespace</span> <span class="ss">:build</span> <span class="k">do</span>
+
+  <span class="n">desc</span> <span class="s1">&#39;Build javascript&#39;</span>
+  <span class="n">task</span> <span class="ss">:lib</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="nb">puts</span>
+    <span class="nb">puts</span> <span class="no">Paint</span><span class="o">[</span><span class="s2">&quot;Building javascript libs...&quot;</span><span class="p">,</span> <span class="ss">:magenta</span><span class="p">,</span> <span class="ss">:bold</span><span class="o">]</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not update lib&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;grunt&quot;</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s1">&#39;Generate annotated source&#39;</span>
+  <span class="n">task</span> <span class="ss">:annotated</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="nb">puts</span>
+    <span class="nb">puts</span> <span class="no">Paint</span><span class="o">[</span><span class="s2">&quot;Generating annotated source...&quot;</span><span class="p">,</span> <span class="ss">:magenta</span><span class="p">,</span> <span class="ss">:bold</span><span class="o">]</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not generate annotated source&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;docker -o docs/annotated -I --exclude docs,lib,node_modules,vendor,wiki&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not copy index page&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cp res/index.html docs/annotated/&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s1">&#39;Update lib, annotated source and demo&#39;</span>
+<span class="n">task</span> <span class="ss">:build</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s1">&#39;build:lib&#39;</span><span class="p">,</span> <span class="s1">&#39;build:annotated&#39;</span> <span class="o">]</span>
+
+<span class="n">desc</span> <span class="s1">&#39;Update GitHub pages (from develop)&#39;</span>
+<span class="n">task</span> <span class="ss">:pages</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+
+  <span class="n">remote</span> <span class="o">=</span> <span class="s1">&#39;git@github.com:AlphaHydrae/tableling.git&#39;</span>
+
+  <span class="no">Dir</span><span class="o">.</span><span class="n">mktmpdir</span> <span class="s1">&#39;tableling-&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="n">tmp</span><span class="o">|</span>
+
+    <span class="n">repo</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="n">tmp</span><span class="p">,</span> <span class="s1">&#39;repo&#39;</span>
+    <span class="no">Dir</span><span class="o">.</span><span class="n">mkdir</span> <span class="n">repo</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not clone repo&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;git clone -b develop </span><span class="si">#{</span><span class="n">remote</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">demo</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="n">tmp</span><span class="p">,</span> <span class="s1">&#39;demo&#39;</span>
+    <span class="no">Dir</span><span class="o">.</span><span class="n">mkdir</span> <span class="n">demo</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not copy demo&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/docs/demo &amp;&amp; cp -R * </span><span class="si">#{</span><span class="n">demo</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">docs</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span> <span class="n">tmp</span><span class="p">,</span> <span class="s1">&#39;docs&#39;</span>
+    <span class="no">Dir</span><span class="o">.</span><span class="n">mkdir</span> <span class="n">docs</span>
+    <span class="n">bin</span> <span class="o">=</span> <span class="s1">&#39;docco-central&#39;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not generate annotated source&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; docker -o </span><span class="si">#{</span><span class="n">docs</span><span class="si">}</span><span class="s2"> -I --exclude docs,lib,node_modules,vendor,wiki&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not copy index page&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cp res/index.html </span><span class="si">#{</span><span class="n">docs</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not checkout gh-pages&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; git checkout -b gh-pages origin/gh-pages&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not clean gh-pages&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; rm -fr *&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not create directories&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; mkdir annotated &amp;&amp; mkdir demo&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not copy docs&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">tmp</span><span class="si">}</span><span class="s2"> &amp;&amp; cp -R </span><span class="si">#{</span><span class="n">docs</span><span class="si">}</span><span class="s2">/* </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/annotated&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not copy demo&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">tmp</span><span class="si">}</span><span class="s2"> &amp;&amp; cp -R </span><span class="si">#{</span><span class="n">demo</span><span class="si">}</span><span class="s2">/* </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/demo&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not stage changes&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; git add -A&quot;</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not stage changes&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; git ls-files --deleted -z | xargs -0 git rm&quot;</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="sb">`cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="sb"> &amp;&amp; git log --pretty=format:&#39;%h&#39; -n 1`</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not commit changes&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="sx">%/cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="sx"> &amp;&amp; git commit -m &quot;Generated from develop@</span><span class="si">#{</span><span class="n">h</span><span class="si">}</span><span class="sx">.&quot;/</span>
+    <span class="k">raise</span> <span class="s1">&#39;ERROR: could not push changes&#39;</span> <span class="k">unless</span> <span class="nb">system</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> &amp;&amp; git push&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>version tasks</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="no">RakeVersion</span><span class="o">::</span><span class="no">Tasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+  <span class="n">v</span><span class="o">.</span><span class="n">copy</span> <span class="s1">&#39;src/tableling.js&#39;</span><span class="p">,</span> <span class="s1">&#39;package.json&#39;</span><span class="p">,</span> <span class="s1">&#39;README.md&#39;</span><span class="p">,</span> <span class="s1">&#39;docs/demo/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;spec/javascripts/version.spec.js&#39;</span>
+<span class="k">end</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

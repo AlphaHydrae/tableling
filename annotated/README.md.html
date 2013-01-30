@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>README.md</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = '', thisFile = 'README.md', defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#tableling">Tableling</a>
+      </div>
+      <div class="heading h2">
+        <a href="#about">About</a>
+      </div>
+      <div class="heading h3">
+        <a href="#features">Features</a>
+      </div>
+      <div class="heading h2">
+        <a href="#requirements">Requirements</a>
+      </div>
+      <div class="heading h2">
+        <a href="#installation">Installation</a>
+      </div>
+      <div class="heading h3">
+        <a href="#standard-build">Standard Build</a>
+      </div>
+      <div class="heading h3">
+        <a href="#backbone-build">Backbone Build</a>
+      </div>
+      <div class="heading h3">
+        <a href="#ruby-on-rails">Ruby on Rails</a>
+      </div>
+      <div class="heading h2">
+        <a href="#documentation">Documentation</a>
+      </div>
+      <div class="heading h2">
+        <a href="#meta">Meta</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="docs markdown">
+<div class="pilwrap" id="tableling">
+  <h1>
+    <a href="#tableling" class="pilcrow">&#182;</a>
+    Tableling
+  </h1>
+</div>
+
+
+<p>Table plugin based on Backbone.Marionette. Check out the <a href="http://alphahydrae.github.com/tableling/demo/">demo</a>!</p>
+
+<p><strong>v0.0.12: Test suite not yet complete. Consider this very alpha.</strong></p>
+
+<p><a href="http://travis-ci.org/AlphaHydrae/tableling"><img src="https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop" alt="Build Status" title="" /></a></p>
+
+
+<div class="pilwrap" id="about">
+  <h2>
+    <a href="#about" class="pilcrow">&#182;</a>
+    About
+  </h2>
+</div>
+
+
+<p>Tableling leverages <a href="http://backbonejs.org">Backbone</a> and <a href="https://github.com/marionettejs/backbone.marionette">Backbone.Marionette</a> components to provide an extensible table that can be easily integrated into existing Marionette applications.</p>
+
+
+<div class="pilwrap" id="features">
+  <h3>
+    <a href="#features" class="pilcrow">&#182;</a>
+    Features
+  </h3>
+</div>
+
+
+<ul>
+<li>Fetches table data from a <code>Backbone.Collection</code></li>
+<li>Event-based management with a Marionette <code>EventAggregator</code></li>
+<li>Provides view implementations using Marionette components (<code>Layout</code>, <code>CompositeView</code> and <code>ItemView</code>)</li>
+<li>Provides optional view markup with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> classes</li>
+<li>Otherwise leaves the styling to you</li>
+<li>Modular structure allowing you to redefine each component separately:
+<ul><li>Page size select box</li>
+<li>Quick search field</li>
+<li>Info notice (number of records)</li>
+<li>Page switcher</li></ul></li>
+</ul>
+
+
+<div class="pilwrap" id="requirements">
+  <h2>
+    <a href="#requirements" class="pilcrow">&#182;</a>
+    Requirements
+  </h2>
+</div>
+
+
+<p>Tableling currently works with the following libraries:</p>
+
+<ul>
+<li><a href="http://jquery.com">jQuery</a> v1.9.0</li>
+<li><a href="http://underscorejs.org">Underscore</a> v1.4.4</li>
+<li><a href="http://backbonejs.org">Backbone</a> v0.9.10</li>
+<li><a href="https://github.com/marionettejs/backbone.babysitter">Backbone.BabySitter</a> v0.0.4</li>
+<li><a href="https://github.com/marionettejs/backbone.wreqr">Backbone.Wreqr</a> v0.1.1</li>
+<li><a href="http://marionettejs.com">Backbone.Marionette</a> v1.0.0-rc4</li>
+</ul>
+
+<p>It may or may not work using different versions.</p>
+
+
+<div class="pilwrap" id="installation">
+  <h2>
+    <a href="#installation" class="pilcrow">&#182;</a>
+    Installation
+  </h2>
+</div>
+
+
+<p>You can find the raw source code in <code>src</code>. Development and production builds are in <code>lib</code>.</p>
+
+
+<div class="pilwrap" id="standard-build">
+  <h3>
+    <a href="#standard-build" class="pilcrow">&#182;</a>
+    Standard Build
+  </h3>
+</div>
+
+
+<ul>
+<li>Development: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.js">tableling.js</a></li>
+<li>Production: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.min.js">tableling.min.js</a></li>
+</ul>
+
+
+<div class="pilwrap" id="backbone-build">
+  <h3>
+    <a href="#backbone-build" class="pilcrow">&#182;</a>
+    Backbone Build
+  </h3>
+</div>
+
+
+<p>Includes Backbone, Backbone.EventBinder, Backbone.Wreqr and Backbone.Marionette.</p>
+
+<ul>
+<li>Development: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.backbone.js">tableling.backbone.js</a></li>
+<li>Production: <a href="https://raw.github.com/AlphaHydrae/tableling/master/lib/tableling.backbone.min.js">tableling.backbone.min.js</a></li>
+</ul>
+
+
+<div class="pilwrap" id="ruby-on-rails">
+  <h3>
+    <a href="#ruby-on-rails" class="pilcrow">&#182;</a>
+    Ruby on Rails
+  </h3>
+</div>
+
+
+<p>The <a href="https://github.com/AlphaHydrae/tableling-rails">tableling-rails</a> gem provides the latest tableling release as well as active record extensions to easily generate table data in the expected format.</p>
+
+
+<div class="pilwrap" id="documentation">
+  <h2>
+    <a href="#documentation" class="pilcrow">&#182;</a>
+    Documentation
+  </h2>
+</div>
+
+
+<p>The <a href="https://github.com/AlphaHydrae/tableling/wiki">wiki</a> provides the main documentation.</p>
+
+<p>You can also read the <a href="http://alphahydrae.github.com/tableling/annotated/">annotated source code</a>.</p>
+
+
+<div class="pilwrap" id="meta">
+  <h2>
+    <a href="#meta" class="pilcrow">&#182;</a>
+    Meta
+  </h2>
+</div>
+
+
+<ul>
+<li><strong>Author:</strong> Simon Oulevay (Alpha Hydrae)</li>
+<li><strong>License:</strong> MIT (see <a href="https://raw.github.com/AlphaHydrae/tableling/master/LICENSE.txt">LICENSE.txt</a>)</li>
+</ul></div>
+  </div>
+</body>
+</html>

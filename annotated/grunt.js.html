@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>grunt.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = '', thisFile = 'grunt.js', defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>grunt.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="cm">/*global module:false*/</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-rigger&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-copy&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-jasmine-runner&#39;</span><span class="p">);</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>Project configuration.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    <span class="nx">pkg</span><span class="o">:</span> <span class="s1">&#39;&lt;json:package.json&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">meta</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">version</span><span class="o">:</span> <span class="s1">&#39;&lt;%= pkg.version %&gt;&#39;</span><span class="p">,</span>
+      <span class="nx">banner_main</span><span class="o">:</span>
+              <span class="s1">&#39; * Tableling v&lt;%= meta.version %&gt;\n&#39;</span> <span class="o">+</span>
+              <span class="s1">&#39; * Copyright (c) 2012-&lt;%= grunt.template.today(&quot;yyyy&quot;) %&gt; &lt;%= pkg.author %&gt;\n&#39;</span> <span class="o">+</span>
+              <span class="s1">&#39; * Distributed under MIT license\n&#39;</span> <span class="o">+</span>
+              <span class="s1">&#39; * &lt;%= pkg.homepage %&gt;\n&#39;</span><span class="p">,</span>
+      <span class="nx">banner_header</span><span class="o">:</span> <span class="s1">&#39;/*!\n&#39;</span><span class="p">,</span>
+      <span class="nx">banner_footer</span><span class="o">:</span> <span class="s1">&#39; */&#39;</span><span class="p">,</span>
+      <span class="nx">banner_incl_basics</span><span class="o">:</span>
+        <span class="s1">&#39; * Includes JSON2\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * https://github.com/douglascrockford/JSON-js\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * Includes jQuery\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * http://jquery.com&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * Includes Underscore\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * http://underscorejs.org\n&#39;</span><span class="p">,</span>
+      <span class="nx">banner_incl_backbone</span><span class="o">:</span>
+        <span class="s1">&#39; * Includes Backbone\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * http://backbonejs.org\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * Includes Backbone.Wreqr\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * https://github.com/marionettejs/backbone.wreqr\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * Includes Backbone.BabySitter\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * https://github.com/marionettejs/backbone.babysitter\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * Includes Backbone.Marionette\n&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; * https://github.com/marionettejs/backbone.marionette\n&#39;</span><span class="p">,</span>
+      <span class="nx">banner</span><span class="o">:</span> <span class="s1">&#39;&lt;%= meta.banner_header %&gt;&#39;</span> <span class="o">+</span>
+              <span class="s1">&#39;&lt;%= meta.banner_main %&gt;&#39;</span> <span class="o">+</span>
+              <span class="s1">&#39;&lt;%= meta.banner_footer %&gt;&#39;</span><span class="p">,</span>
+      <span class="nx">banner_backbone</span><span class="o">:</span> <span class="s1">&#39;&lt;%= meta.banner_header %&gt;&#39;</span> <span class="o">+</span>
+                       <span class="s1">&#39;&lt;%= meta.banner_main %&gt;&#39;</span> <span class="o">+</span>
+                       <span class="s1">&#39; *\n&#39;</span> <span class="o">+</span>
+                       <span class="s1">&#39;&lt;%= meta.banner_incl_backbone %&gt;&#39;</span> <span class="o">+</span>
+                       <span class="s1">&#39;&lt;%= meta.banner_footer %&gt;&#39;</span><span class="p">,</span>
+      <span class="nx">banner_world</span><span class="o">:</span> <span class="s1">&#39;&lt;%= meta.banner_header %&gt;&#39;</span> <span class="o">+</span>
+                    <span class="s1">&#39;&lt;%= meta.banner_main %&gt;&#39;</span> <span class="o">+</span>
+                    <span class="s1">&#39; *\n&#39;</span> <span class="o">+</span>
+                    <span class="s1">&#39;&lt;%= meta.banner_incl_basics %&gt;&#39;</span> <span class="o">+</span>
+                    <span class="s1">&#39;&lt;%= meta.banner_incl_backbone %&gt;&#39;</span> <span class="o">+</span>
+                    <span class="s1">&#39;&lt;%= meta.banner_footer %&gt;&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">lint</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;src/tableling.*.js&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+
+    <span class="nx">rig</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;&lt;banner:meta.banner&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;src/tableling.js&#39;</span><span class="p">],</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;lib/tableling.js&#39;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">concat</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">backbone</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span> <span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;vendor/backbone.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.babysitter.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.wreqr.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.marionette.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;lib/tableling.js&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">dest</span> <span class="o">:</span> <span class="s1">&#39;lib/bundles/tableling.backbone.js&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">world</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span> <span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;vendor/json2.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/jquery.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/underscore.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.babysitter.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.wreqr.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;vendor/backbone.marionette.js&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;lib/tableling.js&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">dest</span> <span class="o">:</span> <span class="s1">&#39;lib/bundles/tableling.world.js&#39;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">min</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">standard</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;&lt;banner:meta.banner&gt;&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;&lt;config:rig.build.dest&gt;&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;lib/tableling.min.js&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">world</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;&lt;banner:meta.banner_world&gt;&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;&lt;config:concat.world.dest&gt;&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;lib/bundles/tableling.world.min.js&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">backbone</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;&lt;banner:meta.banner_backbone&gt;&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;&lt;config:concat.backbone.dest&gt;&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;lib/bundles/tableling.backbone.min.js&#39;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">copy</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">demo</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s1">&#39;docs/demo/&#39;</span><span class="o">:</span> <span class="s1">&#39;lib/bundles/tableling.world.*&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">jasmine</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">src</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;vendor/jquery.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/json2.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/underscore.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/backbone.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/backbone.babysitter.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/backbone.wreqr.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vendor/backbone.marionette.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;src/tableling.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;src/tableling.core.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;src/tableling.modular.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;src/tableling.plain.js&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;src/tableling.bootstrap.js&#39;</span>
+      <span class="p">],</span>
+      <span class="nx">helpers</span> <span class="o">:</span> <span class="s1">&#39;spec/javascripts/helpers/*.js&#39;</span><span class="p">,</span>
+      <span class="nx">specs</span> <span class="o">:</span> <span class="s1">&#39;spec/javascripts/**/*.spec.js&#39;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;jasmine-server&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">browser</span> <span class="o">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+
+    <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">globals</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">Backbone</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">_</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">$</span><span class="o">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">uglify</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">});</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Default task.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;lint rig concat min copy&#39;</span><span class="p">);</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

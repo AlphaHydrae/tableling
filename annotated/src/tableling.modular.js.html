@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tableling.modular.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = '../', thisFile = 'src/tableling.modular.js', defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#tableling.modular">Tableling.Modular</a>
+      </div>
+      <div class="heading h3">
+        <a href="#modules">Modules</a>
+      </div>
+      <div class="heading h3">
+        <a href="#example">Example</a>
+      </div>
+      <div class="heading h2">
+        <a href="#tableling.module">Tableling.Module</a>
+      </div>
+      <div class="heading h2">
+        <a href="#tableling.fieldmodule">Tableling.FieldModule</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tableling.modular">
+  <h2>
+    <a href="#tableling.modular" class="pilcrow">&#182;</a>
+    Tableling.Modular
+  </h2>
+</div>
+
+
+<p>Tableling subclass which splits functionality into <em>modules</em>
+and handles rendering.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>The list of module names must be specified by subclasses.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[],</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Modules are set up after rendering, before refreshing.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">modules</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">setupModule</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+
+    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setup</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="modules">
+  <h3>
+    <a href="#modules" class="pilcrow">&#182;</a>
+    Modules
+  </h3>
+</div>
+
+
+<p>Each module is identified by a name, for example <code>pageSize</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setupModule</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>The layout must have a region named after the module, e.g. <code>pageSizeRegion</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;Region&#39;</span><span class="p">;</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>It must have a view class, e.g. <code>pageSizeView</code>, which will be shown into
+the region.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">viewClass</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;View&#39;</span><span class="p">];</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>When instantiated, the view class will be passed the event
+aggregator as the <code>vent</code> option. Additional options can be
+given named after the view class, e.g. <code>pageSizeViewOptions</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;ViewOptions&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="p">{},</span> <span class="p">{</span> <span class="nx">vent</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="p">});</span>
+
+    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">viewClass</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Module view instances are stored by name in the <code>moduleViews</code> property
+for future reference.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">view</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">[</span><span class="nx">region</span><span class="p">].</span><span class="nx">show</span><span class="p">(</span><span class="nx">view</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">view</span><span class="p">;</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>By default, a modular table expects a <code>table</code> module which
+should have a collection (e.g. a Marionette CompositeView or
+CollectionView). If your subclass does not have that, it
+should override this method to return the Backbone.Collection
+used to fetch table data.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span><span class="p">.</span><span class="nx">table</span><span class="p">.</span><span class="nx">collection</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="example">
+  <h3>
+    <a href="#example" class="pilcrow">&#182;</a>
+    Example
+  </h3>
+</div>
+
+
+<p>This is how a <code>PageSizeView</code> module might be registered in a subclass:</p>
+
+
+<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="p">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Modular</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
+
+  <span class="n">modules</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;pageSize&#39;</span> <span class="p">],</span>
+
+  <span class="n">pageSizeView</span> <span class="p">:</span> <span class="n">PageSizeView</span><span class="p">,</span>
+  <span class="n">pageSizeViewOptions</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="n">itemView</span> <span class="p">:</span> <span class="n">PageSizeItem</span>
+  <span class="p">},</span>
+
+  <span class="n">regions</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="n">pageSizeRegion</span> <span class="p">:</span> <span class="s">&#39;.pageSize&#39;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tableling.module">
+  <h2>
+    <a href="#tableling.module" class="pilcrow">&#182;</a>
+    Tableling.Module
+  </h2>
+</div>
+
+
+<p>A module is an item view that is automatically bound to the table's
+event aggregator.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">ItemView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span><span class="p">;</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>The <code>setup</code> method of the view is called when the table
+is first set up.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>The <code>refresh</code> method of the view is called every time the table
+is refreshed.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">refresh</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>Call <code>update</code> to trigger an update of the table.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>Implementations should override this to set initial values.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>Implementations should override this to stay up to date with
+the table state.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>New table configuration to be sent on updates. For example,
+a page size view might update the <code>pageSize</code> property.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{};</span>
+  <span class="p">}</span>
+<span class="p">});</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tableling.fieldmodule">
+  <h2>
+    <a href="#tableling.fieldmodule" class="pilcrow">&#182;</a>
+    Tableling.FieldModule
+  </h2>
+</div>
+
+
+<p>A basic module with a single form field. It comes with sensible
+defaults and only requires a <code>name</code> and a <code>template</code> parameter.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>TODO: check name</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ui</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>The name attribute of the form field is the same as the
+module's, e.g. <code>pageSize</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span> <span class="o">=</span> <span class="s1">&#39;[name=&quot;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">events</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">events</span><span class="p">[</span><span class="s1">&#39;change [name=&quot;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;update&#39;</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">]);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">(),</span> <span class="p">{</span> <span class="nx">refresh</span> <span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+  <span class="p">},</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>The table property updated is the one with the same name as the module.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">config</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>This is how a <code>PageSizeView</code> module might be implemented:</p>
+
+
+<div class="highlight"><pre><code><span class="n">var</span> <span class="n">html</span> <span class="p">=</span> <span class="s">&#39;&lt;input type=&quot;text&quot; name=&quot;pageSize&quot; /&gt;&#39;</span><span class="p">;</span>
+
+<span class="n">var</span> <span class="n">PageSizeView</span> <span class="p">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">FieldModule</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
+    <span class="n">name</span> <span class="p">:</span> <span class="s">&#39;pageSize&#39;</span>
+    <span class="n">template</span> <span class="p">:</span> <span class="n">_</span><span class="p">.</span><span class="n">template</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+<p>When the value of the input field changes, the event aggregator will
+receive a <code>tableling:update</code> event with the <code>pageSize</code> property set
+to that value.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

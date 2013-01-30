@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>table.options.spec.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = '../../', thisFile = 'spec/javascripts/table.options.spec.js', defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>table.options.spec.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;table options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;when a table is created without options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">table</span><span class="p">;</span>
+
+    <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should start at page 1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">page</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should copy the default options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should have an event aggregator&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">vent</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeNull</span><span class="p">();</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">vent</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;when a table is created with options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should copy the given options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">page</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">pageSize</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">quickSearch</span><span class="o">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="nx">sort</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;5 asc&#39;</span> <span class="p">]</span> <span class="p">}</span> <span class="p">};</span>
+      <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should copy unknown options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">};</span>
+      <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">a</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">b</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">c</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should use the given event aggregator&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">vent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">({</span> <span class="nx">vent</span><span class="o">:</span> <span class="nx">vent</span> <span class="p">});</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">vent</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">vent</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;when a table is subclassed&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">Subclass</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+      <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">page</span> <span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="nx">pageSize</span> <span class="o">:</span> <span class="mi">666</span><span class="p">,</span>
+        <span class="nx">quickSearch</span> <span class="o">:</span> <span class="s1">&#39;1337&#39;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="kd">var</span> <span class="nx">table</span><span class="p">;</span>
+
+    <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subclass</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should copy the overriden options&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">Subclass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">Subclass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">config</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

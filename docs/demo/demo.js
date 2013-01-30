@@ -68,6 +68,8 @@ var Book = Backbone.Model.extend({});
 
 var Books = Tableling.Collection.extend({
 
+  model : Book,
+
   sync : function(method, model, options, error) {
 
     if (method != 'read') {
@@ -117,7 +119,8 @@ var Books = Tableling.Collection.extend({
 
     var response = $.Deferred();
     response.resolve(json);
-    options.success(json);
+    options.success(model, json, options);
+    model.trigger('sync', model, json, options);
     return response;
   }
 });
@@ -163,9 +166,7 @@ var BooksTable = Tableling.Bootstrap.Table.extend({
 
   tableView : BooksTableView,
   tableViewOptions : {
-    collection: new Books({
-      model: Book
-    })
+    collection: new Books()
   },
   pageSizeViewOptions : {
     sizes : [ 5, 10, 15 ]

@@ -27,12 +27,12 @@ Tableling leverages [Backbone](http://backbonejs.org) and [Backbone.Marionette](
 
 Tableling currently works with the following libraries:
 
-* [jQuery](http://jquery.com) v1.8.2
-* [Underscore](http://underscorejs.org) v1.4.2
-* [Backbone](http://backbonejs.org) v0.9.2
-* [Backbone.EventBinder](https://github.com/marionettejs/backbone.eventbinder) v0.0.0
-* [Backbone.Wreqr](https://github.com/marionettejs/backbone.wreqr) v0.0.0
-* [Backbone.Marionette](http://marionettejs.com) v1.0.0-beta1
+* [jQuery](http://jquery.com) v1.9.0
+* [Underscore](http://underscorejs.org) v1.4.4
+* [Backbone](http://backbonejs.org) v0.9.10
+* [Backbone.BabySitter](https://github.com/marionettejs/backbone.babysitter) v0.0.4
+* [Backbone.Wreqr](https://github.com/marionettejs/backbone.wreqr) v0.1.1
+* [Backbone.Marionette](http://marionettejs.com) v1.0.0-rc4
 
 It may or may not work using different versions.
 

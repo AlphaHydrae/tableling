@@ -20,7 +20,7 @@ describe('table options', function() {
 
     it('should have an event aggregator', function() {
       expect(table.vent).not.toBeNull();
-      expect(table.vent).toBeInstanceOf(Backbone.Marionette.EventAggregator);
+      expect(table.vent).toBeInstanceOf(Backbone.Wreqr.EventAggregator);
     });
   });
 
@@ -42,7 +42,7 @@ describe('table options', function() {
     });
 
     it('should use the given event aggregator', function() {
-      var vent = new Backbone.Marionette.EventAggregator();
+      var vent = new Backbone.Wreqr.EventAggregator();
       var table = new Tableling.Table({ vent: vent });
       expect(table.vent).toBe(vent);
     });

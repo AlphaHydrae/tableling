@@ -20,7 +20,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
     // We use an event aggregator to manage the layout and its components.
     // You can use your own by passing a `vent` option.
-    this.vent = options.vent || new Backbone.Marionette.EventAggregator();
+    this.vent = options.vent || new Backbone.Wreqr.EventAggregator();
 
     this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), _.result(options, 'fetchOptions') || {});
 

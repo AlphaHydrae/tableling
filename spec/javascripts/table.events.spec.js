@@ -20,7 +20,7 @@ describe('table events', function() {
 
   describe('when a table is rendered', function() {
 
-    var vent = new Backbone.Marionette.EventAggregator();
+    var vent = new Backbone.Wreqr.EventAggregator();
     var table;
     var makeTable = function() {
       return table = new Table({ vent : vent });

@@ -90,7 +90,7 @@ var Books = Tableling.Collection.extend({
         for (var i = 0; i < req.sort.length; i++) {
 
           var parts = req.sort[i].split(' ');
-          var attr = parts[0]
+          var attr = parts[0].toLowerCase();
           var direction = parts[1];
 
           a = a[attr].toString().toLowerCase();
@@ -169,6 +169,9 @@ var BooksTable = Tableling.Bootstrap.Table.extend({
   },
   pageSizeViewOptions : {
     sizes : [ 5, 10, 15 ]
+  },
+  config : {
+    sort : [ 'Title asc' ]
   }
 });
 

@@ -108,12 +108,25 @@ Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Ta
 
   addSize : function(size) {
     $('<option />').text(size).appendTo(this.ui.field);
+  },
+
+  config : function() {
+    var config = Tableling.FieldModule.prototype.config.call(this);
+    config.page = 1;
+    return config;
   }
 });
 
 Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchView = Tableling.FieldModule.extend({
+
   name : 'quickSearch',
-  template : _.template('<input type="text" name="quickSearch" placeholder="Quick search..." />')
+  template : _.template('<input type="text" name="quickSearch" placeholder="Quick search..." />'),
+
+  config : function() {
+    var config = Tableling.FieldModule.prototype.config.call(this);
+    config.page = 1;
+    return config;
+  }
 });
 
 Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.Module.extend({
@@ -135,7 +148,7 @@ Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.
   },
 
   firstRecord : function(data) {
-    return data.length ? (data.page - 1) * data.pageSize + 1 : 0;
+    return data.length ? ((data.page || 1) - 1) * data.pageSize + 1 : 0;
   },
 
   lastRecord : function(data) {
@@ -169,10 +182,10 @@ Tableling.Plain.PaginationView = Tableling.Plain.Table.prototype.paginationView 
       this.ui.last.addClass('disabled');
     } else {
       this.data = data;
-      this.enable(this.ui.first, data.page > 1);
-      this.enable(this.ui.previous, data.page > 1);
-      this.enable(this.ui.next, data.page < this.numberOfPages(data));
-      this.enable(this.ui.last, data.page < this.numberOfPages(data));
+      this.enable(this.ui.first, this.getPage(data) > 1);
+      this.enable(this.ui.previous, this.getPage(data) > 1);
+      this.enable(this.ui.next, this.getPage(data) < this.numberOfPages(data));
+      this.enable(this.ui.last, this.getPage(data) < this.numberOfPages(data));
     }
   },
 
@@ -192,11 +205,11 @@ Tableling.Plain.PaginationView = Tableling.Plain.Table.prototype.paginationView 
   },
 
   goToPreviousPage : function() {
-    this.goToPage(this.data.page - 1);
+    this.goToPage(this.getPage(this.data) - 1);
   },
 
   goToNextPage : function() {
-    this.goToPage(this.data.page + 1);
+    this.goToPage(this.getPage(this.data) + 1);
   },
 
   goToLastPage : function() {
@@ -205,5 +218,9 @@ Tableling.Plain.PaginationView = Tableling.Plain.Table.prototype.paginationView 
 
   goToPage : function(n) {
     this.vent.trigger('table:update', { page : n });
+  },
+
+  getPage : function(data) {
+    return data.page || 1;
   }
 });

@@ -105,8 +105,8 @@ var Books = Tableling.Collection.extend({
       });
     }
 
-    var page = parseInt(req.page);
-    var pageSize = parseInt(req.pageSize);
+    var page = parseInt(req.page || 1);
+    var pageSize = parseInt(req.pageSize || 5);
     var i = (page - 1) * pageSize;
     data = data.slice(i, i + pageSize);
 

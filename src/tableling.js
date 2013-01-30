@@ -1,7 +1,7 @@
 Backbone.Tableling = Tableling = (function(Backbone, _, $){
 
   var Tableling = {
-    version : "0.0.11"
+    version : "0.0.12"
   };
 
   //= tableling.core.js

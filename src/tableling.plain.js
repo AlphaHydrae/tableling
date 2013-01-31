@@ -3,15 +3,15 @@ Tableling.Plain = {};
 Tableling.Plain.Table = Tableling.Modular.extend({
 
   className: 'tableling',
-  modules : [ 'table', 'pageSize', 'quickSearch', 'info', 'pagination' ],
-  template : _.template('<div class="header"><div class="pageSize" /><div class="quickSearch" /></div><div class="table" /><div class="footer"><div class="info" /><div class="pagination" /></div>'),
+  modules : [ 'table', 'pageSize', 'quickSearch', 'info', 'page' ],
+  template : _.template('<div class="header"><div class="pageSize" /><div class="quickSearch" /></div><div class="table" /><div class="footer"><div class="info" /><div class="page" /></div>'),
 
   regions : {
     tableRegion : '.table',
     pageSizeRegion : '.pageSize',
     quickSearchRegion : '.quickSearch',
     infoRegion : '.info',
-    paginationRegion : '.pagination'
+    pageRegion : '.page'
   }
 });
 
@@ -180,7 +180,7 @@ Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.
   }
 });
 
-Tableling.Plain.PaginationView = Tableling.Plain.Table.prototype.paginationView = Tableling.Module.extend({
+Tableling.Plain.PageView = Tableling.Plain.Table.prototype.pageView = Tableling.Module.extend({
     
   template : _.template('<div class="pagination"><ul><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul></div>'),
 

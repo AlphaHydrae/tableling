@@ -152,7 +152,7 @@ var BookRow = Backbone.Marionette.ItemView.extend({
 var BooksTableView = Tableling.Bootstrap.TableView.extend({
   tagName: 'table',
   className: 'table table-striped table-hover',
-  template: _.template('<thead><tr><th class="sorting">Title</th><th class="sorting">Author</th><th class="sorting">Year</th></tr><tbody />'),
+  template: _.template('<thead><tr><th class="sorting title">Title</th><th class="sorting author">Author</th><th class="sorting year">Year</th></tr><tbody />'),
   itemView: BookRow,
   emptyView: NoBookRow,
   itemViewContainer: 'tbody',

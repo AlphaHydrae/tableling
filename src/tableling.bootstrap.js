@@ -1,7 +1,7 @@
 Tableling.Bootstrap = {};
 
 Tableling.Bootstrap.Table = Tableling.Plain.Table.extend({
-  template : _.template('<div class="header"><div class="pageSize pull-left" /><div class="quickSearch pull-right" /></div><div class="table" /><div class="footer"><div class="info pull-left" /><div class="pagination pull-right" /></div>')
+  template : _.template('<div class="header"><div class="pageSize pull-left" /><div class="quickSearch pull-right" /></div><div class="table" /><div class="footer"><div class="info pull-left" /><div class="page pull-right" /></div>')
 });
 
 Tableling.Bootstrap.TableView = Tableling.Plain.TableView.extend({});
@@ -14,4 +14,4 @@ Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickS
 
 Tableling.Bootstrap.InfoView = Tableling.Bootstrap.Table.prototype.infoView = Tableling.Plain.InfoView.extend({});
 
-Tableling.Bootstrap.PaginationView = Tableling.Bootstrap.Table.prototype.paginationView = Tableling.Plain.PaginationView.extend({});
+Tableling.Bootstrap.PageView = Tableling.Bootstrap.Table.prototype.pageView = Tableling.Plain.PageView.extend({});

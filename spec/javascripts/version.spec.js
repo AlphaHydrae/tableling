@@ -2,6 +2,6 @@
 describe("version", function() {
 
   it("should be correct", function() {
-    expect(Tableling.version).toBe('0.0.12');
+    expect(Tableling.version).toBe('0.0.13');
   });
 });

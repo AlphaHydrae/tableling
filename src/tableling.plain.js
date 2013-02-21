@@ -18,7 +18,9 @@ Tableling.Plain.Table = Tableling.Modular.extend({
 Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 
   events : {
-    'click thead th' : 'updateSort'
+    'click thead th.sorting' : 'updateSort',
+    'click thead th.sorting-asc' : 'updateSort',
+    'click thead th.sorting-desc' : 'updateSort'
   },
 
   initialize : function(options) {
@@ -75,7 +77,7 @@ Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 
   showSort : function() {
 
-    this.$el.find('thead th').removeClass('sorting sorting-asc sorting-desc').addClass('sorting');
+    this.$el.find('thead th.sorting, thead th.sorting-asc, thead th.sorting-desc').removeClass('sorting sorting-asc sorting-desc').addClass('sorting');
 
     for (var i = 0; i < this.sort.length; i++) {
 

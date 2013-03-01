@@ -111,10 +111,10 @@ module.exports = function(grunt) {
     },
 
     copy : {
-      demo: {
-        files: {
-          'docs/demo/': 'lib/bundles/tableling.world.*'
-        }
+      demo : {
+        files : [
+          { src : 'lib/bundles/tableling.world.*', dest : 'docs/demo/' }
+        ]
       }
     },
 

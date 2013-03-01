@@ -2,7 +2,7 @@
 
 Table plugin based on Backbone.Marionette. Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
-**v0.0.15: Test suite not yet complete. Consider this very alpha.**
+**v0.0.16: Test suite not yet complete. Consider this very alpha.**
 
 [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop)](http://travis-ci.org/AlphaHydrae/tableling)
 

@@ -4,7 +4,7 @@
   "keywords": [
     "table", "backbone", "marionette"
   ],
-  "version": "0.0.15",
+  "version": "0.0.16",
   "homepage": "https://github.com/AlphaHydrae/tableling",
   "author": "Simon Oulevay (Alpha Hydrae) <hydrae.alpha@gmail.com>",
   "repository": {
@@ -22,7 +22,7 @@
     "grunt": "~0.3.16",
     "grunt-jasmine-runner": "latest",
     "grunt-rigger": "latest",
-    "grunt-contrib-copy": "latest"
+    "grunt-contrib-copy": "~0.3.2"
   },
   "licenses": [
     {

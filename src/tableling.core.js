@@ -23,6 +23,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     this.vent = options.vent || new Backbone.Wreqr.EventAggregator();
 
     this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), _.result(options, 'fetchOptions') || {});
+    this.autoUpdate = typeof(options.autoUpdate) != 'undefined' ? options.autoUpdate : true;
 
     // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.
@@ -34,7 +35,9 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   // Called once rendering is complete. By default, it updates the table.
   setup : function() {
     this.ventTrigger('table:setup', this.config);
-    this.ventTrigger('table:update');
+    if (this.autoUpdate) {
+      this.ventTrigger('table:update');
+    }
   },
 
   // Subclasses must return the Backbone.Collection used to fetch data.

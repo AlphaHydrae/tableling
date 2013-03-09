@@ -77,7 +77,13 @@ Tableling.Modular = Tableling.Table.extend({
 // event aggregator.
 Tableling.Module = Backbone.Marionette.ItemView.extend({
 
+  i18n : {},
+  templateHelpers : function() {
+    return this.i18n;
+  },
+
   initialize : function(options) {
+
     this.vent = options.vent;
 
     // The `setup` method of the view is called when the table
@@ -87,6 +93,8 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
     // The `refresh` method of the view is called every time the table
     // is refreshed.
     this.vent.on('table:refreshed', this.refresh, this);
+
+    this.i18n = _.clone(options.i18n || this.i18n);
   },
 
   // Call `update` to trigger an update of the table.

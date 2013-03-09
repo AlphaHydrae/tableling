@@ -7,7 +7,10 @@ Tableling.Bootstrap.Table = Tableling.Plain.Table.extend({
 Tableling.Bootstrap.TableView = Tableling.Plain.TableView.extend({});
 
 Tableling.Bootstrap.PageSizeView = Tableling.Bootstrap.Table.prototype.pageSizeView = Tableling.Plain.PageSizeView.extend({
-  template : _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> entries per page')
+
+  template : function(data) {
+    return _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> <%- entries %>', data);
+  }
 });
 
 Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickSearchView = Tableling.Plain.QuickSearchView.extend({});

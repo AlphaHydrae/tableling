@@ -113,9 +113,16 @@ Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 });
 
 Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Tableling.FieldModule.extend({
+
   // TODO: update current page intelligently
   name : 'pageSize',
-  template : _.template('<select name="pageSize" /> entries per page'),
+  template : function(data) {
+    return _.template('<select name="pageSize" /> <%- entries %>', data);
+  },
+
+  i18n : {
+    entries : 'entries per page'
+  },
   sizes : [ 10, 15, 20, 25, 50 ],
 
   ui : {
@@ -146,7 +153,13 @@ Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Ta
 Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchView = Tableling.FieldModule.extend({
 
   name : 'quickSearch',
-  template : _.template('<input type="text" name="quickSearch" placeholder="Quick search..." />'),
+  template : function(data) {
+    return _.template('<input type="text" name="quickSearch" placeholder="<%- quickSearch %>" />', data);
+  },
+
+  i18n : {
+    quickSearch : 'Quick search...'
+  },
 
   config : function() {
     var config = Tableling.FieldModule.prototype.config.call(this);
@@ -157,7 +170,17 @@ Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchVie
 
 Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.Module.extend({
 
-  template : _.template('Showing <span class="first">0</span> to <span class="last">0</span> of <span class="total">0</span> entries'),
+  template : function(data) {
+    return _.template(data.template, {
+      first : '<span class="first">0</span>',
+      last : '<span class="last">0</span>',
+      total : '<span class="total">0</span>'
+    });
+  },
+
+  i18n : {
+    template : 'Showing <%= first %> to <%= last %> of <%= total %> entries'
+  },
 
   ui : {
     first: '.first',

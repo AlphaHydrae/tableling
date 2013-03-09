@@ -31,7 +31,7 @@ Tableling.Modular = Tableling.Table.extend({
     // When instantiated, the view class will be passed the event
     // aggregator as the `vent` option. Additional options can be
     // given named after the view class, e.g. `pageSizeViewOptions`.
-    var options = _.extend(this[name + 'ViewOptions'] || {}, { vent: this.vent });
+    var options = _.extend(this.getModuleOptions(name), { vent: this.vent });
 
     var view = new viewClass(options);
 
@@ -50,6 +50,11 @@ Tableling.Modular = Tableling.Table.extend({
   // used to fetch table data.
   getCollection : function() {
     return this.moduleViews.table.collection;
+  },
+
+  getModuleOptions : function(name) {
+    var options = this[name + 'ViewOptions'] || {};
+    return typeof(options) == 'function' ? options.call(this) : options;
   }
 });
 

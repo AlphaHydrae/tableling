@@ -86,6 +86,8 @@ var Books = Tableling.Collection.extend({
       });
     }
 
+    var n = data.length;
+
     if (req.sort) {
       data = data.sort(function(a, b) {
 
@@ -113,7 +115,7 @@ var Books = Tableling.Collection.extend({
     data = data.slice(i, i + pageSize);
 
     var json = {
-      total: books.length,
+      total: n,
       data: data
     };
 

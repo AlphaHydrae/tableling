@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../doc-style.css" />
   <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = '../', thisFile = 'src/tableling.modular.js', defaultSidebar = true;
+    var relativeDir = "../", thisFile = "src/tableling.modular.js", defaultSidebar = true;
   </script>
   <script src="../doc-script.js"></script>
 </head>
@@ -52,7 +52,10 @@
 <p>Tableling subclass which splits functionality into <em>modules</em>
 and handles rendering.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -62,7 +65,11 @@ and handles rendering.</p>
 </div>
 <p>The list of module names must be specified by subclasses.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[],</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[],</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -72,13 +79,17 @@ and handles rendering.</p>
 </div>
 <p>Modules are set up after rendering, before refreshing.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span> <span class="o">=</span> <span class="p">{};</span>
     <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">modules</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">setupModule</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
     <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setup</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -93,7 +104,11 @@ and handles rendering.</p>
 
 <p>Each module is identified by a name, for example <code>pageSize</code>.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setupModule</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">setupModule</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -103,7 +118,11 @@ and handles rendering.</p>
 </div>
 <p>The layout must have a region named after the module, e.g. <code>pageSizeRegion</code>.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;Region&#39;</span><span class="p">;</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;Region&#39;</span><span class="p">;</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -114,7 +133,11 @@ and handles rendering.</p>
 <p>It must have a view class, e.g. <code>pageSizeView</code>, which will be shown into
 the region.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">viewClass</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;View&#39;</span><span class="p">];</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">viewClass</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;View&#39;</span><span class="p">];</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -126,9 +149,13 @@ the region.</p>
 aggregator as the <code>vent</code> option. Additional options can be
 given named after the view class, e.g. <code>pageSizeViewOptions</code>.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;ViewOptions&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="p">{},</span> <span class="p">{</span> <span class="nx">vent</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="p">});</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModuleOptions</span><span class="p">(</span><span class="nx">name</span><span class="p">),</span> <span class="p">{</span> <span class="nx">vent</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="p">});</span>
 
-    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">viewClass</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span></pre></div>
+    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">viewClass</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -139,11 +166,15 @@ given named after the view class, e.g. <code>pageSizeViewOptions</code>.</p>
 <p>Module view instances are stored by name in the <code>moduleViews</code> property
 for future reference.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">view</span><span class="p">;</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">view</span><span class="p">;</span>
 
     <span class="k">this</span><span class="p">[</span><span class="nx">region</span><span class="p">].</span><span class="nx">show</span><span class="p">(</span><span class="nx">view</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">view</span><span class="p">;</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -157,10 +188,19 @@ CollectionView). If your subclass does not have that, it
 should override this method to return the Backbone.Collection
 used to fetch table data.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">moduleViews</span><span class="p">.</span><span class="nx">table</span><span class="p">.</span><span class="nx">collection</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">getModuleOptions</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;ViewOptions&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+    <span class="k">return</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="o">:</span> <span class="nx">options</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">});</span></pre></div>
+<span class="p">});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -176,24 +216,27 @@ used to fetch table data.</p>
 <p>This is how a <code>PageSizeView</code> module might be registered in a subclass:</p>
 
 
-<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="p">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Modular</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
+<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="o">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Modular</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
 
-  <span class="n">modules</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;pageSize&#39;</span> <span class="p">],</span>
+  <span class="n">modules</span> <span class="o">:</span> <span class="p">[</span> <span class="err">&#39;</span><span class="n">pageSize</span><span class="err">&#39;</span> <span class="p">],</span>
 
-  <span class="n">pageSizeView</span> <span class="p">:</span> <span class="n">PageSizeView</span><span class="p">,</span>
-  <span class="n">pageSizeViewOptions</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="n">itemView</span> <span class="p">:</span> <span class="n">PageSizeItem</span>
+  <span class="n">pageSizeView</span> <span class="o">:</span> <span class="n">PageSizeView</span><span class="p">,</span>
+  <span class="n">pageSizeViewOptions</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="n">itemView</span> <span class="o">:</span> <span class="n">PageSizeItem</span>
   <span class="p">},</span>
 
-  <span class="n">regions</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="n">pageSizeRegion</span> <span class="p">:</span> <span class="s">&#39;.pageSize&#39;</span>
+  <span class="n">regions</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="n">pageSizeRegion</span> <span class="o">:</span> <span class="err">&#39;</span><span class="p">.</span><span class="n">pageSize</span><span class="err">&#39;</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
 
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -209,10 +252,20 @@ used to fetch table data.</p>
 <p>A module is an item view that is automatically bound to the table's
 event aggregator.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">ItemView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">ItemView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+  <span class="nx">i18n</span> <span class="o">:</span> <span class="p">{},</span>
+  <span class="nx">templateHelpers</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">i18n</span><span class="p">;</span>
+  <span class="p">},</span>
 
   <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span><span class="p">;</span></pre></div>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span><span class="p">;</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -223,7 +276,11 @@ event aggregator.</p>
 <p>The <code>setup</code> method of the view is called when the table
 is first set up.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -234,8 +291,14 @@ is first set up.</p>
 <p>The <code>refresh</code> method of the view is called every time the table
 is refreshed.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">refresh</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">refresh</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">i18n</span><span class="p">);</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -245,9 +308,13 @@ is refreshed.</p>
 </div>
 <p>Call <code>update</code> to trigger an update of the table.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -257,8 +324,12 @@ is refreshed.</p>
 </div>
 <p>Implementations should override this to set initial values.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-  <span class="p">},</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -269,8 +340,12 @@ is refreshed.</p>
 <p>Implementations should override this to stay up to date with
 the table state.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-  <span class="p">},</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -281,10 +356,14 @@ the table state.</p>
 <p>New table configuration to be sent on updates. For example,
 a page size view might update the <code>pageSize</code> property.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{};</span>
   <span class="p">}</span>
-<span class="p">});</span></pre></div>
+<span class="p">});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -300,7 +379,11 @@ a page size view might update the <code>pageSize</code> property.</p>
 <p>A basic module with a single form field. It comes with sensible
 defaults and only requires a <code>name</code> and a <code>template</code> parameter.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -310,13 +393,17 @@ defaults and only requires a <code>name</code> and a <code>template</code> param
 </div>
 <p>TODO: check name</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+
+  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">ui</span> <span class="o">=</span> <span class="p">{};</span>
-    <span class="p">}</span></pre></div>
+    <span class="p">}</span>
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -327,7 +414,8 @@ defaults and only requires a <code>name</code> and a <code>template</code> param
 <p>The name attribute of the form field is the same as the
 module's, e.g. <code>pageSize</code>.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span> <span class="o">=</span> <span class="s1">&#39;[name=&quot;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">;</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span> <span class="o">=</span> <span class="s1">&#39;[name=&quot;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">events</span> <span class="o">=</span> <span class="p">{};</span>
@@ -338,7 +426,10 @@ module's, e.g. <code>pageSize</code>.</p>
   <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">]);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">(),</span> <span class="p">{</span> <span class="nx">refresh</span> <span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -348,12 +439,16 @@ module's, e.g. <code>pageSize</code>.</p>
 </div>
 <p>The table property updated is the one with the same name as the module.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{};</span>
     <span class="nx">config</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
     <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">});</span></pre></div>
+<span class="p">});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -364,11 +459,11 @@ module's, e.g. <code>pageSize</code>.</p>
 <p>This is how a <code>PageSizeView</code> module might be implemented:</p>
 
 
-<div class="highlight"><pre><code><span class="n">var</span> <span class="n">html</span> <span class="p">=</span> <span class="s">&#39;&lt;input type=&quot;text&quot; name=&quot;pageSize&quot; /&gt;&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code><span class="n">var</span> <span class="n">html</span> <span class="o">=</span> <span class="err">&#39;</span><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;pageSize&quot;</span> <span class="o">/&gt;</span><span class="err">&#39;</span><span class="p">;</span>
 
-<span class="n">var</span> <span class="n">PageSizeView</span> <span class="p">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">FieldModule</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
-    <span class="n">name</span> <span class="p">:</span> <span class="s">&#39;pageSize&#39;</span>
-    <span class="n">template</span> <span class="p">:</span> <span class="n">_</span><span class="p">.</span><span class="n">template</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">PageSizeView</span> <span class="o">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">FieldModule</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
+    <span class="n">name</span> <span class="o">:</span> <span class="err">&#39;</span><span class="n">pageSize</span><span class="err">&#39;</span>
+    <span class="n">template</span> <span class="o">:</span> <span class="n">_</span><span class="p">.</span><span class="n">template</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 <span class="p">});</span>
 </code></pre></div>
 
@@ -378,7 +473,8 @@ module's, e.g. <code>pageSize</code>.</p>
 receive a <code>tableling:update</code> event with the <code>pageSize</code> property set
 to that value.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+</pre></div>
         </td>
       </tr>
   </tbody>

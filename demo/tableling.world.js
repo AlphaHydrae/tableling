@@ -14826,7 +14826,7 @@ _.extend(Marionette.Module, {
   return Marionette;
 })(Backbone, _, $ || window.jQuery || window.Zepto || window.ender);
 /*!
- * Tableling v0.0.12
+ * Tableling v0.0.19
  * Copyright (c) 2012-2013 Simon Oulevay (Alpha Hydrae) <hydrae.alpha@gmail.com>
  * Distributed under MIT license
  * https://github.com/AlphaHydrae/tableling
@@ -14834,7 +14834,7 @@ _.extend(Marionette.Module, {
 Backbone.Tableling = Tableling = (function(Backbone, _, $){
 
   var Tableling = {
-    version : "0.0.12"
+    version : "0.0.19"
   };
 
   // Tableling
@@ -14862,18 +14862,21 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       this.vent = options.vent || new Backbone.Wreqr.EventAggregator();
   
       this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), _.result(options, 'fetchOptions') || {});
+      this.autoUpdate = typeof(options.autoUpdate) != 'undefined' ? options.autoUpdate : true;
   
       // Components should trigger the `table:update` event to update
       // the table (e.g. change page size, sort) and fetch the new data.
       this.vent.on('table:update', this.update, this);
   
-      this.on('render', this.setup, this);
+      this.on('item:rendered', this.setup, this);
     },
   
     // Called once rendering is complete. By default, it updates the table.
     setup : function() {
       this.ventTrigger('table:setup', this.config);
-      this.ventTrigger('table:update');
+      if (this.autoUpdate) {
+        this.ventTrigger('table:update');
+      }
     },
   
     // Subclasses must return the Backbone.Collection used to fetch data.
@@ -15025,7 +15028,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       // When instantiated, the view class will be passed the event
       // aggregator as the `vent` option. Additional options can be
       // given named after the view class, e.g. `pageSizeViewOptions`.
-      var options = _.extend(this[name + 'ViewOptions'] || {}, { vent: this.vent });
+      var options = _.extend(this.getModuleOptions(name), { vent: this.vent });
   
       var view = new viewClass(options);
   
@@ -15044,6 +15047,11 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
     // used to fetch table data.
     getCollection : function() {
       return this.moduleViews.table.collection;
+    },
+  
+    getModuleOptions : function(name) {
+      var options = this[name + 'ViewOptions'] || {};
+      return typeof(options) == 'function' ? options.call(this) : options;
     }
   });
   
@@ -15071,7 +15079,13 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   // event aggregator.
   Tableling.Module = Backbone.Marionette.ItemView.extend({
   
+    i18n : {},
+    templateHelpers : function() {
+      return this.i18n;
+    },
+  
     initialize : function(options) {
+  
       this.vent = options.vent;
   
       // The `setup` method of the view is called when the table
@@ -15081,6 +15095,8 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       // The `refresh` method of the view is called every time the table
       // is refreshed.
       this.vent.on('table:refreshed', this.refresh, this);
+  
+      this.i18n = _.clone(options.i18n || this.i18n);
     },
   
     // Call `update` to trigger an update of the table.
@@ -15161,22 +15177,24 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   Tableling.Plain.Table = Tableling.Modular.extend({
   
     className: 'tableling',
-    modules : [ 'table', 'pageSize', 'quickSearch', 'info', 'pagination' ],
-    template : _.template('<div class="header"><div class="pageSize" /><div class="quickSearch" /></div><div class="table" /><div class="footer"><div class="info" /><div class="pagination" /></div>'),
+    modules : [ 'table', 'pageSize', 'quickSearch', 'info', 'page' ],
+    template : _.template('<div class="header"><div class="pageSize" /><div class="quickSearch" /></div><div class="table" /><div class="footer"><div class="info" /><div class="page" /></div>'),
   
     regions : {
       tableRegion : '.table',
       pageSizeRegion : '.pageSize',
       quickSearchRegion : '.quickSearch',
       infoRegion : '.info',
-      paginationRegion : '.pagination'
+      pageRegion : '.page'
     }
   });
   
   Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
   
     events : {
-      'click thead th' : 'updateSort'
+      'click thead th.sorting' : 'updateSort',
+      'click thead th.sorting-asc' : 'updateSort',
+      'click thead th.sorting-desc' : 'updateSort'
     },
   
     initialize : function(options) {
@@ -15233,7 +15251,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
     showSort : function() {
   
-      this.$el.find('thead th').removeClass('sorting sorting-asc sorting-desc').addClass('sorting');
+      this.$el.find('thead th.sorting, thead th.sorting-asc, thead th.sorting-desc').removeClass('sorting sorting-asc sorting-desc').addClass('sorting');
   
       for (var i = 0; i < this.sort.length; i++) {
   
@@ -15269,9 +15287,16 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   });
   
   Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Tableling.FieldModule.extend({
+  
     // TODO: update current page intelligently
     name : 'pageSize',
-    template : _.template('<select name="pageSize" /> entries per page'),
+    template : function(data) {
+      return _.template('<select name="pageSize" /> <%- entries %>', data);
+    },
+  
+    i18n : {
+      entries : 'entries per page'
+    },
     sizes : [ 10, 15, 20, 25, 50 ],
   
     ui : {
@@ -15302,7 +15327,13 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchView = Tableling.FieldModule.extend({
   
     name : 'quickSearch',
-    template : _.template('<input type="text" name="quickSearch" placeholder="Quick search..." />'),
+    template : function(data) {
+      return _.template('<input type="text" name="quickSearch" placeholder="<%- quickSearch %>" />', data);
+    },
+  
+    i18n : {
+      quickSearch : 'Quick search...'
+    },
   
     config : function() {
       var config = Tableling.FieldModule.prototype.config.call(this);
@@ -15313,7 +15344,17 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
   Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.Module.extend({
   
-    template : _.template('Showing <span class="first">0</span> to <span class="last">0</span> of <span class="total">0</span> entries'),
+    template : function(data) {
+      return _.template(data.template, {
+        first : '<span class="first">0</span>',
+        last : '<span class="last">0</span>',
+        total : '<span class="total">0</span>'
+      });
+    },
+  
+    i18n : {
+      template : 'Showing <%= first %> to <%= last %> of <%= total %> entries'
+    },
   
     ui : {
       first: '.first',
@@ -15338,9 +15379,10 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
     }
   });
   
-  Tableling.Plain.PaginationView = Tableling.Plain.Table.prototype.paginationView = Tableling.Module.extend({
+  Tableling.Plain.PageView = Tableling.Plain.Table.prototype.pageView = Tableling.Module.extend({
       
     template : _.template('<div class="pagination"><ul><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul></div>'),
+    pageTemplate : _.template('<li class="page"><a href="#"><%- number %></a></li>'),
   
     ui : {
       first : '.first',
@@ -15352,12 +15394,14 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
     events : {
       'click .first:not(.disabled)' : 'goToFirstPage',
       'click .previous:not(.disabled)' : 'goToPreviousPage',
+      'click .page:not(.disabled)' : 'goToPage',
       'click .next:not(.disabled)' : 'goToNextPage',
       'click .last:not(.disabled)' : 'goToLastPage'
     },
   
     refresh : function(data) {
-      if (!data) {
+      this.$el.find('.page').remove();
+      if (!data || !data.length) {
         this.ui.first.addClass('disabled');
         this.ui.previous.addClass('disabled');
         this.ui.next.addClass('disabled');
@@ -15366,9 +15410,37 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
         this.data = data;
         this.enable(this.ui.first, this.getPage(data) > 1);
         this.enable(this.ui.previous, this.getPage(data) > 1);
+        this.setupPages();
         this.enable(this.ui.next, this.getPage(data) < this.numberOfPages(data));
         this.enable(this.ui.last, this.getPage(data) < this.numberOfPages(data));
       }
+    },
+  
+    setupPages : function() {
+  
+      var page = this.getPage(this.data);
+      var total = this.numberOfPages();
+  
+      var first = page - 2;
+      if (total - first < 4) {
+        first = total - 4;
+      }
+  
+      if (first < 1) {
+        first = 1;
+      }
+  
+      var n = 5;
+      if (first + n - 1 > total) {
+        n = total - first + 1;
+      }
+  
+      _.times(n, function(i) {
+        $(this.pageTemplate({ number : first + i })).insertBefore(this.ui.next);
+      }, this);
+  
+      var i = page - first;
+      this.$el.find('.page').slice(i, i + 1).addClass('disabled');
     },
   
     enable : function(el, enabled) {
@@ -15383,22 +15455,26 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
     },
   
     goToFirstPage : function() {
-      this.goToPage(1);
+      this.goToPageNumber(1);
     },
   
     goToPreviousPage : function() {
-      this.goToPage(this.getPage(this.data) - 1);
+      this.goToPageNumber(this.getPage(this.data) - 1);
+    },
+  
+    goToPage : function(e) {
+      this.goToPageNumber(parseInt($(e.target).text(), 10));
     },
   
     goToNextPage : function() {
-      this.goToPage(this.getPage(this.data) + 1);
+      this.goToPageNumber(this.getPage(this.data) + 1);
     },
   
     goToLastPage : function() {
-      this.goToPage(this.numberOfPages());
+      this.goToPageNumber(this.numberOfPages());
     },
   
-    goToPage : function(n) {
+    goToPageNumber : function(n) {
       this.vent.trigger('table:update', { page : n });
     },
   
@@ -15410,20 +15486,23 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   Tableling.Bootstrap = {};
   
   Tableling.Bootstrap.Table = Tableling.Plain.Table.extend({
-    template : _.template('<div class="header"><div class="pageSize pull-left" /><div class="quickSearch pull-right" /></div><div class="table" /><div class="footer"><div class="info pull-left" /><div class="pagination pull-right" /></div>')
+    template : _.template('<div class="header"><div class="pageSize pull-left" /><div class="quickSearch pull-right" /></div><div class="table" /><div class="footer"><div class="info pull-left" /><div class="page pull-right" /></div>')
   });
   
   Tableling.Bootstrap.TableView = Tableling.Plain.TableView.extend({});
   
   Tableling.Bootstrap.PageSizeView = Tableling.Bootstrap.Table.prototype.pageSizeView = Tableling.Plain.PageSizeView.extend({
-    template : _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> entries per page')
+  
+    template : function(data) {
+      return _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> <%- entries %>', data);
+    }
   });
   
   Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickSearchView = Tableling.Plain.QuickSearchView.extend({});
   
   Tableling.Bootstrap.InfoView = Tableling.Bootstrap.Table.prototype.infoView = Tableling.Plain.InfoView.extend({});
   
-  Tableling.Bootstrap.PaginationView = Tableling.Bootstrap.Table.prototype.paginationView = Tableling.Plain.PaginationView.extend({});
+  Tableling.Bootstrap.PageView = Tableling.Bootstrap.Table.prototype.pageView = Tableling.Plain.PageView.extend({});
   
 
   return Tableling;

@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../doc-style.css" />
   <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = '../', thisFile = 'src/tableling.core.js', defaultSidebar = true;
+    var relativeDir = "../", thisFile = "src/tableling.core.js", defaultSidebar = true;
   </script>
   <script src="../doc-script.js"></script>
 </head>
@@ -57,7 +57,10 @@ from a Backbone collection. It is controlled with an EventAggregator.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
-  <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;tableling&#39;</span><span class="p">,</span></pre></div>
+  <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;tableling&#39;</span><span class="p">,</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -67,12 +70,16 @@ from a Backbone collection. It is controlled with an EventAggregator.</p>
 </div>
 <p>Default table options can be overriden by subclasses.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
     <span class="nx">page</span> <span class="o">:</span> <span class="mi">1</span>
   <span class="p">},</span>
 
   <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span></pre></div>
+    <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -82,7 +89,11 @@ from a Backbone collection. It is controlled with an EventAggregator.</p>
 </div>
 <p>Table options can also be overriden for each instance at construction.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">||</span> <span class="p">{}),</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{});</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">||</span> <span class="p">{}),</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -93,9 +104,14 @@ from a Backbone collection. It is controlled with an EventAggregator.</p>
 <p>We use an event aggregator to manage the layout and its components.
 You can use your own by passing a <code>vent</code> option.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span> <span class="o">||</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">();</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span> <span class="o">||</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">();</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">||</span> <span class="p">{}),</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="s1">&#39;fetchOptions&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{});</span></pre></div>
+    <span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">||</span> <span class="p">{}),</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="s1">&#39;fetchOptions&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">=</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">:</span> <span class="kc">true</span><span class="p">;</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -106,10 +122,14 @@ You can use your own by passing a <code>vent</code> option.</p>
 <p>Components should trigger the <code>table:update</code> event to update
 the table (e.g. change page size, sort) and fetch the new data.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;item:rendered&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -119,10 +139,16 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 </div>
 <p>Called once rendering is complete. By default, it updates the table.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -132,9 +158,13 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 </div>
 <p>Subclasses must return the Backbone.Collection used to fetch data.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;#getCollection not implemented. It should return the Backbone.Collection instance used to fetch data.&#39;</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -147,9 +177,13 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 </div>
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span> <span class="o">||</span> <span class="p">{},</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">updateValue</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></pre></div>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span> <span class="o">||</span> <span class="p">{},</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">updateValue</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -160,7 +194,8 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 <p>Set the <code>refresh</code> option to false to update the table configuration
 without refreshing.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">refresh</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">||</span> <span class="nx">options</span><span class="p">.</span><span class="nx">refresh</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">refresh</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">||</span> <span class="nx">options</span><span class="p">.</span><span class="nx">refresh</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">refresh</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">},</span>
@@ -168,7 +203,9 @@ without refreshing.</p>
   <span class="nx">updateValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></pre></div>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -178,11 +215,15 @@ without refreshing.</p>
 </div>
 <p>Blank values are deleted to avoid sending them in ajax requests.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>      <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></pre></div>
+  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -194,25 +235,29 @@ without refreshing.</p>
 fetch request.</p>
 
 
-<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="p">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Table</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
-  <span class="n">fetchOptions</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="n">type</span> <span class="p">:</span> <span class="s">&#39;POST&#39;</span> <span class="o">//</span> <span class="n">fetch</span> <span class="n">data</span> <span class="n">with</span> <span class="n">POST</span>
+<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="o">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Table</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
+  <span class="n">fetchOptions</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="n">type</span> <span class="o">:</span> <span class="err">&#39;</span><span class="n">POST</span><span class="err">&#39;</span> <span class="c1">// fetch data with POST</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="o">//</span> <span class="n">You</span> <span class="n">can</span> <span class="n">also</span> <span class="n">override</span> <span class="k">for</span> <span class="n">each</span> <span class="n">instance</span><span class="p">.</span>
-<span class="n">new</span> <span class="n">MyTable</span><span class="p">({</span>
-  <span class="n">fetchOptions</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="n">type</span> <span class="p">:</span> <span class="s">&#39;GET&#39;</span>
+<span class="c1">// You can also override for each instance.</span>
+<span class="n">new</span> <span class="nf">MyTable</span><span class="p">({</span>
+  <span class="n">fetchOptions</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="n">type</span> <span class="o">:</span> <span class="err">&#39;</span><span class="n">GET</span><span class="err">&#39;</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
 
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span><span class="p">);</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span><span class="p">);</span>
     <span class="nx">options</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">requestData</span><span class="p">();</span>
-    <span class="nx">options</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">processResponse</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span></pre></div>
+    <span class="nx">options</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">processResponse</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -223,10 +268,14 @@ fetch request.</p>
 <p><code>table:refreshing</code> is triggered every time new data is being fetched.
 The first argument is the request data.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:refreshing&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:refreshing&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">getCollection</span><span class="p">().</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -239,9 +288,13 @@ The first argument is the request data.</p>
 </div>
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">requestData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">requestData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">;</span>
-  <span class="p">},</span></pre></div>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -254,9 +307,13 @@ The first argument is the request data.</p>
 </div>
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">processResponse</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">processResponse</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span></pre></div>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -267,7 +324,11 @@ The first argument is the request data.</p>
 <p>Tableling expects the response from a fetch to have a <code>total</code> property
 which is the total number of items (not just in the current page).</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -283,8 +344,12 @@ is the current table configuration with the following additional meta data:</p>
 <li><code>length</code> - the number of items in the current page</li>
 </ul>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
-  <span class="p">},</span></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+  <span class="p">},</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -295,7 +360,8 @@ is the current table configuration with the following additional meta data:</p>
 <p>Triggers an event in the event aggregator. If <code>Tableling.debug</code> is set, it also
 logs the event and its arguments.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>  <span class="nx">ventTrigger</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">ventTrigger</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">Tableling</span><span class="p">.</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
@@ -304,7 +370,10 @@ logs the event and its arguments.</p>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">});</span></pre></div>
+<span class="p">});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -323,22 +392,26 @@ expects the following response format:</p>
 
 
 <div class="highlight"><pre><code><span class="p">{</span>
-  &quot;<span class="n">total</span>&quot;<span class="p">:</span> 12<span class="p">,</span>
-  &quot;<span class="n">data</span>&quot;<span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span> <span class="o">/*</span> <span class="p">...</span> <span class="n">model</span> <span class="n">data</span> <span class="p">...</span> <span class="o">*/</span> <span class="p">},</span>
-    <span class="p">{</span> <span class="o">/*</span> <span class="p">...</span> <span class="n">model</span> <span class="n">data</span> <span class="p">...</span> <span class="o">*/</span> <span class="p">}</span>
-  <span class="p">]</span>
+  <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="m">12</span><span class="o">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="cp">[</span>
+    <span class="p">{</span> <span class="cm">/* ... model data ... */</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="cm">/* ... model data ... */</span> <span class="p">}</span>
+  <span class="cp">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Collection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Tableling</span><span class="p">.</span><span class="nx">Collection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
   <span class="nx">parse</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">});</span></pre></div>
+<span class="p">});</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -354,7 +427,8 @@ expects the following response format:</p>
 <p><a href="tableling.bootstrap.html">tableling.bootstrap</a> provides views styled
 with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> classes.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        <td class="code highlight"><div class="highlight"><pre>
+</pre></div>
         </td>
       </tr>
   </tbody>

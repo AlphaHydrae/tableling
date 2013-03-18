@@ -7,6 +7,18 @@ body {
   clear: both;
 }
 
+.tableling .author {
+  width: 30em;
+}
+
+.tableling .year {
+  width: 15em;
+}
+
+.tableling .pagination {
+  margin-top: 0;
+}
+
 table thead .sorting,
 table thead .sorting-asc,
 table thead .sorting-desc {

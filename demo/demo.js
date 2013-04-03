@@ -70,7 +70,7 @@ var Books = Tableling.Collection.extend({
 
   model : Book,
 
-  sync : function(method, model, options, error) {
+  sync : function(method, model, options) {
 
     if (method != 'read') {
       throw new Error('Not implemented for this demo');
@@ -121,8 +121,8 @@ var Books = Tableling.Collection.extend({
 
     var response = $.Deferred();
     response.resolve(json);
-    options.success(model, json, options);
-    model.trigger('sync', model, json, options);
+    options.success(json);
+    model.trigger('request', model, null, options);
     return response;
   }
 });

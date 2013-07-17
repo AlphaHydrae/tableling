@@ -29,7 +29,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
     // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.
-    this.vent.on('table:update', this.update, this);
+    this.vent.on('table:update', this.onUpdate, this);
 
     this.on('item:rendered', this.setup, this);
   },
@@ -49,6 +49,10 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // ### Refreshing the table
   update : function(config, options) {
+    this.ventTrigger('table:update', config, options);
+  },
+
+  onUpdate : function(config, options) {
 
     _.each(config || {}, _.bind(this.updateValue, this));
 

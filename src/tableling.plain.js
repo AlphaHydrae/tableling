@@ -28,6 +28,7 @@ Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
     this.vent = options.vent;
     this.sort = [];
     this.vent.on('table:setup', this.setSort, this);
+    this.vent.on('table:refreshed', this.setSort, this);
   },
 
   updateSort : function(ev) {

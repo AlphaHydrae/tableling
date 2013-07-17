@@ -280,23 +280,28 @@ Tableling.Plain.PageView = Tableling.Plain.Table.prototype.pageView = Tableling.
     return Math.ceil(this.data.total / this.data.pageSize);
   },
 
-  goToFirstPage : function() {
+  goToFirstPage : function(e) {
+    e.preventDefault();
     this.goToPageNumber(1);
   },
 
-  goToPreviousPage : function() {
+  goToPreviousPage : function(e) {
+    e.preventDefault();
     this.goToPageNumber(this.getPage(this.data) - 1);
   },
 
   goToPage : function(e) {
+    e.preventDefault();
     this.goToPageNumber(parseInt($(e.target).text(), 10));
   },
 
-  goToNextPage : function() {
+  goToNextPage : function(e) {
+    e.preventDefault();
     this.goToPageNumber(this.getPage(this.data) + 1);
   },
 
-  goToLastPage : function() {
+  goToLastPage : function(e) {
+    e.preventDefault();
     this.goToPageNumber(this.numberOfPages());
   },
 

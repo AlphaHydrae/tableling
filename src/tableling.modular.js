@@ -43,18 +43,20 @@ Tableling.Modular = Tableling.Table.extend({
     return view;
   },
 
-  // By default, a modular table expects a `table` module which
+  // By default the collection is the one given at construction.
+  // Otherwise, a modular table expects a `table` module which
   // should have a collection (e.g. a Marionette CompositeView or
-  // CollectionView). If your subclass does not have that, it
+  // CollectionView). If your subclass does not have either, it
   // should override this method to return the Backbone.Collection
   // used to fetch table data.
   getCollection : function() {
-    return this.moduleViews.table.collection;
+    return this.collection || (this.moduleViews && this.moduleViews.table ? this.moduleViews.table.collection : undefined);
   },
 
   getModuleOptions : function(name) {
     var options = this[name + 'ViewOptions'] || {};
-    return typeof(options) == 'function' ? options.call(this) : options;
+    options = typeof(options) == 'function' ? options.call(this) : options;
+    return name == 'table' ? _.defaults(options, { collection : this.collection }) : options;
   }
 });
 

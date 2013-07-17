@@ -15,6 +15,8 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   initialize : function(options) {
     options = options || {};
 
+    this.collection = options.collection;
+
     // Table options can also be overriden for each instance at construction.
     this.config = _.extend(_.clone(this.config || {}), _.result(options, 'config') || {});
 
@@ -42,7 +44,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Subclasses must return the Backbone.Collection used to fetch data.
   getCollection : function() {
-    throw new Error('#getCollection not implemented. It should return the Backbone.Collection instance used to fetch data.');
+    return this.collection;
   },
 
   // ### Refreshing the table

@@ -114,6 +114,12 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     // which is the total number of items (not just in the current page).
     this.config.total = response.total;
 
+    // The server may override the `page` property, for example if the
+    // requested page was outside the range of available pages.
+    if (response.page) {
+      this.config.page = response.page;
+    }
+
     // `tableling:refreshed` is triggered after every refresh. The first argument
     // is the current table configuration with the following additional meta data:
     //

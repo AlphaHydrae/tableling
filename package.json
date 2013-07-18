@@ -4,7 +4,7 @@
   "keywords": [
     "table", "backbone", "marionette"
   ],
-  "version": "0.0.20",
+  "version": "0.0.21",
   "homepage": "https://github.com/AlphaHydrae/tableling",
   "author": "Simon Oulevay (Alpha Hydrae) <hydrae.alpha@gmail.com>",
   "repository": {

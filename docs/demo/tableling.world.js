@@ -1,6 +1,6 @@
 /*
     json2.js
-    2012-10-08
+    2013-05-26
 
     Public Domain.
 
@@ -173,7 +173,7 @@ if (typeof JSON !== 'object') {
 
     if (typeof Date.prototype.toJSON !== 'function') {
 
-        Date.prototype.toJSON = function (key) {
+        Date.prototype.toJSON = function () {
 
             return isFinite(this.valueOf())
                 ? this.getUTCFullYear()     + '-' +
@@ -187,7 +187,7 @@ if (typeof JSON !== 'object') {
 
         String.prototype.toJSON      =
             Number.prototype.toJSON  =
-            Boolean.prototype.toJSON = function (key) {
+            Boolean.prototype.toJSON = function () {
                 return this.valueOf();
             };
     }
@@ -12885,7 +12885,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 // Backbone.BabySitter
 // -------------------
-// v0.0.5
+// v0.0.6
 //
 // Copyright (c)2013 Derick Bailey, Muted Solutions, LLC.
 // Distributed under MIT license
@@ -12903,14 +12903,13 @@ Backbone.ChildViewContainer = (function(Backbone, _){
   // Container Constructor
   // ---------------------
 
-  var Container = function(initialViews){
+  var Container = function(views){
     this._views = {};
     this._indexByModel = {};
-    this._indexByCollection = {};
     this._indexByCustom = {};
     this._updateLength();
 
-    this._addInitialViews(initialViews);
+    _.each(views, this.add, this);
   };
 
   // Container Methods
@@ -12920,7 +12919,7 @@ Backbone.ChildViewContainer = (function(Backbone, _){
 
     // Add a view to this container. Stores the view
     // by `cid` and makes it searchable by the model
-    // and/or collection of the view. Optionally specify
+    // cid (and model itself). Optionally specify
     // a custom key to store an retrieve the view.
     add: function(view, customIndex){
       var viewCid = view.cid;
@@ -12933,11 +12932,6 @@ Backbone.ChildViewContainer = (function(Backbone, _){
         this._indexByModel[view.model.cid] = viewCid;
       }
 
-      // index it by collection
-      if (view.collection){
-        this._indexByCollection[view.collection.cid] = viewCid;
-      }
-
       // index by custom
       if (customIndex){
         this._indexByCustom[customIndex] = viewCid;
@@ -12947,18 +12941,16 @@ Backbone.ChildViewContainer = (function(Backbone, _){
     },
 
     // Find a view by the model that was attached to
-    // it. Uses the model's `cid` to find it, and
-    // retrieves the view by it's `cid` from the result
+    // it. Uses the model's `cid` to find it.
     findByModel: function(model){
-      var viewCid = this._indexByModel[model.cid];
-      return this.findByCid(viewCid);
+      return this.findByModelCid(model.cid);
     },
 
-    // Find a view by the collection that was attached to
-    // it. Uses the collection's `cid` to find it, and
-    // retrieves the view by it's `cid` from the result
-    findByCollection: function(col){
-      var viewCid = this._indexByCollection[col.cid];
+    // Find a view by the `cid` of the model that was attached to
+    // it. Uses the model's `cid` to find the view `cid` and
+    // retrieve the view using it.
+    findByModelCid: function(modelCid){
+      var viewCid = this._indexByModel[modelCid];
       return this.findByCid(viewCid);
     },
 
@@ -12988,26 +12980,13 @@ Backbone.ChildViewContainer = (function(Backbone, _){
         delete this._indexByModel[view.model.cid];
       }
 
-      // delete collection index
-      if (view.collection){
-        delete this._indexByCollection[view.collection.cid];
-      }
-
       // delete custom index
-      var cust;
-
-      for (var key in this._indexByCustom){
-        if (this._indexByCustom.hasOwnProperty(key)){
-          if (this._indexByCustom[key] === viewCid){
-            cust = key;
-            break;
-          }
+      _.any(this._indexByCustom, function(cid, key) {
+        if (cid === viewCid) {
+          delete this._indexByCustom[key];
+          return true;
         }
-      }
-
-      if (cust){
-        delete this._indexByCustom[cust];
-      }
+      }, this);
 
       // remove the view from the container
       delete this._views[viewCid];
@@ -13019,44 +12998,24 @@ Backbone.ChildViewContainer = (function(Backbone, _){
     // Call a method on every view in the container,
     // passing parameters to the call method one at a
     // time, like `function.call`.
-    call: function(method, args){
-      args = Array.prototype.slice.call(arguments, 1);
-      this.apply(method, args);
+    call: function(method){
+      this.apply(method, _.tail(arguments));
     },
 
     // Apply a method on every view in the container,
     // passing parameters to the call method one at a
     // time, like `function.apply`.
     apply: function(method, args){
-      var view;
-
-      // fix for IE < 9
-      args = args || [];
-
-      _.each(this._views, function(view, key){
+      _.each(this._views, function(view){
         if (_.isFunction(view[method])){
-          view[method].apply(view, args);
+          view[method].apply(view, args || []);
         }
       });
-
     },
 
     // Update the `.length` attribute on this container
     _updateLength: function(){
       this.length = _.size(this._views);
-    },
-
-    // set up an initial list of views
-    _addInitialViews: function(views){
-      if (!views){ return; }
-
-      var view, i,
-          length = views.length;
-
-      for (i=0; i<length; i++){
-        view = views[i];
-        this.add(view);
-      }
     }
   });
 
@@ -13384,7 +13343,7 @@ Marionette.extend = Backbone.Model.extend;
 // --------------------
 
 // Retrieve an object, function or other value from a target
-// object or it's `options`, with `options` taking precedence.
+// object or its `options`, with `options` taking precedence.
 Marionette.getOption = function(target, optionName){
   if (!target || !optionName){ return; }
   var value;
@@ -13524,7 +13483,7 @@ Marionette.MonitorDOMRefresh = (function(){
     var methodNames = methods.split(/\s+/);
 
     _.each(methodNames,function(methodName) {
-      var method = target[method];
+      var method = target[methodName];
       target.stopListening(entity, evt, method, target);
     });
   }
@@ -13765,18 +13724,24 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
 
     this.ensureEl();
 
-    if (view !== this.currentView) {
+    var isViewClosed = view.isClosed || _.isUndefined(view.$el);
+
+    var isDifferentView = view !== this.currentView;
+
+    if (isDifferentView) {
       this.close();
-      view.render();
-      this.open(view);
-    } else {
-      view.render();
     }
 
-    Marionette.triggerMethod.call(view, "show");
-    Marionette.triggerMethod.call(this, "show", view);
+    view.render();
 
+    if (isDifferentView || isViewClosed) {
+      this.open(view);
+    }
+    
     this.currentView = view;
+
+    Marionette.triggerMethod.call(this, "show", view);
+    Marionette.triggerMethod.call(view, "show");
   },
 
   ensureEl: function(){
@@ -13927,14 +13892,20 @@ Marionette.RegionManager = (function(Marionette){
     // internal method to store regions
     _store: function(name, region){
       this._regions[name] = region;
-      this.length = _.size(this._regions);
+      this._setLength();
     },
 
     // internal method to remove a region
     _remove: function(name, region){
       region.close();
       delete this._regions[name];
+      this._setLength();
       this.triggerMethod("region:remove", name, region);
+    },
+
+    // set the number of regions current held
+    _setLength: function(){
+      this.length = _.size(this._regions);
     }
 
   });
@@ -14013,7 +13984,7 @@ _.extend(Marionette.TemplateCache, {
 });
 
 // TemplateCache instance methods, allowing each
-// template cache object to manage it's own state
+// template cache object to manage its own state
 // and know whether or not it has been loaded
 _.extend(Marionette.TemplateCache.prototype, {
 
@@ -14068,7 +14039,20 @@ Marionette.Renderer = {
   // template function. Override this method to provide your own
   // custom rendering and template handling for all of Marionette.
   render: function(template, data){
-    var templateFunc = typeof template === 'function' ? template : Marionette.TemplateCache.get(template);
+
+    if (!template) {
+      var error = new Error("Cannot render the template since it's false, null or undefined.");
+      error.name = "TemplateNotFoundError";
+      throw error;
+    }
+
+    var templateFunc;
+    if (typeof template === "function"){
+      templateFunc = template;
+    } else {
+      templateFunc = Marionette.TemplateCache.get(template);
+    }
+
     return templateFunc(data);
   }
 };
@@ -14134,7 +14118,7 @@ Marionette.View = Backbone.View.extend({
       // build the event handler function for the DOM event
       triggerEvents[key] = function(e){
 
-        // stop the event in it's tracks
+        // stop the event in its tracks
         if (e && e.preventDefault){ e.preventDefault(); }
         if (e && e.stopPropagation){ e.stopPropagation(); }
 
@@ -14259,7 +14243,10 @@ Marionette.View = Backbone.View.extend({
 // A single item view implementation that contains code for rendering
 // with underscore.js templates, serializing the view's model or collection,
 // and calling several methods on extended views, such as `onRender`.
-Marionette.ItemView =  Marionette.View.extend({
+Marionette.ItemView = Marionette.View.extend({
+  
+  // Setting up the inheritance chain which allows changes to 
+  // Marionette.View.prototype.constructor which allows overriding
   constructor: function(){
     Marionette.View.prototype.constructor.apply(this, slice(arguments));
   },
@@ -14299,6 +14286,7 @@ Marionette.ItemView =  Marionette.View.extend({
 
     var template = this.getTemplate();
     var html = Marionette.Renderer.render(template, data);
+
     this.$el.html(html);
     this.bindUIElements();
 
@@ -14592,10 +14580,11 @@ Marionette.CollectionView = Marionette.View.extend({
 // Extends directly from CollectionView and also renders an
 // an item view as `modelView`, for the top leaf
 Marionette.CompositeView = Marionette.CollectionView.extend({
-  constructor: function(options){
-    Marionette.CollectionView.apply(this, slice(arguments));
-
-    this.itemView = this.getItemView();
+  
+  // Setting up the inheritance chain which allows changes to 
+  // Marionette.CollectionView.prototype.constructor which allows overriding
+  constructor: function(){
+    Marionette.CollectionView.prototype.constructor.apply(this, slice(arguments));
   },
 
   // Configured the initial events that the composite view
@@ -14683,7 +14672,7 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
   // `itemViewContainer` (a jQuery selector). Override this method to
   // provide custom logic of how the child item view instances have their
   // HTML appended to the composite view instance.
-  appendHtml: function(cv, iv){
+  appendHtml: function(cv, iv, index){
     var $container = this.getItemViewContainer(cv);
     $container.append(iv.el);
   },
@@ -14741,7 +14730,7 @@ Marionette.Layout = Marionette.ItemView.extend({
     this._firstRender = true;
     this._initializeRegions(options);
     
-    Marionette.ItemView.call(this, options);
+    Marionette.ItemView.prototype.constructor.call(this, options);
   },
 
   // Layout's render will use the existing region objects the
@@ -15206,7 +15195,7 @@ _.extend(Marionette.Module, {
 })(this, Backbone, _);
 
 /*!
- * Tableling v0.0.20
+ * Tableling v0.0.21
  * Copyright (c) 2012-2013 Simon Oulevay (Alpha Hydrae) <hydrae.alpha@gmail.com>
  * Distributed under MIT license
  * https://github.com/AlphaHydrae/tableling
@@ -15214,7 +15203,7 @@ _.extend(Marionette.Module, {
 Backbone.Tableling = Tableling = (function(Backbone, _, $){
 
   var Tableling = {
-    version : "0.0.20"
+    version : "0.0.21"
   };
 
   // Tableling
@@ -15234,6 +15223,8 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
     initialize : function(options) {
       options = options || {};
   
+      this.collection = options.collection;
+  
       // Table options can also be overriden for each instance at construction.
       this.config = _.extend(_.clone(this.config || {}), _.result(options, 'config') || {});
   
@@ -15246,7 +15237,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
       // Components should trigger the `table:update` event to update
       // the table (e.g. change page size, sort) and fetch the new data.
-      this.vent.on('table:update', this.update, this);
+      this.vent.on('table:update', this.onUpdate, this);
   
       this.on('item:rendered', this.setup, this);
     },
@@ -15261,11 +15252,15 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
     // Subclasses must return the Backbone.Collection used to fetch data.
     getCollection : function() {
-      throw new Error('#getCollection not implemented. It should return the Backbone.Collection instance used to fetch data.');
+      return this.collection;
     },
   
     // ### Refreshing the table
     update : function(config, options) {
+      this.ventTrigger('table:update', config, options);
+    },
+  
+    onUpdate : function(config, options) {
   
       _.each(config || {}, _.bind(this.updateValue, this));
   
@@ -15326,6 +15321,12 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       // Tableling expects the response from a fetch to have a `total` property
       // which is the total number of items (not just in the current page).
       this.config.total = response.total;
+  
+      // The server may override the `page` property, for example if the
+      // requested page was outside the range of available pages.
+      if (response.page) {
+        this.config.page = response.page;
+      }
   
       // `tableling:refreshed` is triggered after every refresh. The first argument
       // is the current table configuration with the following additional meta data:
@@ -15420,18 +15421,20 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       return view;
     },
   
-    // By default, a modular table expects a `table` module which
+    // By default the collection is the one given at construction.
+    // Otherwise, a modular table expects a `table` module which
     // should have a collection (e.g. a Marionette CompositeView or
-    // CollectionView). If your subclass does not have that, it
+    // CollectionView). If your subclass does not have either, it
     // should override this method to return the Backbone.Collection
     // used to fetch table data.
     getCollection : function() {
-      return this.moduleViews.table.collection;
+      return this.collection || (this.moduleViews && this.moduleViews.table ? this.moduleViews.table.collection : undefined);
     },
   
     getModuleOptions : function(name) {
       var options = this[name + 'ViewOptions'] || {};
-      return typeof(options) == 'function' ? options.call(this) : options;
+      options = typeof(options) == 'function' ? options.call(this) : options;
+      return name == 'table' ? _.defaults(options, { collection : this.collection }) : options;
     }
   });
   
@@ -15582,6 +15585,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       this.vent = options.vent;
       this.sort = [];
       this.vent.on('table:setup', this.setSort, this);
+      this.vent.on('table:refreshed', this.setSort, this);
     },
   
     updateSort : function(ev) {

@@ -144,6 +144,12 @@ Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Ta
     $('<option />').text(size).appendTo(this.ui.field);
   },
 
+  setupValue : function(value) {
+    if (value) {
+      Tableling.FieldModule.prototype.setupValue.apply(this, Array.prototype.slice.call(arguments));
+    }
+  },
+
   config : function() {
     var config = Tableling.FieldModule.prototype.config.call(this);
     config.page = 1;

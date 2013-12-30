@@ -152,8 +152,12 @@ Tableling.FieldModule = Tableling.Module.extend({
   },
 
   setup : function(config) {
-    this.ui.field.val(config[this.name]);
+    this.setupValue(config[this.name]);
     this.vent.trigger('table:update', this.config(), { refresh : false });
+  },
+
+  setupValue : function(value) {
+    this.ui.field.val(value);
   },
 
   // The table property updated is the one with the same name as the module.

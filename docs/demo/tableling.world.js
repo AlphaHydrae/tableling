@@ -14973,6 +14973,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       if (!this.events) {
         this.events = {};
       }
+      this.events.submit = 'onSubmit';
       this.events['change [name="' + this.name + '"]'] = 'update';
     },
   
@@ -14990,6 +14991,11 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
       var config = {};
       config[this.name] = this.ui.field.val();
       return config;
+    },
+  
+    onSubmit : function(e) {
+      e.preventDefault();
+      return false;
     }
   });
   
@@ -15222,7 +15228,7 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
   Tableling.Plain.PageView = Tableling.Plain.Table.prototype.pageView = Tableling.Module.extend({
       
-    template : _.template('<div class="pagination"><ul><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul></div>'),
+    template : _.template('<ul class="pagination"><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul>'),
     pageTemplate : _.template('<li class="page"><a href="#"><%- number %></a></li>'),
   
     ui : {
@@ -15339,12 +15345,27 @@ Backbone.Tableling = Tableling = (function(Backbone, _, $){
   
   Tableling.Bootstrap.PageSizeView = Tableling.Bootstrap.Table.prototype.pageSizeView = Tableling.Plain.PageSizeView.extend({
   
+    tagName : 'form',
+    className : 'form-inline',
+    attributes : {
+      role : 'form'
+    },
     template : function(data) {
-      return _.template('<select name="pageSize" class="input-mini"><option>5</option><option>10</option><option>15</option></select> <%- entries %>', data);
+      return _.template('<div class="formGroup"><select name="pageSize" class="form-control"><option>5</option><option>10</option><option>15</option></select> <%- entries %></div>', data);
     }
   });
   
-  Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickSearchView = Tableling.Plain.QuickSearchView.extend({});
+  Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickSearchView = Tableling.Plain.QuickSearchView.extend({
+  
+    tagName : 'form',
+    className : 'form-inline',
+    attributes : {
+      role : 'form'
+    },
+    template : function(data) {
+      return _.template('<div class="formGroup"><input type="text" name="quickSearch" class="form-control" placeholder="<%- quickSearch %>" /></div>', data);
+    }
+  });
   
   Tableling.Bootstrap.InfoView = Tableling.Bootstrap.Table.prototype.infoView = Tableling.Plain.InfoView.extend({});
   

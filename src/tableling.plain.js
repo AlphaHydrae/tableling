@@ -214,7 +214,7 @@ Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.
 
 Tableling.Plain.PageView = Tableling.Plain.Table.prototype.pageView = Tableling.Module.extend({
     
-  template : _.template('<div class="pagination"><ul><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul></div>'),
+  template : _.template('<ul class="pagination"><li class="first"><a href="#">&lt;&lt;</a></li><li class="previous"><a href="#">&lt;</a></li><li class="next"><a href="#">&gt;</a></li><li class="last"><a href="#">&gt;&gt;</a></li></ul>'),
   pageTemplate : _.template('<li class="page"><a href="#"><%- number %></a></li>'),
 
   ui : {

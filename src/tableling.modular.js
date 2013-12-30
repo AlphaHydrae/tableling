@@ -148,6 +148,7 @@ Tableling.FieldModule = Tableling.Module.extend({
     if (!this.events) {
       this.events = {};
     }
+    this.events.submit = 'onSubmit';
     this.events['change [name="' + this.name + '"]'] = 'update';
   },
 
@@ -165,6 +166,11 @@ Tableling.FieldModule = Tableling.Module.extend({
     var config = {};
     config[this.name] = this.ui.field.val();
     return config;
+  },
+
+  onSubmit : function(e) {
+    e.preventDefault();
+    return false;
   }
 });
 

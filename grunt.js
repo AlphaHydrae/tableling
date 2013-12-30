@@ -27,10 +27,6 @@ module.exports = function(grunt) {
       banner_incl_backbone:
         ' * Includes Backbone\n' +
         ' * http://backbonejs.org\n' +
-        ' * Includes Backbone.Wreqr\n' +
-        ' * https://github.com/marionettejs/backbone.wreqr\n' +
-        ' * Includes Backbone.BabySitter\n' +
-        ' * https://github.com/marionettejs/backbone.babysitter\n' +
         ' * Includes Backbone.Marionette\n' +
         ' * https://github.com/marionettejs/backbone.marionette\n',
       banner: '<%= meta.banner_header %>' +
@@ -64,8 +60,6 @@ module.exports = function(grunt) {
       backbone : {
         src : [
           'vendor/backbone.js',
-          'vendor/backbone.babysitter.js',
-          'vendor/backbone.wreqr.js',
           'vendor/backbone.marionette.js',
           'lib/tableling.js'
         ],
@@ -77,8 +71,6 @@ module.exports = function(grunt) {
           'vendor/jquery.js',
           'vendor/underscore.js',
           'vendor/backbone.js',
-          'vendor/backbone.babysitter.js',
-          'vendor/backbone.wreqr.js',
           'vendor/backbone.marionette.js',
           'lib/tableling.js'
         ],
@@ -124,8 +116,6 @@ module.exports = function(grunt) {
         'vendor/json2.js',
         'vendor/underscore.js',
         'vendor/backbone.js',
-        'vendor/backbone.babysitter.js',
-        'vendor/backbone.wreqr.js',
         'vendor/backbone.marionette.js',
         'src/tableling.js',
         'src/tableling.core.js',

@@ -92,6 +92,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     var options = _.clone(this.fetchOptions);
     options.data = this.requestData();
     options.success = _.bind(this.processResponse, this);
+    options.reset = true;
 
     // `table:refreshing` is triggered every time new data is being fetched.
     // The first argument is the request data.

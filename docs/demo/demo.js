@@ -157,11 +157,7 @@ var BooksTableView = Tableling.Bootstrap.TableView.extend({
   template: _.template('<thead><tr><th class="sorting title">Title</th><th class="sorting author">Author</th><th class="sorting year">Year</th></tr><tbody />'),
   itemView: BookRow,
   emptyView: NoBookRow,
-  itemViewContainer: 'tbody',
-
-  initialize : function(options) {
-    Tableling.Bootstrap.TableView.prototype.initialize.call(this, options);
-  }
+  itemViewContainer: 'tbody'
 });
 
 var BooksTable = Tableling.Bootstrap.Table.extend({

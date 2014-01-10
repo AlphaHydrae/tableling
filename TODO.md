@@ -1,1 +1,2 @@
+- add tableling:error event
 - provide both jquery 1.x and jquery 2.x

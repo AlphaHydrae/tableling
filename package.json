@@ -15,7 +15,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "test": "grunt jasmine"
+    "test": "grunt jshint concat jasmine"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

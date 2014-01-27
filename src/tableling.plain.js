@@ -17,6 +17,7 @@ Tableling.Plain.Table = Tableling.Modular.extend({
 
 Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 
+  // FIXME: make sure these events are not overriden by mistake
   events : {
     'click thead th.sorting' : 'updateSort',
     'click thead th.sorting-asc' : 'updateSort',

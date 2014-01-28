@@ -15,21 +15,27 @@ Tableling.Plain.Table = Tableling.Modular.extend({
   }
 });
 
+// TODO: make table view a module
 Tableling.Plain.TableView = Backbone.Marionette.CompositeView.extend({
 
-  // FIXME: make sure these events are not overriden by mistake
-  events : {
+  moduleEvents : {
     'click thead th.sorting' : 'updateSort',
     'click thead th.sorting-asc' : 'updateSort',
     'click thead th.sorting-desc' : 'updateSort'
   },
 
+  // TODO: add auto-sort
   initialize : function(options) {
-    // TODO: add auto-sort
+
     this.vent = options.vent;
     this.sort = [];
     this.vent.on('table:setup', this.setSort, this);
     this.vent.on('table:refreshed', this.setSort, this);
+    this.events = _.extend({}, this.events || {}, this.moduleEvents);
+
+    if (typeof(this.initializeModule) == 'function') {
+      this.initializeModule(options);
+    }
   },
 
   updateSort : function(ev) {
@@ -132,8 +138,8 @@ Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Ta
   },
 
   initialize : function(options) {
-    Tableling.FieldModule.prototype.initialize.call(this, options);
     this.sizes = _.clone(options.sizes || this.sizes);
+    Tableling.FieldModule.prototype.initialize.call(this, options);
   },
 
   onRender : function() {

@@ -1,1 +1,4 @@
+--ignore-dir=docs/demo
+--ignore-dir=lib
 --ignore-dir=node_modules
+--ignore-dir=vendor

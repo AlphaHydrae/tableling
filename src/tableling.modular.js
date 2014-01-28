@@ -136,11 +136,10 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
 // defaults and only requires a `name` and a `template` parameter.
 Tableling.FieldModule = Tableling.Module.extend({
 
-  // TODO: check name
-
   initialize : function(options) {
-
-    Tableling.Module.prototype.initialize.call(this, options);
+    if (!_.isString(this.name)) {
+      throw new Error("Tableling module must have a name property.");
+    }
 
     if (!this.ui) {
       this.ui = {};
@@ -154,6 +153,8 @@ Tableling.FieldModule = Tableling.Module.extend({
     }
     this.events.submit = 'onSubmit';
     this.events['change [name="' + this.name + '"]'] = 'update';
+
+    Tableling.Module.prototype.initialize.call(this, options);
   },
 
   setup : function(config) {

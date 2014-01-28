@@ -12,7 +12,7 @@ Tableling.Modular = Tableling.Table.extend({
   setup : function() {
 
     this.moduleViews = {};
-    _.each(this.modules, _.bind(this.setupModule, this));
+    _.each(this.modules, this.setupModule, this);
 
     Tableling.Table.prototype.setup.call(this);
   },
@@ -32,6 +32,9 @@ Tableling.Modular = Tableling.Table.extend({
     // aggregator as the `vent` option. Additional options can be
     // given named after the view class, e.g. `pageSizeViewOptions`.
     var options = _.extend(this.getModuleOptions(name), { vent: this.vent });
+
+    // The collection is also passed to view classes.
+    _.defaults(options, { collection: this.getCollection() });
 
     var view = new viewClass(options);
 
@@ -54,9 +57,7 @@ Tableling.Modular = Tableling.Table.extend({
   },
 
   getModuleOptions : function(name) {
-    var options = this[name + 'ViewOptions'] || {};
-    options = typeof(options) == 'function' ? options.call(this) : options;
-    return name == 'table' ? _.defaults(options, { collection : this.collection }) : options;
+    return _.result(this, name + 'ViewOptions') || {};
   }
 });
 

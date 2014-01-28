@@ -8,11 +8,11 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   className: 'tableling',
 
   // Default table options can be overriden by subclasses.
-  config : {
-    page : 1
+  config: {
+    page: 1
   },
 
-  initialize : function(options) {
+  initialize: function(options) {
     options = options || {};
 
     this.collection = options.collection;
@@ -39,7 +39,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   },
 
   // Called once rendering is complete. By default, it updates the table.
-  setup : function() {
+  setup: function() {
     this.ventTrigger('table:setup', this.config);
     if (this.autoUpdate) {
       this.ventTrigger('table:update');
@@ -47,16 +47,16 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   },
 
   // Subclasses must return the Backbone.Collection used to fetch data.
-  getCollection : function() {
+  getCollection: function() {
     return this.collection;
   },
 
   // ### Refreshing the table
-  update : function(config, options) {
+  update: function(config, options) {
     this.ventTrigger('table:update', config, options);
   },
 
-  onUpdate : function(config, options) {
+  onUpdate: function(config, options) {
 
     _.each(config || {}, _.bind(this.updateValue, this));
 
@@ -67,7 +67,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     }
   },
 
-  updateValue : function(value, key) {
+  updateValue: function(value, key) {
     if (value && value.toString().length) {
       this.config[key] = value;
     } else {
@@ -76,21 +76,21 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     }
   },
 
-  refresh : function() {
+  refresh: function() {
 
     // You can provide `fetchOptions` to add properties to the
     // fetch request.
     //
     //     var MyTable = Tableling.Table.extend({
-    //       fetchOptions : {
-    //         type : 'POST' // fetch data with POST
+    //       fetchOptions: {
+    //         type: 'POST' // fetch data with POST
     //       }
     //     });
     //
     //     // You can also override for each instance.
     //     new MyTable({
-    //       fetchOptions : {
-    //         type : 'GET'
+    //       fetchOptions: {
+    //         type: 'GET'
     //       }
     //     });
     var options = _.clone(this.fetchOptions);
@@ -106,12 +106,12 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   },
 
   // ### Request
-  requestData : function() {
+  requestData: function() {
     return this.config;
   },
 
   // ### Response
-  processResponse : function(collection, response) {
+  processResponse: function(collection, response) {
 
     this.config.length = collection.length;
 
@@ -135,7 +135,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 
   // Triggers an event in the event aggregator. If `Tableling.debug` is set, it also
   // logs the event and its arguments.
-  ventTrigger : function() {
+  ventTrigger: function() {
 
     var args = Array.prototype.slice.call(arguments);
     if (Tableling.debug) {
@@ -162,7 +162,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
 //     }
 Tableling.Collection = Backbone.Collection.extend({
 
-  parse : function(response) {
+  parse: function(response) {
     return response.data;
   }
 });

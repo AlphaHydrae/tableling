@@ -6,10 +6,10 @@
 Tableling.Modular = Tableling.Table.extend({
 
   // The list of module names must be specified by subclasses.
-  modules : [],
+  modules: [],
 
   // Modules are set up after rendering, before refreshing.
-  setup : function() {
+  setup: function() {
 
     this.moduleViews = {};
     _.each(this.modules, this.setupModule, this);
@@ -19,7 +19,7 @@ Tableling.Modular = Tableling.Table.extend({
 
   // ### Modules
   // Each module is identified by a name, for example `pageSize`.
-  setupModule : function(name) {
+  setupModule: function(name) {
 
     // The layout must have a region named after the module, e.g. `pageSizeRegion`.
     var region = name + 'Region';
@@ -52,11 +52,11 @@ Tableling.Modular = Tableling.Table.extend({
   // CollectionView). If your subclass does not have either, it
   // should override this method to return the Backbone.Collection
   // used to fetch table data.
-  getCollection : function() {
+  getCollection: function() {
     return this.collection || (this.moduleViews && this.moduleViews.table ? this.moduleViews.table.collection : undefined);
   },
 
-  getModuleOptions : function(name) {
+  getModuleOptions: function(name) {
     return _.result(this, name + 'ViewOptions') || {};
   }
 });
@@ -66,15 +66,15 @@ Tableling.Modular = Tableling.Table.extend({
 //
 //     var MyTable = Tableling.Modular.extend({
 //
-//       modules : [ 'pageSize' ],
+//       modules: [ 'pageSize' ],
 //
-//       pageSizeView : PageSizeView,
-//       pageSizeViewOptions : {
-//         itemView : PageSizeItem
+//       pageSizeView: PageSizeView,
+//       pageSizeViewOptions: {
+//         itemView: PageSizeItem
 //       },
 //
-//       regions : {
-//         pageSizeRegion : '.pageSize'
+//       regions: {
+//         pageSizeRegion: '.pageSize'
 //       }
 //     });
 
@@ -85,12 +85,12 @@ Tableling.Modular = Tableling.Table.extend({
 // event aggregator.
 Tableling.Module = Backbone.Marionette.ItemView.extend({
 
-  i18n : {},
-  templateHelpers : function() {
+  i18n: {},
+  templateHelpers: function() {
     return this.i18n;
   },
 
-  initialize : function(options) {
+  initialize: function(options) {
 
     this.vent = options.vent;
 
@@ -110,22 +110,22 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
   },
 
   // Call `update` to trigger an update of the table.
-  update : function() {
+  update: function() {
     this.vent.trigger('table:update', this.config());
   },
 
   // Implementations should override this to set initial values.
-  setup : function(config) {
+  setup: function(config) {
   },
 
   // Implementations should override this to stay up to date with
   // the table state.
-  refresh : function(config) {
+  refresh: function(config) {
   },
 
   // New table configuration to be sent on updates. For example,
   // a page size view might update the `pageSize` property.
-  config : function() {
+  config: function() {
     return {};
   }
 });
@@ -137,7 +137,7 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
 // defaults and only requires a `name` and a `template` parameter.
 Tableling.FieldModule = Tableling.Module.extend({
 
-  initialize : function(options) {
+  initialize: function(options) {
     if (!_.isString(this.name)) {
       throw new Error("Tableling module must have a name property.");
     }
@@ -158,23 +158,23 @@ Tableling.FieldModule = Tableling.Module.extend({
     Tableling.Module.prototype.initialize.call(this, options);
   },
 
-  setup : function(config) {
+  setup: function(config) {
     this.setupValue(config[this.name]);
-    this.vent.trigger('table:update', this.config(), { refresh : false });
+    this.vent.trigger('table:update', this.config(), { refresh: false });
   },
 
-  setupValue : function(value) {
+  setupValue: function(value) {
     this.ui.field.val(value);
   },
 
   // The table property updated is the one with the same name as the module.
-  config : function() {
+  config: function() {
     var config = {};
     config[this.name] = this.ui.field.val();
     return config;
   },
 
-  onSubmit : function(e) {
+  onSubmit: function(e) {
     e.preventDefault();
     return false;
   }
@@ -185,8 +185,8 @@ Tableling.FieldModule = Tableling.Module.extend({
 //     var html = '<input type="text" name="pageSize" />';
 //
 //     var PageSizeView = Tableling.FieldModule.extend({
-//         name : 'pageSize'
-//         template : _.template(html)
+//         name: 'pageSize'
+//         template: _.template(html)
 //     });
 //
 // When the value of the input field changes, the event aggregator will

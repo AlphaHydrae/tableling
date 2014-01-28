@@ -27,14 +27,14 @@ describe('table options', function() {
   describe('when a table is created with options', function() {
 
     it('should copy the given options', function() {
-      var options = { config : { page: 2, pageSize: 3, quickSearch: '4', sort: [ '5 asc' ] } };
+      var options = { config: { page: 2, pageSize: 3, quickSearch: '4', sort: [ '5 asc' ] } };
       var table = new Tableling.Table(options);
       expect(table.config).not.toBe(options.config);
       expect(table.config).toEqual(options.config);
     });
 
     it('should copy unknown options', function() {
-      var options = { config : { a: '1', b: 2, c: true } };
+      var options = { config: { a: '1', b: 2, c: true } };
       var table = new Tableling.Table(options);
       expect(table.config.a).toEqual('1');
       expect(table.config.b).toEqual(2);
@@ -51,10 +51,10 @@ describe('table options', function() {
   describe('when a table is subclassed', function() {
 
     var Subclass = Tableling.Table.extend({
-      config : {
-        page : 42,
-        pageSize : 666,
-        quickSearch : '1337'
+      config: {
+        page: 42,
+        pageSize: 666,
+        quickSearch: '1337'
       }
     });
 

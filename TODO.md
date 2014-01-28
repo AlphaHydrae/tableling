@@ -1,4 +1,2 @@
 - add tableling:error event
 - provide both jquery 1.x and jquery 2.x
-- remove event aggregator (table already mixins backbone events)
-- provide initializeTable function

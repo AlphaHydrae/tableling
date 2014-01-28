@@ -102,6 +102,10 @@ Tableling.Module = Backbone.Marionette.ItemView.extend({
     this.vent.on('table:refreshed', this.refresh, this);
 
     this.i18n = _.clone(options.i18n || this.i18n);
+
+    if (typeof(this.initializeModule) == 'function') {
+      this.initializeModule(options);
+    }
   },
 
   // Call `update` to trigger an update of the table.

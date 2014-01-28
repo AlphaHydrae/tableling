@@ -32,6 +32,10 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     this.vent.on('table:update', this.onUpdate, this);
 
     this.on('item:rendered', this.setup, this);
+
+    if (typeof(this.initializeTable) == 'function') {
+      this.initializeTable(options);
+    }
   },
 
   // Called once rendering is complete. By default, it updates the table.

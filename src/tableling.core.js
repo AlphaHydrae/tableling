@@ -25,7 +25,14 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     this.vent = options.vent || new Backbone.Wreqr.EventAggregator();
 
     this.fetchOptions = _.extend(_.clone(this.fetchOptions || {}), _.result(options, 'fetchOptions') || {});
-    this.autoUpdate = typeof(options.autoUpdate) != 'undefined' ? options.autoUpdate : true;
+
+    if (typeof(options.autoUpdate) != 'undefined') {
+      this.autoUpdate = options.autoUpdate;
+    }
+
+    if (typeof(this.autoUpdate) == 'undefined') {
+      this.autoUpdate = true;
+    }
 
     // Components should trigger the `table:update` event to update
     // the table (e.g. change page size, sort) and fetch the new data.

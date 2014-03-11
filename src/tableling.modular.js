@@ -34,7 +34,7 @@ Tableling.Modular = Tableling.Table.extend({
     var options = _.extend(this.getModuleOptions(name), { vent: this.vent });
 
     // The collection is also passed to view classes.
-    _.defaults(options, { collection: this.getCollection() });
+    _.defaults(options, { collection: this.getCollection(this.getResource()) });
 
     var view = new viewClass(options);
 

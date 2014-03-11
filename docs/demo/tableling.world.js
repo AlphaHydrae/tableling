@@ -14994,7 +14994,9 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   initialize: function(options) {
     options = options || {};
 
-    this.collection = options.collection;
+    if (!this.getCollection(this.getResource())) {
+      throw new Error('Missing collection; pass it to the constructor or override #getCollection');
+    }
 
     // Table options can also be overriden for each instance at construction.
     this.config = _.extend(_.clone(this.config || {}), _.result(options, 'config') || {});
@@ -15032,8 +15034,12 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     }
   },
 
+  getResource: function() {
+    return this.collection || this.model;
+  },
+
   // Subclasses must return the Backbone.Collection used to fetch data.
-  getCollection: function() {
+  getCollection: function(resource) {
     return this.collection;
   },
 
@@ -15088,7 +15094,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     // The first argument is the request data.
     this.ventTrigger('table:refreshing', options.data);
 
-    this.getCollection().fetch(options);
+    this.getResource().fetch(options);
   },
 
   // ### Request
@@ -15097,9 +15103,9 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
   },
 
   // ### Response
-  processResponse: function(collection, response) {
+  processResponse: function(resource, response) {
 
-    this.config.length = collection.length;
+    this.config.length = this.getCollection(resource).length;
 
     // Tableling expects the response from a fetch to have a `total` property
     // which is the total number of items (not just in the current page).
@@ -15195,7 +15201,7 @@ Tableling.Modular = Tableling.Table.extend({
     var options = _.extend(this.getModuleOptions(name), { vent: this.vent });
 
     // The collection is also passed to view classes.
-    _.defaults(options, { collection: this.getCollection() });
+    _.defaults(options, { collection: this.getCollection(this.getResource()) });
 
     var view = new viewClass(options);
 

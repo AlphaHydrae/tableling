@@ -10,12 +10,7 @@ describe('table events', function() {
   var collection = new Collection();
 
   var Table = Tableling.Table.extend({
-
-    template: _.template('<div />'),
-
-    getCollection: function() {
-      return collection;
-    }
+    template: _.template('<div />')
   });
 
   describe('when a table is rendered', function() {
@@ -23,7 +18,7 @@ describe('table events', function() {
     var vent = new Backbone.Wreqr.EventAggregator();
     var table;
     var makeTable = function() {
-      return table = new Table({ vent: vent });
+      return table = new Table({ vent: vent, collection: collection });
     };
 
     var order;

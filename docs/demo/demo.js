@@ -163,9 +163,6 @@ var BooksTableView = Tableling.Bootstrap.TableView.extend({
 var BooksTable = Tableling.Bootstrap.Table.extend({
 
   tableView: BooksTableView,
-  tableViewOptions: {
-    collection: new Books()
-  },
   pageSizeViewOptions: {
     sizes: [ 5, 10, 15 ]
   }
@@ -175,5 +172,5 @@ $(function() {
 
   new Backbone.Marionette.Region({
     el: '#books'
-  }).show(new BooksTable());
+  }).show(new BooksTable({ collection: new Books() }));
 });

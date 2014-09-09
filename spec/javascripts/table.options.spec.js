@@ -21,7 +21,7 @@ describe('table options', function() {
 
     it('should have an event aggregator', function() {
       expect(table.vent).not.toBeNull();
-      expect(table.vent).toBeInstanceOf(Backbone.Wreqr.EventAggregator);
+      expect(table.vent.constructor).toBe(Backbone.Wreqr.EventAggregator);
     });
   });
 

@@ -1,7 +1,11 @@
 beforeEach(function() {
-  this.addMatchers({
-    toBeInstanceOf : function(expected) {
-      return this.actual instanceof expected;
+  jasmine.addMatchers({
+    toBeInstanceOf: function(util, customEqualityTesters) {
+      return {
+        compare: function(actual, expected) {
+          return actual instanceof expected;
+        }
+      };
     }
   });
 });

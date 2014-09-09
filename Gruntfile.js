@@ -121,17 +121,17 @@ module.exports = function(grunt) {
 
     jasmine: {
       standard: {
-        src: [
-          'vendor/jquery.js',
-          'vendor/json2.js',
-          'vendor/underscore.js',
-          'vendor/backbone.js',
-          'vendor/backbone.marionette.js',
-          'lib/tableling.js'
-        ],
+        src: 'lib/tableling.js',
         options: {
           helpers: 'spec/javascripts/helpers/*.js',
-          specs: 'spec/javascripts/**/*.spec.js'
+          specs: 'spec/javascripts/**/*.spec.js',
+          vendor: [
+            'vendor/jquery.js',
+            'vendor/json2.js',
+            'vendor/underscore.js',
+            'vendor/backbone.js',
+            'vendor/backbone.marionette.js'
+          ]
         }
       }
     },

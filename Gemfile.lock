@@ -1,13 +1,13 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    hashr (0.0.22)
-    paint (0.8.6)
-    rake (10.1.1)
+    json (1.8.1)
+    paint (0.8.7)
+    rake (10.3.2)
     rake-version (0.4.1)
       rake (~> 10)
-    travis-lint (1.7.0)
-      hashr (~> 0.0.22)
+    travis-lint (2.0.0)
+      json
 
 PLATFORMS
   ruby

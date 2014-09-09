@@ -38,9 +38,13 @@
 
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">addMatchers</span><span class="p">({</span>
-    <span class="nx">toBeInstanceOf</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">expected</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">actual</span> <span class="k">instanceof</span> <span class="nx">expected</span><span class="p">;</span>
+  <span class="nx">jasmine</span><span class="p">.</span><span class="nx">addMatchers</span><span class="p">({</span>
+    <span class="nx">toBeInstanceOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">,</span> <span class="nx">customEqualityTesters</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">compare</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">actual</span><span class="p">,</span> <span class="nx">expected</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">actual</span> <span class="k">instanceof</span> <span class="nx">expected</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">};</span>
     <span class="p">}</span>
   <span class="p">});</span>
 <span class="p">});</span>

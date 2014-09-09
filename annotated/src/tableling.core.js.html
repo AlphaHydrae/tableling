@@ -22,7 +22,7 @@
         <a href="#tableling">Tableling</a>
       </div>
       <div class="heading h3">
-        <a href="#refreshing-the-table">Refreshing the table</a>
+        <a href="#refreshing%20the%20table">Refreshing the table</a>
       </div>
       <div class="heading h3">
         <a href="#request">Request</a>
@@ -46,7 +46,7 @@
         <td class="docs">
 <div class="pilwrap" id="tableling">
   <h2>
-    <a href="#tableling" class="pilcrow">&#182;</a>
+    <a href="#tableling" name="tableling" class="pilcrow">&#182;</a>
     Tableling
   </h2>
 </div>
@@ -55,7 +55,7 @@
 <p>A tableling table is a Marionette layout which fetches data
 from a Backbone collection. It is controlled with an EventAggregator.</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">LayoutView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
   <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;tableling&#39;</span><span class="p">,</span>
 
@@ -71,12 +71,16 @@ from a Backbone collection. It is controlled with an EventAggregator.</p>
 <p>Default table options can be overriden by subclasses.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">page</span> <span class="o">:</span> <span class="mi">1</span>
+  <span class="nx">config</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span>
   <span class="p">},</span>
 
-  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">getCollection</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getResource</span><span class="p">()))</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Missing collection; pass it to the constructor or override #getCollection&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
 
 
 </pre></div>
@@ -108,7 +112,14 @@ You can use your own by passing a <code>vent</code> option.</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span> <span class="o">||</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">();</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span> <span class="o">||</span> <span class="p">{}),</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="s1">&#39;fetchOptions&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{});</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">=</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">:</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
 
 
 </pre></div>
@@ -123,9 +134,13 @@ You can use your own by passing a <code>vent</code> option.</p>
 the table (e.g. change page size, sort) and fetch the new data.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onUpdate</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;item:rendered&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setup</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initializeTable</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">initializeTable</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">},</span>
 
 
@@ -140,11 +155,15 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 <p>Called once rendering is complete. By default, it updates the table.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">autoUpdate</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">);</span>
     <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">getResource</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">;</span>
   <span class="p">},</span>
 
 
@@ -159,8 +178,8 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
 <p>Subclasses must return the Backbone.Collection used to fetch data.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;#getCollection not implemented. It should return the Backbone.Collection instance used to fetch data.&#39;</span><span class="p">);</span>
+  <span class="nx">getCollection</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resource</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">;</span>
   <span class="p">},</span>
 
 
@@ -169,16 +188,20 @@ the table (e.g. change page size, sort) and fetch the new data.</p>
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="refreshing-the-table">
+<div class="pilwrap" id="refreshing%20the%20table">
   <h3>
-    <a href="#refreshing-the-table" class="pilcrow">&#182;</a>
+    <a href="#refreshing%20the%20table" name="refreshing%20the%20table" class="pilcrow">&#182;</a>
     Refreshing the table
   </h3>
 </div>
 
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">update</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">onUpdate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span> <span class="o">||</span> <span class="p">{},</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">updateValue</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
@@ -200,7 +223,7 @@ without refreshing.</p>
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">updateValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">updateValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -220,7 +243,7 @@ without refreshing.</p>
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
 
 </pre></div>
@@ -235,16 +258,16 @@ without refreshing.</p>
 fetch request.</p>
 
 
-<div class="highlight"><pre><code><span class="n">var</span> <span class="n">MyTable</span> <span class="o">=</span> <span class="n">Tableling</span><span class="p">.</span><span class="n">Table</span><span class="p">.</span><span class="n">extend</span><span class="p">({</span>
-  <span class="n">fetchOptions</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="n">type</span> <span class="o">:</span> <span class="err">&#39;</span><span class="n">POST</span><span class="err">&#39;</span> <span class="c1">// fetch data with POST</span>
+<div class="highlight"><pre><code><span class="kd">var</span> <span class="nx">MyTable</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">fetchOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span> <span class="c1">// fetch data with POST</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
 <span class="c1">// You can also override for each instance.</span>
-<span class="n">new</span> <span class="nf">MyTable</span><span class="p">({</span>
-  <span class="n">fetchOptions</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="n">type</span> <span class="o">:</span> <span class="err">&#39;</span><span class="n">GET</span><span class="err">&#39;</span>
+<span class="k">new</span> <span class="nx">MyTable</span><span class="p">({</span>
+  <span class="nx">fetchOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -255,6 +278,7 @@ fetch request.</p>
     <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchOptions</span><span class="p">);</span>
     <span class="nx">options</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">requestData</span><span class="p">();</span>
     <span class="nx">options</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">processResponse</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="nx">options</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
 
 </pre></div>
@@ -271,7 +295,7 @@ The first argument is the request data.</p>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="k">this</span><span class="p">.</span><span class="nx">ventTrigger</span><span class="p">(</span><span class="s1">&#39;table:refreshing&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">getCollection</span><span class="p">().</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getResource</span><span class="p">().</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
   <span class="p">},</span>
 
 
@@ -282,14 +306,14 @@ The first argument is the request data.</p>
         <td class="docs">
 <div class="pilwrap" id="request">
   <h3>
-    <a href="#request" class="pilcrow">&#182;</a>
+    <a href="#request" name="request" class="pilcrow">&#182;</a>
     Request
   </h3>
 </div>
 
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">requestData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">requestData</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">;</span>
   <span class="p">},</span>
 
@@ -301,16 +325,16 @@ The first argument is the request data.</p>
         <td class="docs">
 <div class="pilwrap" id="response">
   <h3>
-    <a href="#response" class="pilcrow">&#182;</a>
+    <a href="#response" name="response" class="pilcrow">&#182;</a>
     Response
   </h3>
 </div>
 
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">processResponse</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">processResponse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resource</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getCollection</span><span class="p">(</span><span class="nx">resource</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
 
 
 </pre></div>
@@ -336,6 +360,23 @@ which is the total number of items (not just in the current page).</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
 </div>
+<p>The server may override the <code>page</code> property, for example if the
+requested page was outside the range of available pages.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">page</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
 <p><code>tableling:refreshed</code> is triggered after every refresh. The first argument
 is the current table configuration with the following additional meta data:</p>
 
@@ -355,13 +396,13 @@ is the current table configuration with the following additional meta data:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
 </div>
 <p>Triggers an event in the event aggregator. If <code>Tableling.debug</code> is set, it also
 logs the event and its arguments.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">ventTrigger</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ventTrigger</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">Tableling</span><span class="p">.</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
@@ -380,7 +421,7 @@ logs the event and its arguments.</p>
         <td class="docs">
 <div class="pilwrap" id="tableling.collection">
   <h2>
-    <a href="#tableling.collection" class="pilcrow">&#182;</a>
+    <a href="#tableling.collection" name="tableling.collection" class="pilcrow">&#182;</a>
     Tableling.Collection
   </h2>
 </div>
@@ -392,11 +433,11 @@ expects the following response format:</p>
 
 
 <div class="highlight"><pre><code><span class="p">{</span>
-  <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="m">12</span><span class="o">,</span>
-  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="cp">[</span>
+  <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span> <span class="cm">/* ... model data ... */</span> <span class="p">},</span>
     <span class="p">{</span> <span class="cm">/* ... model data ... */</span> <span class="p">}</span>
-  <span class="cp">]</span>
+  <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -405,7 +446,7 @@ expects the following response format:</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Collection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
-  <span class="nx">parse</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">});</span>
@@ -418,7 +459,7 @@ expects the following response format:</p>
         <td class="docs">
 <div class="pilwrap" id="implementations">
   <h2>
-    <a href="#implementations" class="pilcrow">&#182;</a>
+    <a href="#implementations" name="implementations" class="pilcrow">&#182;</a>
     Implementations
   </h2>
 </div>

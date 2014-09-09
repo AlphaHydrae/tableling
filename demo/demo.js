@@ -1,63 +1,63 @@
 var books = [
   {
-    "title" : "Nineteen Eighty-Four",
-    "author" : "George Orwell",
-    "year" : 1949
+    "title": "Nineteen Eighty-Four",
+    "author": "George Orwell",
+    "year": 1949
   },
   {
-    "title" : "Fahrenheit 451",
-    "author" : "Ray Bradbury",
-    "year" : 1953
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "year": 1953
   },
   {
-    "title" : "A Tale of Two Cities",
-    "author" : "Charles Dickens",
-    "year" : 1859
+    "title": "A Tale of Two Cities",
+    "author": "Charles Dickens",
+    "year": 1859
   },
   {
-    "title" : "Robinson Crusoe",
-    "author" : "Daniel Defoe",
-    "year" : 1719
+    "title": "Robinson Crusoe",
+    "author": "Daniel Defoe",
+    "year": 1719
   },
   {
-    "title" : "Emma",
-    "author" : "Jane Austen",
-    "year" : 1815
+    "title": "Emma",
+    "author": "Jane Austen",
+    "year": 1815
   },
   {
-    "title" : "Frankenstein",
-    "author" : "Mary Shelley",
-    "year" : 1818
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "year": 1818
   },
   {
-    "title" : "The Count of Monte Cristo",
-    "author" : "Alexandre Dumas",
-    "year" : 1844
+    "title": "The Count of Monte Cristo",
+    "author": "Alexandre Dumas",
+    "year": 1844
   },
   {
-    "title" : "Wuthering Heights",
-    "author" : "Emily Brontë",
-    "year" : 1847
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "year": 1847
   },
   {
-    "title" : "The Woman in White",
-    "author" : "Wilkie Collins",
-    "year" : 1859
+    "title": "The Woman in White",
+    "author": "Wilkie Collins",
+    "year": 1859
   },
   {
-    "title" : "Alice's Adventures In Wonderland",
-    "author" : "Lewis Carroll",
-    "year" : 1865
+    "title": "Alice's Adventures In Wonderland",
+    "author": "Lewis Carroll",
+    "year": 1865
   },
   {
-    "title" : "The Portrait of a Lady",
-    "author" : "Henry James",
-    "year" : 1881
+    "title": "The Portrait of a Lady",
+    "author": "Henry James",
+    "year": 1881
   },
   {
-    "title" : "Brave New World",
-    "author" : "Aldous Huxley",
-    "year" : 1932
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "year": 1932
   }
 ];
 
@@ -68,9 +68,9 @@ var Book = Backbone.Model.extend({});
 
 var Books = Tableling.Collection.extend({
 
-  model : Book,
+  model: Book,
 
-  sync : function(method, model, options) {
+  sync: function(method, model, options) {
 
     if (method != 'read') {
       throw new Error('Not implemented for this demo');
@@ -138,13 +138,13 @@ var BookRow = Backbone.Marionette.ItemView.extend({
   tagName: 'tr',
   template: _.template('<td class="title" /><td class="author" /><td class="year" />'),
 
-  ui : {
+  ui: {
     title: '.title',
     author: '.author',
     year: '.year'
   },
 
-  onRender : function() {
+  onRender: function() {
     this.ui.title.text(this.model.get('title'));
     this.ui.author.text(this.model.get('author'));
     this.ui.year.text(this.model.get('year'));
@@ -155,29 +155,22 @@ var BooksTableView = Tableling.Bootstrap.TableView.extend({
   tagName: 'table',
   className: 'table table-striped table-hover',
   template: _.template('<thead><tr><th class="sorting title">Title</th><th class="sorting author">Author</th><th class="sorting year">Year</th></tr><tbody />'),
-  itemView: BookRow,
+  childView: BookRow,
   emptyView: NoBookRow,
-  itemViewContainer: 'tbody',
-
-  initialize : function(options) {
-    Tableling.Bootstrap.TableView.prototype.initialize.call(this, options);
-  }
+  childViewContainer: 'tbody'
 });
 
 var BooksTable = Tableling.Bootstrap.Table.extend({
 
-  tableView : BooksTableView,
-  tableViewOptions : {
-    collection: new Books()
-  },
-  pageSizeViewOptions : {
-    sizes : [ 5, 10, 15 ]
-  },
+  tableView: BooksTableView,
+  pageSizeViewOptions: {
+    sizes: [ 5, 10, 15 ]
+  }
 });
 
 $(function() {
 
   new Backbone.Marionette.Region({
     el: '#books'
-  }).show(new BooksTable());
+  }).show(new BooksTable({ collection: new Books() }));
 });

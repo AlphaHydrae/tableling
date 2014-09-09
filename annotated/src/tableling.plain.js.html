@@ -42,27 +42,18 @@
 <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">Table</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Modular</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
   <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;tableling&#39;</span><span class="p">,</span>
-  <span class="nx">modules</span> <span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;pageSize&#39;</span><span class="p">,</span> <span class="s1">&#39;quickSearch&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span> <span class="p">],</span>
-  <span class="nx">template</span> <span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;header&quot;&gt;&lt;div class=&quot;pageSize&quot; /&gt;&lt;div class=&quot;quickSearch&quot; /&gt;&lt;/div&gt;&lt;div class=&quot;table&quot; /&gt;&lt;div class=&quot;footer&quot;&gt;&lt;div class=&quot;info&quot; /&gt;&lt;div class=&quot;page&quot; /&gt;&lt;/div&gt;&#39;</span><span class="p">),</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;pageSize&#39;</span><span class="p">,</span> <span class="s1">&#39;quickSearch&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span> <span class="p">],</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;header&quot;&gt;&lt;div class=&quot;pageSize&quot; /&gt;&lt;div class=&quot;quickSearch&quot; /&gt;&lt;/div&gt;&lt;div class=&quot;table&quot; /&gt;&lt;div class=&quot;footer&quot;&gt;&lt;div class=&quot;info&quot; /&gt;&lt;div class=&quot;page&quot; /&gt;&lt;/div&gt;&#39;</span><span class="p">),</span>
 
-  <span class="nx">regions</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">tableRegion</span> <span class="o">:</span> <span class="s1">&#39;.table&#39;</span><span class="p">,</span>
-    <span class="nx">pageSizeRegion</span> <span class="o">:</span> <span class="s1">&#39;.pageSize&#39;</span><span class="p">,</span>
-    <span class="nx">quickSearchRegion</span> <span class="o">:</span> <span class="s1">&#39;.quickSearch&#39;</span><span class="p">,</span>
-    <span class="nx">infoRegion</span> <span class="o">:</span> <span class="s1">&#39;.info&#39;</span><span class="p">,</span>
-    <span class="nx">pageRegion</span> <span class="o">:</span> <span class="s1">&#39;.page&#39;</span>
+  <span class="nx">regions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">tableRegion</span><span class="o">:</span> <span class="s1">&#39;.table&#39;</span><span class="p">,</span>
+    <span class="nx">pageSizeRegion</span><span class="o">:</span> <span class="s1">&#39;.pageSize&#39;</span><span class="p">,</span>
+    <span class="nx">quickSearchRegion</span><span class="o">:</span> <span class="s1">&#39;.quickSearch&#39;</span><span class="p">,</span>
+    <span class="nx">infoRegion</span><span class="o">:</span> <span class="s1">&#39;.info&#39;</span><span class="p">,</span>
+    <span class="nx">pageRegion</span><span class="o">:</span> <span class="s1">&#39;.page&#39;</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">TableView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">CompositeView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-
-  <span class="nx">events</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;click thead th.sorting&#39;</span> <span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click thead th.sorting-asc&#39;</span> <span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click thead th.sorting-desc&#39;</span> <span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span>
-  <span class="p">},</span>
-
-  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -72,15 +63,43 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
+<p>TODO: make table view a module</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">TableView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">CompositeView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+  <span class="nx">moduleEvents</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;click thead th.sorting&#39;</span><span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click thead th.sorting-asc&#39;</span><span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click thead th.sorting-desc&#39;</span><span class="o">:</span> <span class="s1">&#39;updateSort&#39;</span>
+  <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
 <p>TODO: add auto-sort</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">vent</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">sort</span> <span class="o">=</span> <span class="p">[];</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:setup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setSort</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;table:refreshed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setSort</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">events</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">events</span> <span class="o">||</span> <span class="p">{},</span> <span class="k">this</span><span class="p">.</span><span class="nx">moduleEvents</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initializeModule</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">initializeModule</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">updateSort</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">updateSort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;sorting&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">el</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;sorting-asc&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">el</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;sorting-desc&#39;</span><span class="p">)))</span> <span class="p">{</span>
@@ -118,14 +137,14 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">());</span>
   <span class="p">},</span>
 
-  <span class="nx">setSort</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setSort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">config</span> <span class="o">&amp;&amp;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">sort</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">sort</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">showSort</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">showSort</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">showSort</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;thead th.sorting, thead th.sorting-asc, thead th.sorting-desc&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;sorting sorting-asc sorting-desc&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;sorting&#39;</span><span class="p">);</span>
 
@@ -146,18 +165,18 @@
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
-      <span class="nx">page</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="nx">sort</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">sortConfig</span><span class="p">()</span>
+      <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nx">sort</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">sortConfig</span><span class="p">()</span>
     <span class="p">};</span>
   <span class="p">},</span>
 
-  <span class="nx">sortConfig</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">sortConfig</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">sort</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
   <span class="p">},</span>
 
-  <span class="nx">fieldName</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fieldName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">el</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">});</span>
@@ -171,40 +190,46 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
 <p>TODO: update current page intelligently</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;pageSize&#39;</span><span class="p">,</span>
-  <span class="nx">template</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;select name=&quot;pageSize&quot; /&gt; &lt;%- entries %&gt;&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;pageSize&#39;</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;select name=&quot;pageSize&quot; /&gt; &lt;%- entries %&gt;&#39;</span><span class="p">)(</span><span class="nx">data</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">i18n</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">entries</span> <span class="o">:</span> <span class="s1">&#39;entries per page&#39;</span>
+  <span class="nx">i18n</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">entries</span><span class="o">:</span> <span class="s1">&#39;entries per page&#39;</span>
   <span class="p">},</span>
-  <span class="nx">sizes</span> <span class="o">:</span> <span class="p">[</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span> <span class="p">],</span>
+  <span class="nx">sizes</span><span class="o">:</span> <span class="p">[</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span> <span class="p">],</span>
 
-  <span class="nx">ui</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">field</span> <span class="o">:</span> <span class="s1">&#39;select&#39;</span>
+  <span class="nx">ui</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">field</span><span class="o">:</span> <span class="s1">&#39;select&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">initialize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">sizes</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">sizes</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">sizes</span><span class="p">);</span>
+    <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">onRender</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">onRender</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
     <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sizes</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addSize</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
   <span class="p">},</span>
 
-  <span class="nx">addSize</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">addSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;option /&gt;&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">size</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">field</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setupValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setupValue</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="nx">config</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
@@ -213,16 +238,16 @@
 
 <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">QuickSearchView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quickSearchView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
-  <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;quickSearch&#39;</span><span class="p">,</span>
-  <span class="nx">template</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;input type=&quot;text&quot; name=&quot;quickSearch&quot; placeholder=&quot;&lt;%- quickSearch %&gt;&quot; /&gt;&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;quickSearch&#39;</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;input type=&quot;text&quot; name=&quot;quickSearch&quot; placeholder=&quot;&lt;%- quickSearch %&gt;&quot; /&gt;&#39;</span><span class="p">)(</span><span class="nx">data</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">i18n</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">quickSearch</span> <span class="o">:</span> <span class="s1">&#39;Quick search...&#39;</span>
+  <span class="nx">i18n</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">quickSearch</span><span class="o">:</span> <span class="s1">&#39;Quick search...&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">config</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">FieldModule</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="nx">config</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
@@ -231,25 +256,25 @@
 
 <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">InfoView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">infoView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
-  <span class="nx">template</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">template</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">first</span> <span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;first&quot;&gt;0&lt;/span&gt;&#39;</span><span class="p">,</span>
-      <span class="nx">last</span> <span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;last&quot;&gt;0&lt;/span&gt;&#39;</span><span class="p">,</span>
-      <span class="nx">total</span> <span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;total&quot;&gt;0&lt;/span&gt;&#39;</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">template</span><span class="p">)({</span>
+      <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;first&quot;&gt;0&lt;/span&gt;&#39;</span><span class="p">,</span>
+      <span class="nx">last</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;last&quot;&gt;0&lt;/span&gt;&#39;</span><span class="p">,</span>
+      <span class="nx">total</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;total&quot;&gt;0&lt;/span&gt;&#39;</span>
     <span class="p">});</span>
   <span class="p">},</span>
 
-  <span class="nx">i18n</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">template</span> <span class="o">:</span> <span class="s1">&#39;Showing &lt;%= first %&gt; to &lt;%= last %&gt; of &lt;%= total %&gt; entries&#39;</span>
+  <span class="nx">i18n</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;Showing &lt;%= first %&gt; to &lt;%= last %&gt; of &lt;%= total %&gt; entries&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">ui</span> <span class="o">:</span> <span class="p">{</span>
+  <span class="nx">ui</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;.first&#39;</span><span class="p">,</span>
     <span class="nx">last</span><span class="o">:</span> <span class="s1">&#39;.last&#39;</span><span class="p">,</span>
     <span class="nx">total</span><span class="o">:</span> <span class="s1">&#39;.total&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">first</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstRecord</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">last</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">lastRecord</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
@@ -257,36 +282,36 @@
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">firstRecord</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">firstRecord</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="p">((</span><span class="nx">data</span><span class="p">.</span><span class="nx">page</span> <span class="o">||</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">data</span><span class="p">.</span><span class="nx">pageSize</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">},</span>
 
-  <span class="nx">lastRecord</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">lastRecord</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstRecord</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
 <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">PageView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Plain</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pageView</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     
-  <span class="nx">template</span> <span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;pagination&quot;&gt;&lt;ul&gt;&lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;lt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;previous&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;last&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&#39;</span><span class="p">),</span>
-  <span class="nx">pageTemplate</span> <span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;li class=&quot;page&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;%- number %&gt;&lt;/a&gt;&lt;/li&gt;&#39;</span><span class="p">),</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;ul class=&quot;pagination&quot;&gt;&lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;lt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;previous&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;last&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&#39;</span><span class="p">),</span>
+  <span class="nx">pageTemplate</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;li class=&quot;page&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;%- number %&gt;&lt;/a&gt;&lt;/li&gt;&#39;</span><span class="p">),</span>
 
-  <span class="nx">ui</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="nx">first</span> <span class="o">:</span> <span class="s1">&#39;.first&#39;</span><span class="p">,</span>
-    <span class="nx">previous</span> <span class="o">:</span> <span class="s1">&#39;.previous&#39;</span><span class="p">,</span>
-    <span class="nx">next</span> <span class="o">:</span> <span class="s1">&#39;.next&#39;</span><span class="p">,</span>
-    <span class="nx">last</span> <span class="o">:</span> <span class="s1">&#39;.last&#39;</span>
+  <span class="nx">ui</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;.first&#39;</span><span class="p">,</span>
+    <span class="nx">previous</span><span class="o">:</span> <span class="s1">&#39;.previous&#39;</span><span class="p">,</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="s1">&#39;.next&#39;</span><span class="p">,</span>
+    <span class="nx">last</span><span class="o">:</span> <span class="s1">&#39;.last&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">events</span> <span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;click .first:not(.disabled)&#39;</span> <span class="o">:</span> <span class="s1">&#39;goToFirstPage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click .previous:not(.disabled)&#39;</span> <span class="o">:</span> <span class="s1">&#39;goToPreviousPage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click .page:not(.disabled)&#39;</span> <span class="o">:</span> <span class="s1">&#39;goToPage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click .next:not(.disabled)&#39;</span> <span class="o">:</span> <span class="s1">&#39;goToNextPage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;click .last:not(.disabled)&#39;</span> <span class="o">:</span> <span class="s1">&#39;goToLastPage&#39;</span>
+  <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;click .first:not(.disabled)&#39;</span><span class="o">:</span> <span class="s1">&#39;goToFirstPage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click .previous:not(.disabled)&#39;</span><span class="o">:</span> <span class="s1">&#39;goToPreviousPage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click .page:not(.disabled)&#39;</span><span class="o">:</span> <span class="s1">&#39;goToPage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click .next:not(.disabled)&#39;</span><span class="o">:</span> <span class="s1">&#39;goToNextPage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;click .last:not(.disabled)&#39;</span><span class="o">:</span> <span class="s1">&#39;goToLastPage&#39;</span>
   <span class="p">},</span>
 
-  <span class="nx">refresh</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.page&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span> <span class="o">||</span> <span class="o">!</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">first</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
@@ -303,7 +328,7 @@
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">setupPages</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setupPages</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">numberOfPages</span><span class="p">();</span>
@@ -323,49 +348,54 @@
     <span class="p">}</span>
 
     <span class="nx">_</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pageTemplate</span><span class="p">({</span> <span class="nx">number</span> <span class="o">:</span> <span class="nx">first</span> <span class="o">+</span> <span class="nx">i</span> <span class="p">})).</span><span class="nx">insertBefore</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">next</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pageTemplate</span><span class="p">({</span> <span class="nx">number</span><span class="o">:</span> <span class="nx">first</span> <span class="o">+</span> <span class="nx">i</span> <span class="p">})).</span><span class="nx">insertBefore</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">next</span><span class="p">);</span>
     <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
 
     <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">page</span> <span class="o">-</span> <span class="nx">first</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.page&#39;</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">enable</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">enable</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">el</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">},</span>
 
-  <span class="nx">numberOfPages</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">numberOfPages</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">total</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">pageSize</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">goToFirstPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">goToFirstPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">goToPageNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">goToPreviousPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">goToPreviousPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">goToPageNumber</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">goToPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">goToPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">goToPageNumber</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">text</span><span class="p">(),</span> <span class="mi">10</span><span class="p">));</span>
   <span class="p">},</span>
 
-  <span class="nx">goToNextPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">goToNextPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">goToPageNumber</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">},</span>
 
-  <span class="nx">goToLastPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">goToLastPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">goToPageNumber</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">numberOfPages</span><span class="p">());</span>
   <span class="p">},</span>
 
-  <span class="nx">goToPageNumber</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">page</span> <span class="o">:</span> <span class="nx">n</span> <span class="p">});</span>
+  <span class="nx">goToPageNumber</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vent</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;table:update&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">page</span><span class="o">:</span> <span class="nx">n</span> <span class="p">});</span>
   <span class="p">},</span>
 
-  <span class="nx">getPage</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">getPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">page</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">});</span>

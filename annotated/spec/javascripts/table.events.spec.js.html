@@ -40,20 +40,15 @@
         <td class="code highlight"><div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;table events&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">Collection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">sync</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">{</span> <span class="nx">total</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">data</span> <span class="o">:</span> <span class="p">[]</span> <span class="p">};</span>
+    <span class="nx">sync</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">total</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">data</span><span class="o">:</span> <span class="p">[]</span> <span class="p">};</span>
     <span class="p">}</span>
   <span class="p">});</span>
 
   <span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Collection</span><span class="p">();</span>
 
   <span class="kd">var</span> <span class="nx">Table</span> <span class="o">=</span> <span class="nx">Tableling</span><span class="p">.</span><span class="nx">Table</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-
-    <span class="nx">template</span> <span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;div /&gt;&#39;</span><span class="p">),</span>
-
-    <span class="nx">getCollection</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">collection</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;&lt;div /&gt;&#39;</span><span class="p">)</span>
   <span class="p">});</span>
 
   <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;when a table is rendered&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -61,7 +56,7 @@
     <span class="kd">var</span> <span class="nx">vent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">EventAggregator</span><span class="p">();</span>
     <span class="kd">var</span> <span class="nx">table</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">makeTable</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Table</span><span class="p">({</span> <span class="nx">vent</span> <span class="o">:</span> <span class="nx">vent</span> <span class="p">});</span>
+      <span class="k">return</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Table</span><span class="p">({</span> <span class="nx">vent</span><span class="o">:</span> <span class="nx">vent</span><span class="p">,</span> <span class="nx">collection</span><span class="o">:</span> <span class="nx">collection</span> <span class="p">});</span>
     <span class="p">};</span>
 
     <span class="kd">var</span> <span class="nx">order</span><span class="p">;</span>

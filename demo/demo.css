@@ -23,7 +23,6 @@ table thead .sorting,
 table thead .sorting-asc,
 table thead .sorting-desc {
     cursor: pointer;
-    *cursor: hand;
 }
  
 table thead .sorting { background: url('images/sort_both.png') no-repeat center right; }

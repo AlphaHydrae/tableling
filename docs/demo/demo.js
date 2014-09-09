@@ -155,9 +155,9 @@ var BooksTableView = Tableling.Bootstrap.TableView.extend({
   tagName: 'table',
   className: 'table table-striped table-hover',
   template: _.template('<thead><tr><th class="sorting title">Title</th><th class="sorting author">Author</th><th class="sorting year">Year</th></tr><tbody />'),
-  itemView: BookRow,
+  childView: BookRow,
   emptyView: NoBookRow,
-  itemViewContainer: 'tbody'
+  childViewContainer: 'tbody'
 });
 
 var BooksTable = Tableling.Bootstrap.Table.extend({

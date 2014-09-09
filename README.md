@@ -2,7 +2,7 @@
 
 Table plugin based on Backbone.Marionette. Check out the [demo](http://alphahydrae.github.com/tableling/demo/)!
 
-**v0.0.25: Test suite not yet complete. Consider this very alpha.**
+**v0.1.0: Test suite not yet complete. Consider this very alpha.**
 
 [![Build Status](https://secure.travis-ci.org/AlphaHydrae/tableling.png?branch=develop)](http://travis-ci.org/AlphaHydrae/tableling)
 
@@ -27,10 +27,10 @@ Tableling leverages [Backbone](http://backbonejs.org) and [Backbone.Marionette](
 
 Tableling currently works with the following libraries:
 
-* [jQuery](http://jquery.com) v2.1.0
-* [Underscore](http://underscorejs.org) v1.5.2
-* [Backbone](http://backbonejs.org) v1.1.0
-* [Backbone.Marionette](http://marionettejs.com) v1.5.1
+* [jQuery](http://jquery.com) v2.1.1
+* [Underscore](http://underscorejs.org) v1.7.0
+* [Backbone](http://backbonejs.org) v1.1.2
+* [Backbone.Marionette](http://marionettejs.com) v2.1.0
 
 It may or may not work using different versions.
 

@@ -70,7 +70,7 @@ Tableling.Modular = Tableling.Table.extend({
 //
 //       pageSizeView: PageSizeView,
 //       pageSizeViewOptions: {
-//         itemView: PageSizeItem
+//         childView: PageSizeItem
 //       },
 //
 //       regions: {

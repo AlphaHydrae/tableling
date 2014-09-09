@@ -14,7 +14,7 @@ Tableling.Bootstrap.PageSizeView = Tableling.Bootstrap.Table.prototype.pageSizeV
     role: 'form'
   },
   template: function(data) {
-    return _.template('<div class="formGroup"><select name="pageSize" class="form-control"><option>5</option><option>10</option><option>15</option></select> <%- entries %></div>', data);
+    return _.template('<div class="formGroup"><select name="pageSize" class="form-control"><option>5</option><option>10</option><option>15</option></select> <%- entries %></div>')(data);
   }
 });
 
@@ -26,7 +26,7 @@ Tableling.Bootstrap.QuickSearchView = Tableling.Bootstrap.Table.prototype.quickS
     role: 'form'
   },
   template: function(data) {
-    return _.template('<div class="formGroup"><input type="text" name="quickSearch" class="form-control" placeholder="<%- quickSearch %>" /></div>', data);
+    return _.template('<div class="formGroup"><input type="text" name="quickSearch" class="form-control" placeholder="<%- quickSearch %>" /></div>')(data);
   }
 });
 

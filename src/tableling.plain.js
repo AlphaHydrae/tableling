@@ -125,7 +125,7 @@ Tableling.Plain.PageSizeView = Tableling.Plain.Table.prototype.pageSizeView = Ta
   // TODO: update current page intelligently
   name: 'pageSize',
   template: function(data) {
-    return _.template('<select name="pageSize" /> <%- entries %>', data);
+    return _.template('<select name="pageSize" /> <%- entries %>')(data);
   },
 
   i18n: {
@@ -168,7 +168,7 @@ Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchVie
 
   name: 'quickSearch',
   template: function(data) {
-    return _.template('<input type="text" name="quickSearch" placeholder="<%- quickSearch %>" />', data);
+    return _.template('<input type="text" name="quickSearch" placeholder="<%- quickSearch %>" />')(data);
   },
 
   i18n: {
@@ -185,7 +185,7 @@ Tableling.Plain.QuickSearchView = Tableling.Plain.Table.prototype.quickSearchVie
 Tableling.Plain.InfoView = Tableling.Plain.Table.prototype.infoView = Tableling.Module.extend({
 
   template: function(data) {
-    return _.template(data.template, {
+    return _.template(data.template)({
       first: '<span class="first">0</span>',
       last: '<span class="last">0</span>',
       total: '<span class="total">0</span>'

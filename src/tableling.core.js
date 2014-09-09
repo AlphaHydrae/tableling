@@ -3,7 +3,7 @@
 //
 // A tableling table is a Marionette layout which fetches data
 // from a Backbone collection. It is controlled with an EventAggregator.
-Tableling.Table = Backbone.Marionette.Layout.extend({
+Tableling.Table = Backbone.Marionette.LayoutView.extend({
 
   className: 'tableling',
 
@@ -40,7 +40,7 @@ Tableling.Table = Backbone.Marionette.Layout.extend({
     // the table (e.g. change page size, sort) and fetch the new data.
     this.vent.on('table:update', this.onUpdate, this);
 
-    this.on('item:rendered', this.setup, this);
+    this.once('render', this.setup, this);
 
     if (typeof(this.initializeTable) == 'function') {
       this.initializeTable(options);

@@ -37,7 +37,7 @@ end
 desc 'Update lib, annotated source and demo'
 task :build => [ 'build:lib', 'build:annotated' ]
 
-desc 'Update GitHub pages (from develop)'
+desc 'Update GitHub pages (from master)'
 task :pages do |t|
 
   remote = 'git@github.com:AlphaHydrae/tableling.git'
@@ -46,7 +46,7 @@ task :pages do |t|
 
     repo = File.join tmp, 'repo'
     Dir.mkdir repo
-    raise 'ERROR: could not clone repo' unless system "git clone -b develop #{remote} #{repo}"
+    raise 'ERROR: could not clone repo' unless system "git clone -b master #{remote} #{repo}"
 
     demo = File.join tmp, 'demo'
     Dir.mkdir demo
@@ -67,7 +67,7 @@ task :pages do |t|
     raise 'ERROR: could not stage changes' unless system "cd #{repo} && git ls-files --deleted -z | xargs -0 git rm"
 
     h = `cd #{repo} && git log --pretty=format:'%h' -n 1`
-    raise 'ERROR: could not commit changes' unless system %/cd #{repo} && git commit -m "Generated from develop@#{h}."/
+    raise 'ERROR: could not commit changes' unless system %/cd #{repo} && git commit -m "Generated from master@#{h}."/
     raise 'ERROR: could not push changes' unless system "cd #{repo} && git push"
   end
 end

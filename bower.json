@@ -1,0 +1,29 @@
+{
+  "name": "tableling",
+  "version": "0.1.0",
+  "homepage": "https://github.com/AlphaHydrae/tableling",
+  "description": "Table plugin based on Backbone.Marionette.",
+  "main": "lib/tableling.js",
+  "keywords": [
+    "table",
+    "backbone",
+    "marionette"
+  ],
+  "authors": [
+    "Simon Oulevay"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "docs",
+    "node_modules",
+    "bower_components",
+    "res",
+    "spec",
+    "src",
+    "wiki"
+  ],
+  "dependencies": {
+    "marionette": "~2.2.0"
+  }
+}

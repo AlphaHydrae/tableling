@@ -1,7 +1,7 @@
 *.swp
+bower_components
 node_modules
 npm-debug.log
-.DS_Store
 docs/annotated
 _SpecRunner.html
 wiki

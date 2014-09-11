@@ -14,8 +14,6 @@ module.exports = function(grunt) {
       banner_header: '/*!\n',
       banner_footer: ' */',
       banner_incl_basics:
-        ' * Includes JSON2\n' +
-        ' * https://github.com/douglascrockford/JSON-js\n' +
         ' * Includes jQuery\n' +
         ' * http://jquery.com' +
         ' * Includes Underscore\n' +
@@ -70,9 +68,8 @@ module.exports = function(grunt) {
       },
       world: {
         src: [
-          'vendor/json2.js',
-          'vendor/jquery.js',
           'vendor/underscore.js',
+          'vendor/jquery.js',
           'vendor/backbone.js',
           'vendor/backbone.marionette.js',
           'lib/tableling.js'
@@ -116,6 +113,14 @@ module.exports = function(grunt) {
         files: [
           { expand: true, cwd: 'lib/bundles/', src: 'tableling.world.*', dest: 'docs/demo/', flatten: true, filter: 'isFile' }
         ]
+      },
+      vendor: {
+        files: [
+          { nonull: true, src: 'bower_components/underscore/underscore.js', dest: 'vendor/underscore.js' },
+          { nonull: true, src: 'bower_components/jquery/dist/jquery.js', dest: 'vendor/jquery.js' },
+          { nonull: true, src: 'bower_components/backbone/backbone.js', dest: 'vendor/backbone.js' },
+          { nonull: true, src: 'bower_components/marionette/lib/backbone.marionette.js', dest: 'vendor/marionette.js' }
+        ]
       }
     },
 
@@ -126,9 +131,8 @@ module.exports = function(grunt) {
           helpers: 'spec/javascripts/helpers/*.js',
           specs: 'spec/javascripts/**/*.spec.js',
           vendor: [
-            'vendor/jquery.js',
-            'vendor/json2.js',
             'vendor/underscore.js',
+            'vendor/jquery.js',
             'vendor/backbone.js',
             'vendor/backbone.marionette.js'
           ]
@@ -154,5 +158,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('default', [ 'jshint', 'concat', 'jasmine', 'uglify', 'copy' ]);
+  grunt.registerTask('default', [ 'jshint', 'concat', 'jasmine', 'uglify', 'copy:demo' ]);
+  grunt.registerTask('vendor', [ 'copy:vendor' ]);
 };

@@ -74,5 +74,5 @@ end
 
 # version tasks
 RakeVersion::Tasks.new do |v|
-  v.copy 'src/tableling.js', 'res/tableling.header.js', 'package.json', 'README.md', 'docs/demo/index.html', 'spec/javascripts/version.spec.js'
+  v.copy 'src/tableling.js', 'res/tableling.header.js', 'bower.json', 'package.json', 'README.md', 'docs/demo/index.html', 'spec/javascripts/version.spec.js'
 end

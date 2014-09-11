@@ -1,6 +1,6 @@
 {
   "name": "tableling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/AlphaHydrae/tableling",
   "description": "Table plugin based on Backbone.Marionette.",
   "main": "lib/tableling.js",

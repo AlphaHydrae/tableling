@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         banner: '<%= meta.banner_backbone %>',
         src: [
           'vendor/backbone.js',
-          'vendor/backbone.marionette.js',
+          'vendor/marionette.js',
           'lib/tableling.js'
         ],
         dest: 'lib/bundles/tableling.backbone.js'
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
           'vendor/underscore.js',
           'vendor/jquery.js',
           'vendor/backbone.js',
-          'vendor/backbone.marionette.js',
+          'vendor/marionette.js',
           'lib/tableling.js'
         ],
         dest: 'lib/bundles/tableling.world.js'
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
             'vendor/underscore.js',
             'vendor/jquery.js',
             'vendor/backbone.js',
-            'vendor/backbone.marionette.js'
+            'vendor/marionette.js'
           ]
         }
       }
